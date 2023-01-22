@@ -1,0 +1,31 @@
+/* 
+ * VARIABLES
+ */
+/* 
+ * BASICS
+ */
+ 
+ /*
+  * MAIN CONTENT
+  */
+  .avatar {
+    border: 5px solid #ffffff;
+    box-sizing: border-box;
+    height: 45px;
+    border-radius: 50%;
+    position: relative;
+    width: 45px;
+    margin: 8px;
+  }
+  .avatar__image {
+    width: 100%;
+    border-radius: 50%;
+  }
+  .avatar::before {
+    top: -10px;
+    transform: translateX(-50%);
+  }
+  .avatar::after {
+    bottom: -10px;
+    transform: translateX(-50%) rotate(180deg);
+  }
