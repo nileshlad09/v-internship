@@ -53,7 +53,7 @@ const Admin = () => {
                    <div className="card">
                         <div className="card-content">
                             <div className="number">{len}</div>
-                            <div className="card-name">INTERNSHIP HAS DONE</div>
+                            <div className="card-name">INTERNSHIP HAS BEEN DONE</div>
                         </div>
                         <div className="icon-box">
                             <AiFillSafetyCertificate/>
@@ -64,7 +64,7 @@ const Admin = () => {
                     <div className="card">
                         <div className="card-content">
                             <div className="number">{data.length - len}</div>
-                            <div className="card-name">INTERNSHIP NOT HAS DONE</div>
+                            <div className="card-name">INTERNSHIP HAS NOT BEEN DONE</div>
                         </div>
                         <div className="icon-box">
                             <AiFillSafetyCertificate  />

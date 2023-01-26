@@ -27,7 +27,7 @@ const Forgotpassword = () => {
                     <Link to="/login">
                     <p className='forgotP'>Login</p>
                     </Link>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn"  style={{backgroundColor:"#299863",color:'#fff'}}>Submit</button>
                 </form>
             </div>
         </>

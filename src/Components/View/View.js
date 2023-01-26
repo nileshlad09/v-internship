@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
 import './View.css'
-import React, { useState, useEffect } from 'react'
-import data from '../StudentData/Data';
+import React from 'react'
+import { Link } from 'react-router-dom';
+// import data from '../StudentData/Data';
 function View() {
     const params = useParams();
     const fname = params.fname;
@@ -12,20 +13,20 @@ function View() {
     const email = params.email;
     const start = params.start;
     const end = params.end;
-    const id = params.id;
+    // const id = params.id;
     const domain = params.domain;
 
-    const [image, setimage] = useState({});
+    // const [image, setimage] = useState({});
 
-    useEffect(() => {
-        getimage();
-    })
-    const getimage = () => {
-        const f = data.find((val, index) => {
-            return val.id === parseInt(id);
-        })
-        setimage(f);
-    }
+    // useEffect(() => {
+    //     getimage();
+    // })
+    // const getimage = () => {
+    //     const f = data.find((val, index) => {
+    //         return val.id === parseInt(id);
+    //     })
+    //     setimage(f);
+    // }
 
     return (
       <>
@@ -46,10 +47,6 @@ function View() {
                     <div class="col-md-6">
                         <label for="inputCity" class="form-label">branch</label>
                         <input type="text" value={branch} class="form-control" id="inputCity" />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputZip" class="form-label">SEM</label>
-                        <input type="text" value={Sem} class="form-control" id="inputZip" />
                     </div>
                 </form>
             </div>
@@ -82,7 +79,7 @@ function View() {
                     </div>
                     <div class="col-md-2">
                     <label for="inputZip" class="form-label">Certificate</label>
-                    <a href=''class="form-control" id="inputZip" style={{color:"green"}}>CLICK TO SEE CERTIFICATE</a>
+                    <Link  to=''class="form-control" id="inputZip" style={{color:"green"}}>CLICK TO SEE CERTIFICATE</Link>
                     </div>
                     </form>
           </div>

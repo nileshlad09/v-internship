@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import './navbar.css';
+import './Navbar.css';
 function App() {
   return (
     <nav class="navbar" style={{ backgroundColor: "#299863", color: "#fff" }}>
@@ -16,6 +16,12 @@ function App() {
             </li>  
             <li class="nav-item">
               <Link class="nav-link active" aria-current="page" to="/ExcelData" style={{ color: "#fff" }}>Excel Data</Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link active" aria-current="page" to="/Login" style={{ color: "#fff" }}>Login</Link>
+            </li>
+            <li class="nav-item">
+              <Link class="nav-link active" aria-current="page" to="/Forgotpassword" style={{ color: "#fff" }}>Password</Link>
             </li>
           </ul>
         </div>

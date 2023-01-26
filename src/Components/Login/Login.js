@@ -19,7 +19,7 @@ const Login = () => {
                     <p className='forgotP'>Forgot password?</p>
                     </Link>
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn" style={{backgroundColor:"#299863",color:'#fff'}}>Login</button>
                 </form>
             </div>
             </>
