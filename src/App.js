@@ -12,12 +12,14 @@ import ExcelData from "./Components/ExcelData/ExcelData";
 import StudentaddData from "./Components/SrudentAdddata/StudentaddData";
 import Login from "./Components/Login/Login";
 import Forgotpassword from "./Components/Login/Forgotpassword";
+
 function App() {
   return (
     <div>
      <Navbar/>
+
      <Switch>
-       <Route exact path='/' component={Admin}></Route>
+       <Route exact path='/' component={Admin} ></Route>
        <Route exact path ='/StudentData' component={StudentData}></Route>
        <Route exact path ='/InternshipDone' component={InternshipDone}></Route>
        <Route exact path ='/InternshipNotDone' component={InternshipNotDone}></Route>

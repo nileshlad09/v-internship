@@ -1,4 +1,14 @@
-.avatar {
+/* 
+ * VARIABLES
+ */
+/* 
+ * BASICS
+ */
+ 
+ /*
+  * MAIN CONTENT
+  */
+  .avatar {
     border: 5px solid #ffffff;
     box-sizing: border-box;
     height: 45px;
