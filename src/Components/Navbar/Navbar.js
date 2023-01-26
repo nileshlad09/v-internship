@@ -13,21 +13,11 @@ function App() {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <Link class="nav-link active" aria-current="page" to="/" style={{ color: "#fff" }}>Home</Link>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/StudentData" style={{ color: "#fff" }} >Data</Link>
-            </li>
+            </li>  
             <li class="nav-item">
               <Link class="nav-link active" aria-current="page" to="/ExcelData" style={{ color: "#fff" }}>Excel Data</Link>
             </li>
-            {/* <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> */}
           </ul>
-          <div class="avatar">
-            <img src="https://picsum.photos/id/1011/500/500" class="avatar__image" />
-          </div>
         </div>
       </div>
     </nav>

@@ -62,7 +62,7 @@
      }
      .charts{
       height: 400px;
-      width: 400px;
+      width: 100%;
      }
  }
 
@@ -71,6 +71,6 @@
         grid-template-columns:1fr;
      }
      .charts{
-      width: 400px;
+      width: 100%;
      }
  }

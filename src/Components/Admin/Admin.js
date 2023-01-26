@@ -31,41 +31,45 @@ const Admin = () => {
                 <div className="cards">
                     <div className="card">
                         <div className="card-content">
-                            <div className="number">100+</div>
-                            <div className="card-name">Students SignUp</div>
+                            <div className="number">50+</div>
+                            <div className="card-name">STUDENTDS</div>
                         </div>
                         <div className="icon-box">
-                            <FaUserAlt />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-content">
-                            <div className="number">{len}</div>
-                            <div className="card-name">Certificate Uploaded</div>
-                        </div>
-                        <div className="icon-box">
-                            <AiFillSafetyCertificate />
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-content">
-                            <div className="number">{data.length - len}</div>
-                            <div className="card-name">Certificate Not Uploaded</div>
-                        </div>
-                        <div className="icon-box">
-                            <AiFillSafetyCertificate />
+                            <FaUserAlt/>
                         </div>
                     </div>
                     <Link to="/StudentData">
                         <div className="card">
                             <div className="card-content">
                                 <div className="number">{data.length}</div>
-                                <div className="card-name">View Data</div>
+                                <div className="card-name">VIEW DATA</div>
                             </div>
                             <div className="icon-box">
                                 <FaDatabase />
                             </div>
                         </div>
+                    </Link>
+                   <Link to='/InternshipDone'>
+                   <div className="card">
+                        <div className="card-content">
+                            <div className="number">{len}</div>
+                            <div className="card-name">INTERNSHIP HAS DONE</div>
+                        </div>
+                        <div className="icon-box">
+                            <AiFillSafetyCertificate/>
+                        </div>
+                    </div>
+                    </Link> 
+                    <Link to="/InternshipNotDone">
+                    <div className="card">
+                        <div className="card-content">
+                            <div className="number">{data.length - len}</div>
+                            <div className="card-name">INTERNSHIP NOT HAS DONE</div>
+                        </div>
+                        <div className="icon-box">
+                            <AiFillSafetyCertificate  />
+                        </div>
+                    </div>
                     </Link>
 
                 </div>
@@ -78,7 +82,7 @@ const Admin = () => {
                     height="400px"
                     series={[
                         {
-                            data: [100,data.length,len, data.length - len],
+                            data: [50,data.length,len, data.length - len],
                         }
                     ]}
 

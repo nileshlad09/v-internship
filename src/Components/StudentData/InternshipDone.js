@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import './StudentData.css';
 import data from './Data.js'
 import { Link } from 'react-router-dom';
-import Chart from 'react-apexcharts'
-import demo from './certificate_demo.jpg'
 import {CgEye} from 'react-icons/cg'
-function App() {
+function InternshipDone() {
   const [sem, setsem] = useState("");
   const [name, setname] = useState("");
   const [roll, setroll] = useState("");
   const [branch, setbranch] = useState("");
+
+
+  
 
   return (
     <>
@@ -95,16 +95,19 @@ function App() {
                     }
                   })
                   .map((item) => {
-                    return (  
-                      <> 
-                     <tr >
+                    return (
+                      <>
+                      { 
+                       item.certificate==="uploaded"?
+                     (<tr >
                         <td style={{ textAlign: "center" }}>{item.roll}</td>
                         <td style={{ textAlign: "center" }}>{item.fname}</td>
                         <td style={{ display: "none" }}>{item.Sem}th</td>
                         <td style={{ display: "none" }}>{item.branch}</td>
                         <td style={{ textAlign: "center" }}>{item.certificate}</td>
                         <td style={{ textAlign: "center" }}><Link to={'/View/' + item.fname + '/' + item.roll + '/' + item.Sem + '/' + item.branch + '/' + item.organization + '/' + item.email + '/' + item.start + '/' + item.end + '/' + item.id + '/' + item.domain}><CgEye/></Link></td>
-                      </tr>
+                      </tr>):(<p></p>)
+                      }
                       </>
                     )
                   })
@@ -116,10 +119,9 @@ function App() {
           </table>
         </div>
       </section>
-    
     </>
   );
 
 }
 
- export default App;
+ export default InternshipDone;
