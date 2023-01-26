@@ -1,75 +1,120 @@
+import demo from './certificate_demo.jpg'
 const data=[
-    {
+    {  id:1,
        roll:"20102A0055",
        fname:"Nikhil Adhare",
        Sem:"6",
        branch:"CMPN",
        certificate:"uploaded",
-       organization:"zyxffboirhroi"
+       email:"adhare@gmail.com",
+       organization:"ABCDEFGHIJK",
+       start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"web development",
+       img:demo
     },
-    {
+    {  id:2,
       roll:"20102A0056",
         fname:"ved dahale",
         Sem:"5",
         branch:"CMPN",
-        certificate:"uploaded",
-        organization:"zyxibfpfbj"
+        certificate:"Not uploaded",
+        email:"adhare@gmail.com",
+        organization:"zyxibfpfbj",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"App development",
+       img:demo
      },
-     {
+     { id:3,
       roll:"20102A0053",
         fname:"nilesh lad",
         Sem:"6",
         branch:"INFT",
         certificate:"uploaded",
-        organization:"dsjdbpojzyx"
+        email:"adhare@gmail.com",
+        organization:"dsjdbpojzyx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"web development",
+       img:demo
      },
-     {
+     { id:4,
       roll:"20102A0045",
         fname:"sanchit gharge",
         Sem:"4",
         branch:"EXTC",
         certificate:"uploaded",
-        organization:"ortprtorjzyx"
+        email:"adhare@gmail.com",
+        organization:"ortprtorjzyx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"web development",
+       img:demo
      },
-     {
+     { id:5,
       roll:"20102A0047",
         fname:"ritik zambre",
         Sem:"6",
         branch:"BIOM",
-        certificate:"uploaded",
-        organization:"zyfbdfnfx"
+        certificate:"Not uploaded",
+        email:"adhare@gmail.com",
+        organization:"zyfbdfnfx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       img:demo
      },
-     {
+     { id:6,
       roll:"20102A0030",
         fname:"Sarang More",
         Sem:"6",
         branch:"BIOM",
-        certificate:"uploaded",
-        organization:"zyfbdfnfx"
+        certificate:"Not uploaded",
+        email:"adhare@gmail.com",
+        organization:"zyfbdfnfx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"data science",
+       img:demo
      },
-     {
+     { id:7,
       roll:"20102A0041",
         fname:"Harsh Naik",
         Sem:"4",
         branch:"  INFT",
-        certificate:"uploaded",
-        organization:"zyfbdfnfx"
+        certificate:"Not uploaded",
+        email:"adhare@gmail.com",
+        organization:"zyfbdfnfx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"App development",
+       img:demo
      },
-     {
+     {id:8,
       roll:"20102A0010",
         fname:"Altmash Khan",
         Sem:"5",
         branch:"EXTC",
         certificate:"uploaded",
-        organization:"zyfbdfnfx"
+        email:"adhare@gmail.com",
+        organization:"zyfbdfnfx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"cybersecurity",
+       img:demo
      },
-     {
+     { id:9,
       roll:"20102A0005",
         fname:"Mayuresh Chauhan",
         Sem:"7",
         branch:"CMPN",
         certificate:"uploaded",
-        organization:"zyfbdfnfx"
+        email:"adhare@gmail.com",
+        organization:"zyfbdfnfx",
+        start:"25-05-2022",
+       end:"25-06-2022",
+       domain:"web development",
+       img:demo
      },
 ]
 

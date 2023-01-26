@@ -1,0 +1,17 @@
+#excelfrom{
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 20px;
+    transition: 0.45s;
+}
+#excelfrom input:hover{
+  background-color:#e0f3e9;
+}
+
+@media(max-width:770px){
+    #excelfrom{
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+    }
+}

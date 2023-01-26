@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './StudentData.css';
 import data from './Data.js'
+import { Link } from 'react-router-dom';
+import Chart from 'react-apexcharts'
+
 function App() {
   const [sem, setsem] = useState("");
   const [name, setname] = useState("");
@@ -35,20 +38,20 @@ function App() {
         </div>
       </div>
 
-  
 
-   {/* table data */}
+
+      {/* table data */}
       <section>
         <div class="tbl-header">
           <table cellpadding="0" cellspacing="0" border="0">
             <thead>
               <tr>
-                <th>Roll No.</th>
-                <th>Name</th>
-                <th>Sem</th>
-                <th>Branch</th>
-                <th>Certificate</th>
-                <th>View</th>
+                <th style={{ textAlign: "center" }}>Roll No.</th>
+                <th style={{ textAlign: "center" }}>Name</th>
+                <th style={{ display: "none" }}>Sem</th>
+                <th style={{ display: "none" }}>Branch</th>
+                <th style={{ textAlign: "center" }}>Certificate</th>
+                <th style={{ textAlign: "center" }}>View</th>
               </tr>
             </thead>
           </table>
@@ -57,7 +60,7 @@ function App() {
           <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
               {
-
+                // eslint-disable-next-line array-callback-return
                 data.filter(function (val) {
                   if (val.Sem === sem) {
                     return val;
@@ -65,6 +68,7 @@ function App() {
                     return val;
                   }
                 })
+                  // eslint-disable-next-line array-callback-return
                   .filter(function (val) {
                     if (val === "") {
                       return val;
@@ -72,6 +76,7 @@ function App() {
                       return val;
                     }
                   })
+                  // eslint-disable-next-line array-callback-return
                   .filter(function (val) {
                     if (val.roll === roll) {
                       return val;
@@ -80,6 +85,7 @@ function App() {
                     }
                   })
 
+                  // eslint-disable-next-line array-callback-return
                   .filter(function (val) {
                     if (val.branch === branch) {
                       return val;
@@ -90,15 +96,17 @@ function App() {
                   .map((item) => {
                     return (
                       <tr >
-                        <td>{item.roll}</td>
-                        <td>{item.fname}</td>
-                        <td>{item.Sem}th</td>
-                        <td>{item.branch}</td>
-                        <td>{item.certificate}</td>
-                        <td>View</td>
+                        <td style={{ textAlign: "center" }}>{item.roll}</td>
+                        <td style={{ textAlign: "center" }}>{item.fname}</td>
+                        <td style={{ display: "none" }}>{item.Sem}th</td>
+                        <td style={{ display: "none" }}>{item.branch}</td>
+                        <td style={{ textAlign: "center" }}>{item.certificate}</td>
+                        <td style={{ textAlign: "center" }}><Link to={'/View/' + item.fname + '/' + item.roll + '/' + item.Sem + '/' + item.branch + '/' + item.organization + '/' + item.email + '/' + item.start + '/' + item.end + '/' + item.id + '/' + item.domain}>View</Link></td>
                       </tr>
                     )
                   })
+
+
               }
 
             </tbody>
@@ -109,4 +117,5 @@ function App() {
   );
 
 }
-export default App;
+
+ export default App;

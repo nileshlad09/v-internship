@@ -1,0 +1,16 @@
+
+.heading{
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+}
+.internship{
+    margin: 20px;
+    background-color: #299863;
+    border-radius: 10px;
+    transition: 0.45s;
+    color: #fff;
+}
+.internship:hover{    
+    box-shadow: 0 7px 25px  0 rgba(0, 0, 0, 0.1);
+}

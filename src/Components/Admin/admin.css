@@ -15,7 +15,7 @@
     width: 100%;
      padding: 30px 20px; 
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
     grid-gap: 20px; 
 
  }
@@ -32,6 +32,7 @@
  .cards .card:hover{
     background-color: #f2f6f4;
     color: #fff;
+    box-shadow: 0 0px 0px  0 rgba(0, 0, 0, 0.08);
  }
  .number{
    text-align: center;
@@ -48,15 +49,28 @@
     font-size: 45px;
     color: #299863;
  }
+ .charts{
+   transition: 0.45s;
+ }
+ .charts:hover{
+   box-shadow: 0 0px 0px  0 rgba(0, 0, 0, 0.08);
+ }
 
  @media (max-width:880px) {
     .cards{
         grid-template-columns: repeat(1,1fr);
+     }
+     .charts{
+      height: 400px;
+      width: 400px;
      }
  }
 
  @media (max-width:770px) {
     .cards{
         grid-template-columns:1fr;
+     }
+     .charts{
+      width: 400px;
      }
  }
