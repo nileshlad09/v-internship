@@ -1,0 +1,19 @@
+.loginComponent{
+    margin-top: 100px;
+    max-width: 300px;
+    box-shadow: 0 7px 25px  0 rgba(0, 0, 0, 0.788);
+    padding: 30px;
+    border-radius: 10px;
+}
+.loginComponent h3,
+.loginComponent h4{
+    text-align: center;
+}
+.forgotP{
+    font-size: 14px;
+    color: red;
+}
+.optverification{
+    display: flex;
+    gap: 5px;
+}

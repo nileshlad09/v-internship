@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import './Navbar.css';
+import './navbar.css';
 function App() {
   return (
     <nav class="navbar" style={{ backgroundColor: "#299863", color: "#fff" }}>
