@@ -8,10 +8,7 @@ function AddInternship() {
     const disableCreateUser = () => {
         document.getElementById("user_register").disabled = false;
     }
-
-
-
-
+    
     return (
         <div style={{ overflow: "hidden" }}>
             <div className="internship">
