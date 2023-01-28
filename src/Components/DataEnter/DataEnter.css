@@ -1,4 +1,8 @@
-a{
+a {
     text-decoration: none;
     list-style: none;
+}
+
+.dataEnter_input {
+    margin-bottom: 25px;
 }

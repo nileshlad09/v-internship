@@ -11,16 +11,13 @@ const Navbar = ()=> {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/" style={{ color: "#fff" }}>Home</Link>
+              <Link class="nav-link active" aria-current="page" to="/admin" style={{ color: "#fff" }}>Home</Link>
             </li>  
             <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/ExcelData" style={{ color: "#fff" }}>Excel Data</Link>
+              <Link class="nav-link active" aria-current="page" to="/admin/dashboard" style={{ color: "#fff" }}>Dashboard</Link>
             </li>
             <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/Login" style={{ color: "#fff" }}>Login</Link>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/Forgotpassword" style={{ color: "#fff" }}>Password</Link>
+              <Link class="nav-link active" aria-current="page" to="/Login" style={{ color: "#fff" }}>verify</Link>
             </li>
           </ul>
         </div>
