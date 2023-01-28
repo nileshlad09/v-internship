@@ -20,7 +20,7 @@ function AddInternship() {
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" onClick={disableCreateUser} />
                             <label class="form-check-label" for="flexRadioDefault2">
-                                is Internship be done?
+                                is Internship being done?
                             </label>
                         </div>
                     </div>
