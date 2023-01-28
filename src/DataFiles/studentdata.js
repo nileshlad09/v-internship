@@ -13,7 +13,8 @@ const data = [
     end: "25-06-2022",
     Domain: "web development",
     img: "",
-    Batch:"2025"
+    Batch:"2025",
+    div:"A"
   },
   {
     id: 2,
@@ -28,7 +29,8 @@ const data = [
     end: "25-06-2022",
     Domain: "App development",
     img: "",
-    Batch:"2023"
+    Batch:"2023",
+    div:"B"
   },
   {
     id: 3,
@@ -43,7 +45,8 @@ const data = [
     end: "25-06-2022",
     Domain: "web development",
     img: "",
-    Batch:"2024"
+    Batch:"2024",
+    div:"A"
   },
   {
     id: 4,
@@ -58,7 +61,8 @@ const data = [
     end: "25-06-2022",
     Domain: "web development",
     img: "",
-    Batch:"2024"
+    Batch:"2024",
+    div:"A"
   },
   {
     id: 5,
@@ -73,7 +77,8 @@ const data = [
     end: "25-06-2022",
     Domain:"web development",
     img: "",
-    Batch:"2023"
+    Batch:"2023",
+    div:"B"
   },
   {
     id: 6,
@@ -88,7 +93,8 @@ const data = [
     end: "25-06-2022",
     Domain: "data science",
     img: "",
-    Batch:"2025"
+    Batch:"2025",
+    div:"B"
   },
   {
     id: 7,
@@ -103,7 +109,8 @@ const data = [
     end: "25-06-2022",
     Domain: "App development",
     img: "",
-    Batch:"2024"
+    Batch:"2024",
+    div:"A"
   },
   {
     id: 8,
@@ -118,7 +125,8 @@ const data = [
     end: "25-06-2022",
     Domain: "cybersecurity",
     img: "",
-    Batch:"2025"
+    Batch:"2025",
+    div:"A"
   },
   {
     id: 9,
@@ -133,7 +141,8 @@ const data = [
     end: "25-06-2022",
     Domain: "web development",
     img: "",
-    Batch:"2024"
+    Batch:"2024",
+    div:"B"
   },
 ]
 

@@ -4,7 +4,7 @@ const Navbar = ()=> {
   return (
     <nav class="navbar" style={{ backgroundColor: "#299863", color: "#fff" }}>
       <div class="container-fluid" >
-        <Link class="navbar-brand" to="/" style={{ color: "#fff" }}>VIT</Link>
+        <Link class="navbar-brand" to="/" style={{ color: "#fff" }}>V-Internship</Link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

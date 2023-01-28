@@ -10,6 +10,7 @@ const View = () => {
   const [batch, setbatch] = useState("");
   const [company, setcompany] = useState("");
   const [domain, setdomain] = useState("");
+  const [div, setdiv] = useState("");
   return (
     <div>
       <div className="filter">
@@ -18,7 +19,7 @@ const View = () => {
         </div>
 
         <div class="search__container">
-          <select name="state" id="state" class="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
+          <select name="branch" id="branch" class="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
             <option>Select Branch</option>
             <option >CMPN</option>
             <option >INFT</option>
@@ -33,6 +34,14 @@ const View = () => {
 
         <div class="search__container">
           <input class="search__input" value={domain} onChange={(e) => {setdomain(e.target.value) }} type="text" placeholder="Domain" />
+        </div>
+
+        <div class="search__container">
+          <select name="div" id="div" class="form-control search_input" option={div} value={div} onChange={(e) => { setdiv(e.target.value) }} >
+            <option>Select Div</option>
+            <option >A</option>
+            <option >B</option>
+          </select>
         </div>
 
         <div class="search__container">
@@ -114,6 +123,14 @@ const View = () => {
                     if (val.branch === branch) {
                       return val;
                     } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
+                      return val;
+                    }
+                  })
+                  // eslint-disable-next-line array-callback-return
+                  .filter(function (val) {
+                    if (val.div === div) {
+                      return val;
+                    } else if (val.div.toLowerCase().includes(div.toLowerCase())) {
                       return val;
                     }
                   })

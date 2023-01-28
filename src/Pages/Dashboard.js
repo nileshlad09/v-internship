@@ -1,6 +1,6 @@
 import React from 'react'
-import DashBoard1 from '../Components/Admin/DashBoard1'
-import Graph from '../Components/Admin/Graph'
+import DashBoard1 from '../Components/DashBoard/DashBoard1'
+import Graph from '../Components/DashBoard/Graph'
 
 const Dashboard = () => {
   return (
