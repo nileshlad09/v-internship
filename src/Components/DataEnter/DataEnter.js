@@ -22,6 +22,10 @@ const DataEnter = () => {
                         <input type="email" class="form-control" id="inputAddress" placeholder="Example@vit.edu.in" />
                     </div>
                     <div class="col-md-4">
+                        <label for="inputAddress" class="form-label">Mobile No</label>
+                        <input type="email" class="form-control" id="inputAddress"/>
+                    </div>
+                    <div class="col-md-4">
                         <label for="inputAddress" class="form-label">Semester</label>
                         <select name="semster" id="state" class="form-select" >
                             <option>Semster</option>
