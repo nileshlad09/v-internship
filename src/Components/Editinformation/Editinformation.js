@@ -54,7 +54,7 @@ const Editinformation = () => {
                         </select>
                     </div>
                     <div>
-                        <button type='submit' className='btn btn-primary'>Create Form</button>
+                        <button type='submit' className='btn btn-outline-success'>Create Form</button>
                     </div>
                 </form>
             </div>

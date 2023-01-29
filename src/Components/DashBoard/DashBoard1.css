@@ -50,6 +50,7 @@
 .Dashboard_title_2 {
     font-size: 1.6rem;
     font-weight: 600;
+    color: black;
 }
 
 .Dashboard_main_box {
@@ -60,20 +61,8 @@
     color: white;
 }
 
-.graph_section {
-    width: 60%;
-}
-
-@media screen and (max-width:1000px) {
-    .graph_section {
-        width: 80%;
-    }
-}
-
 @media screen and (max-width:750px) {
-    .graph_section {
-        width: 100%;
-    }
+
     .Dashboard_box {
         width: 200px;
     }

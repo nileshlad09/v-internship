@@ -7,7 +7,7 @@ import AdminLogin from './Components/Adminlogin/AdminLogin'
 import View from './Pages/View'
 import DataEnter from './Components/DataEnter/DataEnter'
 import AddInternship from './Components/DataEnter/AddInternship';
-import Admin from './Components/Admin/Admin';
+// import Admin from './Components/Admin/Admin';
 import Editinformation from './Components/Editinformation/Editinformation';
 
 function App() {

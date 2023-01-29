@@ -5,8 +5,7 @@ const Navbar = () => {
     <>
     <div className="navbar_Section">
       <nav class="navbar navbar-expand-lg navbar-success bg-success container">
-
-        <a class="navbar-brand" style={{color:"#fff"}} href="#">V-Internship</a>
+       <Link class="navbar-brand" to="/dashboard" style={{color:"#fff",fontWeight:"700"}}>V-Internship </Link>
         <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

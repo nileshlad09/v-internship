@@ -1,5 +1,6 @@
 import React from 'react'
 import './DashBoard1.css'
+import { Link } from 'react-router-dom'
 const DashBoard = () => {
     return (
         <div className='Dashboard_Section'>
@@ -25,13 +26,13 @@ const DashBoard = () => {
                     <p className='Dashboard_title_1'>Total Number of student who completed Internship</p>
                 </div>
                 <div className="Dashboard_box">
-                    <p className='Dashboard_title_2'>60</p>
+                   <Link to="/dashboard/view"> <p className='Dashboard_title_2'>60</p></Link>
                 </div>
                 <div className="Dashboard_box">
-                    <p className='Dashboard_title_2'>70</p>
+                <Link to="/dashboard/view"> <p className='Dashboard_title_2'>60</p></Link>
                 </div>
                 <div className="Dashboard_box">
-                    <p className='Dashboard_title_2'>50</p>
+                <Link to="/dashboard/view"> <p className='Dashboard_title_2'>60</p></Link>
                 </div>
             </div>
             <div className="Dashboard_Section_1">
