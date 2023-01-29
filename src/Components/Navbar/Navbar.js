@@ -17,7 +17,7 @@ const Navbar = () => {
                 <Link class="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dash board</Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/Login" style={{ color: "#fff" }}>Verify</Link>
+                <Link class="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>
               </li>
               <li class="nav-item">
                 <Link class="nav-link active" aria-current="page" to="/editinfo" style={{ color: "#fff" }}>Edit Information</Link>
