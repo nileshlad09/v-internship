@@ -17,7 +17,9 @@ const Admin = () => {
           <p className='Dashboard_title_1'>Verification</p>
         </div>
         <div className="Dashboard_box">
+        <Link to="/admin/editinfo">
           <p className='Dashboard_title_1'>Edit Information</p>
+        </Link>
         </div>
       </div>
       <div className="Dashboard_Section_1">

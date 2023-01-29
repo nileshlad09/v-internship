@@ -1,4 +1,16 @@
-a{
+a {
     text-decoration: none;
     list-style: none;
+}
+
+.dataEnter_input {
+    margin-bottom: 25px;
+}
+
+.formstatus{
+    margin-top: 40px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

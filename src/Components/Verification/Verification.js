@@ -1,56 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Verification.css'
-
+import data from '../../DataFiles/studentdata'
+import { Link } from 'react-router-dom'
 const Verification = () => {
-
-
 
     return (
         <div>
-            <div class="selector">
-
-                <label for="happy-radio" class="happy-card">
-                    <form class="row g-3" style={{ padding: "5px" }} >
-                        <div class="col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input"  type="radio" name="flexRadioDefault"  />
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Accept
-                                </label>
-                            </div>
+            {
+                data.map((item) => {
+                    return (
+                        <div className="info">
+                            <form class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="inputtext" class="form-label">Name</label>
+                                    <input type="text" value={item.fname} class="form-control" id="inputEmail4" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword4" class="form-label">Email</label>
+                                    <input type="email" value={item.email} class="form-control" id="inputPassword4" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputAddress" class="form-label">Roll Number</label>
+                                    <input type="text" value={item.roll} class="form-control" id="inputAddress" placeholder="1234 Main St" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputAddress2" class="form-label">Branch</label>
+                                    <input type="text" value={item.branch} class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">Div</label>
+                                    <input type="text" value={item.div} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputCity" class="form-label">Internship</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">Company </label>
+                                    <input type="text" value={item.Company} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">Domain</label>
+                                    <input type="text" value={item.Domain} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">Start </label>
+                                    <input type="text" value={item.start} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">End</label>
+                                    <input type="text" value={item.end} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">Sem </label>
+                                    <input type="text" value={item.Sem} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">Batch</label>
+                                    <input type="text" value={item.Batch} class="form-control" id="inputCity" />
+                                </div>
+                                <div class="col-12">
+                                    <button  type="submit" class="btn btn-success">Edit</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"  />
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Reject
-                                </label>
-                            </div>
-                        </div>
-                    </form>
-                    <h2>Nikhil Adhare</h2>
-                    <li>PERSONAL</li>
-                    <ul>
-                        <li>Roll Number : 20102A0055</li>
-                        <li>Email : Nikhil@vit.edu.in</li>
-                        <li>Division : A</li>
-                        <li>Batch : B3</li>
-                        <li>Branch : CNPM</li>
-                    </ul>
-                    <li>INTERNSHIP</li>
-                    <ul>
-                        <li>Start : 24-12-2022</li>
-                        <li>End : 24-01-2023</li>
-                        <li>Organization : LETSGROWMORE</li>
-                        <li>Domain : Web Development</li>
-                        <li>Sem : 6th</li>
-                        <li>HR Contact : 9593858385</li>
-                        <li>Certificate/joining letter : Link</li>
-                    </ul>
-                    <p>Edit</p>
-                </label>
-            </div>
+                    )
+                })
+            }
         </div>
+
     )
 }
 

@@ -11,6 +11,22 @@ const View = () => {
   const [company, setcompany] = useState("");
   const [domain, setdomain] = useState("");
   const [div, setdiv] = useState("");
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <div className="filter">
@@ -57,103 +73,93 @@ const View = () => {
 
 
       {/* table data */}
-      <section>
+      <section className='dataview_section'>
         <div class="tbl-header">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
+          <table >
               <tr>
                 <th style={{ textAlign: "center" }}>Roll No.</th>
                 <th style={{ textAlign: "center" }}>Name</th>
                 <th style={{ textAlign: "center" }}>Branch</th>
                 <th style={{ textAlign: "center" }}>organization</th>
                 <th style={{ textAlign: "center" }}>Domain</th>
+                <th style={{ textAlign: "center" }}>Starting Date</th>
+                <th style={{ textAlign: "center" }}>Ending Date</th>
                 <th style={{ textAlign: "center" }}>Certificate</th>
               </tr>
-            </thead>
-          </table>
-        </div>
-        <div class="tbl-content">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <tbody>
-              {
-                // eslint-disable-next-line array-callback-return
-                data.filter(function (val) {
-                  if (val.Company === company) {
-                    return val;
-                  } else if (val.Company.toLowerCase().includes(company.toLowerCase())) {
-                    return val;
-                  }
-                })
-                  // eslint-disable-next-line array-callback-return
-                  .filter(function (val) {
-                    if (val.Domain === domain) {
-                      return val;
-                    } else if (val.Domain.toLowerCase().includes(domain.toLowerCase())) {
-                      return val;
-                    }
-                  })
+                  {
+                    // eslint-disable-next-line array-callback-return
+ data.filter(function (val) {
+  if (val.Company === company) {
+    return val;
+  } else if (val.Company.toLowerCase().includes(company.toLowerCase())) {
+    return val;
+  }
+})
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.Domain === domain) {
+      return val;
+    } else if (val.Domain.toLowerCase().includes(domain.toLowerCase())) {
+      return val;
+    }
+  })
 
-                  // eslint-disable-next-line array-callback-return
-                  .filter(function (val) {
-                    if (val.Batch === batch) {
-                      return val;
-                    } else if (val.Batch.toLowerCase().includes(batch.toLowerCase())) {
-                      return val;
-                    }
-                  })
-                  // eslint-disable-next-line array-callback-return
-                  .filter(function (val) {
-                    if (val === "") {
-                      return val;
-                    } else if (val.fname.toLowerCase().includes(name.toLowerCase())) {
-                      return val;
-                    }
-                  })
-                  // eslint-disable-next-line array-callback-return
-                  .filter(function (val) {
-                    if (val.roll === roll) {
-                      return val;
-                    } else if (val.roll.toLowerCase().includes(roll.toLowerCase())) {
-                      return val;
-                    }
-                  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.Batch === batch) {
+      return val;
+    } else if (val.Batch.toLowerCase().includes(batch.toLowerCase())) {
+      return val;
+    }
+  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val === "") {
+      return val;
+    } else if (val.fname.toLowerCase().includes(name.toLowerCase())) {
+      return val;
+    }
+  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.roll === roll) {
+      return val;
+    } else if (val.roll.toLowerCase().includes(roll.toLowerCase())) {
+      return val;
+    }
+  })
 
-                  // eslint-disable-next-line array-callback-return
-                  .filter(function (val) {
-                    if (val.branch === branch) {
-                      return val;
-                    } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
-                      return val;
-                    }
-                  })
-                  // eslint-disable-next-line array-callback-return
-                  .filter(function (val) {
-                    if (val.div === div) {
-                      return val;
-                    } else if (val.div.toLowerCase().includes(div.toLowerCase())) {
-                      return val;
-                    }
-                  })
-
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.branch === branch) {
+      return val;
+    } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
+      return val;
+    }
+  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.div === div) {
+      return val;
+    } else if (val.div.toLowerCase().includes(div.toLowerCase())) {
+      return val;
+    }
+  })
                   .map((item) => {
                     return (
-                      <>
                         <tr >
                           <td style={{ textAlign: "center" }}>{item.roll}</td>
                           <td style={{ textAlign: "center" }}>{item.fname}</td>
                           <td style={{ textAlign: "center" }}>{item.branch}</td>
                           <td style={{ textAlign: "center" }}>{item.Company}</td>
                           <td style={{ textAlign: "center" }}>{item.Domain}</td>
+                          <td style={{ textAlign: "center" }}>{item.start}</td>
+                          <td style={{ textAlign: "center" }}>{item.end}</td>
                           <td style={{ textAlign: "center" }}><CgEye /></td>
                         </tr>
-                      </>
                     )
                   })
-
-
               }
-
-            </tbody>
           </table>
         </div>
       </section>
