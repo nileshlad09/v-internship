@@ -12,64 +12,7 @@ const View = () => {
   const [domain, setdomain] = useState("");
   const [div, setdiv] = useState("");
 
- // eslint-disable-next-line array-callback-return
- data.filter(function (val) {
-  if (val.Company === company) {
-    return val;
-  } else if (val.Company.toLowerCase().includes(company.toLowerCase())) {
-    return val;
-  }
-})
-  // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val.Domain === domain) {
-      return val;
-    } else if (val.Domain.toLowerCase().includes(domain.toLowerCase())) {
-      return val;
-    }
-  })
-
-  // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val.Batch === batch) {
-      return val;
-    } else if (val.Batch.toLowerCase().includes(batch.toLowerCase())) {
-      return val;
-    }
-  })
-  // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val === "") {
-      return val;
-    } else if (val.fname.toLowerCase().includes(name.toLowerCase())) {
-      return val;
-    }
-  })
-  // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val.roll === roll) {
-      return val;
-    } else if (val.roll.toLowerCase().includes(roll.toLowerCase())) {
-      return val;
-    }
-  })
-
-  // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val.branch === branch) {
-      return val;
-    } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
-      return val;
-    }
-  })
-  // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val.div === div) {
-      return val;
-    } else if (val.div.toLowerCase().includes(div.toLowerCase())) {
-      return val;
-    }
-  })
+ 
 
 
 
@@ -144,7 +87,65 @@ const View = () => {
                 <th style={{ textAlign: "center" }}>Certificate</th>
               </tr>
                   {
-                  data.map((item) => {
+                    // eslint-disable-next-line array-callback-return
+ data.filter(function (val) {
+  if (val.Company === company) {
+    return val;
+  } else if (val.Company.toLowerCase().includes(company.toLowerCase())) {
+    return val;
+  }
+})
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.Domain === domain) {
+      return val;
+    } else if (val.Domain.toLowerCase().includes(domain.toLowerCase())) {
+      return val;
+    }
+  })
+
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.Batch === batch) {
+      return val;
+    } else if (val.Batch.toLowerCase().includes(batch.toLowerCase())) {
+      return val;
+    }
+  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val === "") {
+      return val;
+    } else if (val.fname.toLowerCase().includes(name.toLowerCase())) {
+      return val;
+    }
+  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.roll === roll) {
+      return val;
+    } else if (val.roll.toLowerCase().includes(roll.toLowerCase())) {
+      return val;
+    }
+  })
+
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.branch === branch) {
+      return val;
+    } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
+      return val;
+    }
+  })
+  // eslint-disable-next-line array-callback-return
+  .filter(function (val) {
+    if (val.div === div) {
+      return val;
+    } else if (val.div.toLowerCase().includes(div.toLowerCase())) {
+      return val;
+    }
+  })
+                  .map((item) => {
                     return (
                         <tr >
                           <td style={{ textAlign: "center" }}>{item.roll}</td>
