@@ -7,6 +7,7 @@ import AdminLogin from './Components/Adminlogin/AdminLogin'
 import View from './Pages/View'
 import DataEnter from './Components/DataEnter/DataEnter'
 import AddInternship from './Components/DataEnter/AddInternship';
+import Verification from './Components/Verification/Verification'
 import Admin from './Components/Admin/Admin';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
        <Route exact path='/admin/dashboard/view' component={View} ></Route>
        <Route exact path='/DataEnter' component={DataEnter} ></Route>
        <Route exact path='/AddInternship' component={AddInternship} ></Route>
+       <Route exact path='/Verification' component={Verification} ></Route>
      </Switch>
     </div>
   );

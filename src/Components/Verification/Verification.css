@@ -1,0 +1,58 @@
+
+
+.selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+/* the cards and toggle buttons are actually fat labels that can be clicked to set radio buttons */
+label {
+  display: block;
+  cursor: pointer;
+}
+
+.happy-card{
+  position: relative; /* for iOS */
+  width: 350px;
+  padding: 20px;
+  color: #586875;
+  background-color: rgb(254, 252, 252);   /* f4f7f7 */
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out; /* important to use a symmetrical timing function (linear also works) */
+  animation-fill-mode: forwards;
+}
+
+h2{
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #3a3c3c;
+  font-size: 1.5rem;
+}
+
+ul {
+  margin: 15px 0;
+  padding-left: 30px;
+  line-height: 1.5rem;
+  list-style-type: square;
+}
+
+p {
+  margin: 0 -20px -20px;
+  padding: 15px;
+ background-color: #299863;     /* bdd6d2 */
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+
+/* increase overlap and swing distance on smaller screens */
+@media (max-width: 560px) {
+
+
+}
