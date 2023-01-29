@@ -17,12 +17,12 @@ function App() {
      <Switch>
       <div className="container">
        <Route exact path='/' component={AdminLogin} ></Route>
-       <Route exact path='/admin' component={Admin} ></Route>
-       <Route exact path='/admin/dashboard' component={Dashboard} ></Route>
-       <Route exact path='/admin/dashboard/view' component={View} ></Route>
+       {/* <Route exact path='/admin' component={Admin} ></Route> */}
+       <Route exact path='/dashboard' component={Dashboard} ></Route>
+       <Route exact path='/dashboard/view' component={View} ></Route>
        <Route exact path='/DataEnter' component={DataEnter} ></Route>
        <Route exact path='/AddInternship' component={AddInternship} ></Route>
-       <Route exact path='/admin/editinfo' component={Editinformation} ></Route>
+       <Route exact path='/editinfo' component={Editinformation} ></Route>
        </div>
      </Switch>
     </div>

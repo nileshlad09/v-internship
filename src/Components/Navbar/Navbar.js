@@ -1,28 +1,37 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-const Navbar = ()=> {
+const Navbar = () => {
   return (
-    <nav class="navbar" style={{ backgroundColor: "#299863", color: "#fff" }}>
-      <div class="container-fluid" >
-        <Link class="navbar-brand" to="/" style={{ color: "#fff" }}>V-Internship</Link>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <>
+    <div className="navbar_Section">
+      <nav class="navbar navbar-expand-lg navbar-success bg-success container">
+
+        <a class="navbar-brand" style={{color:"#fff"}} href="#">V-Internship</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/admin" style={{ color: "#fff" }}>Home</Link>
-            </li>  
-            <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/admin/dashboard" style={{ color: "#fff" }}>Dashboard</Link>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/Login" style={{ color: "#fff" }}>verify</Link>
-            </li>
-          </ul>
+          <form class="form-inline my-2 my-lg-0 ml-auto">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <Link class="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dash board</Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link active" aria-current="page" to="/Login" style={{ color: "#fff" }}>Verify</Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link active" aria-current="page" to="/editinfo" style={{ color: "#fff" }}>Edit Information</Link>
+              </li>
+              <li class="nav-item">
+                <button className='btn btn-outline-light'>Logout</button>
+              </li>
+            </ul>
+          </form>
         </div>
+      </nav>
       </div>
-    </nav>
+    </>
   );
 }
 

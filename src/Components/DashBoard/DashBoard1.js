@@ -4,7 +4,7 @@ const DashBoard = () => {
     return (
         <div className='Dashboard_Section'>
             <div className="Dashboard_Section_1">
-                <div className="Dashboard_box main_box">
+                <div className="Dashboard_box Dashboard_main_box">
                     <p className='Dashboard_title_1'>Total Number of Student</p>
                 </div>
                 <div className="Dashboard_box">
@@ -21,7 +21,7 @@ const DashBoard = () => {
                 </div>
             </div>
             <div className="Dashboard_Section_1">
-                <div className="Dashboard_box main_box">
+                <div className="Dashboard_box Dashboard_main_box">
                     <p className='Dashboard_title_1'>Total Number of student who completed Internship</p>
                 </div>
                 <div className="Dashboard_box">
@@ -35,7 +35,7 @@ const DashBoard = () => {
                 </div>
             </div>
             <div className="Dashboard_Section_1">
-                <div className="Dashboard_box main_box">
+                <div className="Dashboard_box Dashboard_main_box">
                     <p className='Dashboard_title_1'>Total Number of Internship Done</p>
                 </div>
                 <div className="Dashboard_box">

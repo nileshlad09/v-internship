@@ -2,10 +2,11 @@ import React from 'react'
 import Chart from 'react-apexcharts'
 const Graph = () => {
   return (
-    <div>
+    <div className='graph_section'>
       <Chart
         type="bar"
-        width="40%"
+        width="100%"
+        
         // height="400px"
         series={[
           {
