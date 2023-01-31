@@ -11,22 +11,20 @@ const View = () => {
   const [company, setcompany] = useState("");
   const [domain, setdomain] = useState("");
   const [div, setdiv] = useState("");
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
+  const Duration=(a,b)=>{
+    var day1 =  a.slice(0,2);
+    var day2 =  b.slice(0,2);
+    var month1 =  a.slice(3,5);
+    var month2 =  b.slice(3,5);
+    var year1 =  a.slice(6,10);
+    var year2 =  b.slice(6,10);
+    
+    var date1 = new Date(`${month1}/${day1}/${year1}`);
+    var date2 = new Date(`${month2}/${day2}/${year2}`);
+    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+    return Math.round(diffDays/30);
+  }  
   return (
     <div>
       <div className="filter">
@@ -79,12 +77,15 @@ const View = () => {
               <tr>
                 <th style={{ textAlign: "center" }}>Roll No.</th>
                 <th style={{ textAlign: "center" }}>Name</th>
-                <th style={{ textAlign: "center" }}>Branch</th>
+                {/* <th style={{ textAlign: "center" }}>Branch</th> */}
                 <th style={{ textAlign: "center" }}>organization</th>
                 <th style={{ textAlign: "center" }}>Domain</th>
                 <th style={{ textAlign: "center" }}>Starting Date</th>
                 <th style={{ textAlign: "center" }}>Ending Date</th>
+                <th style={{ textAlign: "center" }}>Duration</th>
                 <th style={{ textAlign: "center" }}>Certificate</th>
+                <th style={{ textAlign: "center" }}>Phone</th>
+                <th style={{ textAlign: "center" }}>Email</th>
               </tr>
                   {
                     // eslint-disable-next-line array-callback-return
@@ -150,12 +151,15 @@ const View = () => {
                         <tr >
                           <td style={{ textAlign: "center" }}>{item.roll}</td>
                           <td style={{ textAlign: "center" }}>{item.fname}</td>
-                          <td style={{ textAlign: "center" }}>{item.branch}</td>
+                          {/* <td style={{ textAlign: "center" }}>{item.branch}</td> */}
                           <td style={{ textAlign: "center" }}>{item.Company}</td>
                           <td style={{ textAlign: "center" }}>{item.Domain}</td>
                           <td style={{ textAlign: "center" }}>{item.start}</td>
                           <td style={{ textAlign: "center" }}>{item.end}</td>
+                          <td style={{ textAlign: "center" }}>{Duration(item.start,item.end)} month</td>
                           <td style={{ textAlign: "center" }}><CgEye /></td>
+                          <td style={{ textAlign: "center" }}>{item.phone}</td>
+                          <td style={{ textAlign: "center" }}>{item.email}</td>
                         </tr>
                     )
                   })

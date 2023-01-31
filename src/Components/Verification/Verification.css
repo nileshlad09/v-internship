@@ -4,7 +4,26 @@
   padding: 20px;
   margin: 20px;
 }
+.verification_input_box{
+  margin-top: 0.45rem;
+}
+.verification_input_box input{
+  font-size: 0.9rem;
+}
+
+.verification_title{
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+
+
 .verification_Btn{
   display: flex;
   gap: 10px;
+}
+
+.p-data{
+  background-color: red;
 }

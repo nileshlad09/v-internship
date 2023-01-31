@@ -3,9 +3,28 @@
   margin: 20px auto;
 }
 .Dashboard_graph_section{
-  margin-top: 30px;
   align-items: center;
 }
+.dashboard_table{
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+}
+.dashboard_table table{
+  width: 80%;
+}
+.dashboard_table tr{
+  background-color: #28A745;
+}
+.dashboard_table th,
+.dashboard_table td{
+  font-size: 0.8rem;
+  padding: 10px;
+}
+
 
 .custom-toggler.navbar-toggler {
   border-color: white;

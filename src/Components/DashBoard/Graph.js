@@ -3,6 +3,8 @@ import Chart from 'react-apexcharts'
 const Graph = () => {
   return (
     <div className='graph_section'>
+        
+      
       <Chart
         type="bar"
         width="100%"
@@ -10,9 +12,11 @@ const Graph = () => {
         // height="400px"
         series={[
           {
-            data: [50, 20, 20],
-          }
+            name: "no of internship completed",
+            data: [44, 55, 41]
+          },
         ]}
+        
 
         options={{
           title: {
@@ -39,6 +43,7 @@ const Graph = () => {
         }}
       >
       </Chart>
+
     </div>
   )
 }

@@ -9,7 +9,7 @@ const Graph2 = () => {
     return (
         <>
             <div className="donut">
-                <Chart options={state.options} series={state.series} type="donut" width="100%" />
+                <Chart options={state.options} series={state.series} type="pie" width="100%" />
             </div>
         </>
     )

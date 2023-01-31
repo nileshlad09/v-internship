@@ -51,8 +51,8 @@ function App() {
        <Route exact path='/Verification' component={Verification} ></Route>
        <Route exact path='/dashboard' component={Dashboard} ></Route>
        <Route exact path='/dashboard/view' component={View} ></Route>
-       <Route exact path='/DataEnter' component={DataEnter} ></Route>
-       <Route exact path='/AddInternship' component={AddInternship} ></Route>
+       <Route exact path='/addinternship/1' component={DataEnter} ></Route>
+       <Route exact path='/addinternship/2' component={AddInternship} ></Route>
        <Route exact path='/editinfo' component={Editinformation} ></Route>
        </div>
      </Switch>

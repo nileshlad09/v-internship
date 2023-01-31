@@ -14,7 +14,7 @@ const Navbar = () => {
           <form class="form-inline my-2 my-lg-0 ml-auto">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <Link class="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dash board</Link>
+                <Link class="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dashboard</Link>
               </li>
               <li class="nav-item">
                 <Link class="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>

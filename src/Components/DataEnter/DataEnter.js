@@ -25,7 +25,7 @@ const DataEnter = () => {
             <>
             <div style={{ paddingTop: "30px", overflow: "hidden" }}>
                 <form class="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
-                    <h4>Internship Data {data.semester} sem ({data.year})</h4>
+                    <h4>Internship Data ({data.year})</h4>
                     <div className="row">
                     <div class="col-md-4 dataEnter_input ">
                         <label for="inputnameofstudent" class="form-label">Name of Student</label>
@@ -61,18 +61,14 @@ const DataEnter = () => {
                         <select name="semster" id="InputSemester" class="form-select" required value={crediantial.semester}
                             onChange={onchange}>
                             <option>semester</option>
-                            {data.semester==="Even"?
-                            <>
-                            <option value="4" >4</option>
-                            <option value="6">6</option>
-                            <option value="8">8</option>
-                            </>:
                             <>
                             <option value="3">3</option>
+                            <option value="4">4</option>
                             <option value="5">5</option>
+                            <option value="6">6</option>
                             <option value="7">7</option>
+                            <option value="8">8</option>
                             </>
-                             } 
                         </select>
                     </div>
                     <div class="col-md-4 dataEnter_input ">
@@ -106,7 +102,7 @@ const DataEnter = () => {
                         </select>
                     </div>
                     </div>
-                    <button type="submit"  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button>
+                   <Link to="/addinternship/2"> <button type="submit"  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button></Link>
                 </form>
             </div>
             
