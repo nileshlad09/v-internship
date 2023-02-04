@@ -4,6 +4,7 @@
 }
 .Dashboard_graph_section{
   align-items: center;
+  margin-top: 20px;
 }
 .dashboard_table{
   /* background-color: red; */

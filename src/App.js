@@ -40,6 +40,7 @@ import AddInternship from './Components/DataEnter/AddInternship';
 // import Admin from './Components/Admin/Admin';
 import Editinformation from './Components/Editinformation/Editinformation';
 import Verification from './Components/Verification/Verification';
+import Temp from './Components/temp/Temp';
 
 function App() {
   return (
@@ -50,10 +51,11 @@ function App() {
        <Route exact path='/' component={AdminLogin} ></Route>
        <Route exact path='/Verification' component={Verification} ></Route>
        <Route exact path='/dashboard' component={Dashboard} ></Route>
-       <Route exact path='/dashboard/view' component={View} ></Route>
+       <Route exact path='/dashboard/view/:batch' component={View} ></Route>
        <Route exact path='/addinternship/1' component={DataEnter} ></Route>
        <Route exact path='/addinternship/2' component={AddInternship} ></Route>
        <Route exact path='/editinfo' component={Editinformation} ></Route>
+       <Route exact path='/temp' component={Temp} ></Route>
        </div>
      </Switch>
     </div>

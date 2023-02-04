@@ -1,6 +1,9 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
-const Graph = () => {
+const Graph = ({arr1}) => {
+  const batch3 = arr1[2].length;
+    const batch2 = arr1[1].length;
+    const batch1 = arr1[0].length;
   return (
     <div className='graph_section'>
         
@@ -13,7 +16,7 @@ const Graph = () => {
         series={[
           {
             name: "no of internship completed",
-            data: [44, 55, 41]
+            data: [batch1, batch2, batch3]
           },
         ]}
         
@@ -27,7 +30,7 @@ const Graph = () => {
             mode: 'lite',
           },
           xaxis: {
-            categories: ["Batch 2025", "Batch 2024", "Batch 2023"],
+            categories: ["SE - 2025", "TE - 2024", "BE - 2023"],
           },
           yaxis: {
             title: {

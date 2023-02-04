@@ -1,5 +1,5 @@
 
-const data = [
+const topC = [
     {
       id: 1,
       companyname: "company 1",
@@ -27,4 +27,4 @@ const data = [
     },
   ]
   
-  export default data;
+  export default topC;

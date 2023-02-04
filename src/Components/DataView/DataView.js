@@ -1,9 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CgEye } from 'react-icons/cg'
-import data from '../../DataFiles/studentdata'
+import data from '../../DataFiles/data'
 import './dataview.css'
+import { useParams } from 'react-router-dom'
 
 const View = () => {
+  
+  const params =useParams();
+
+  const b = params.batch;
+
+  console.log(b);
+  
+
   const [name, setname] = useState("");
   const [roll, setroll] = useState("");
   const [branch, setbranch] = useState("");
@@ -11,6 +20,19 @@ const View = () => {
   const [company, setcompany] = useState("");
   const [domain, setdomain] = useState("");
   const [div, setdiv] = useState("");
+
+useEffect(()=>{
+  if(b=="batch1"){
+    setbatch(2025)
+  }
+  else if(b=="batch2"){
+    setbatch(2024)
+  }
+  else if(b=="batch3"){
+    setbatch(2023)
+  }
+},[])
+  
    
   const Duration=(a,b)=>{
     var day1 =  a.slice(0,2);
@@ -28,8 +50,11 @@ const View = () => {
   return (
     <div>
       <div className="filter">
-        <div class="search__container">
+        {/* <div class="search__container">
           <input class="search__input" value={batch} onChange={(e) => { setbatch(e.target.value) }} type="tel" placeholder="Batch" />
+        </div> */}
+        <div class="search__container">
+          <input class="search__input" value={batch}  type="tel" placeholder="Batch" />
         </div>
 
         <div class="search__container">
@@ -109,10 +134,9 @@ const View = () => {
   .filter(function (val) {
     if (val.Batch === batch) {
       return val;
-    } else if (val.Batch.toLowerCase().includes(batch.toLowerCase())) {
-      return val;
-    }
+    } 
   })
+
   // eslint-disable-next-line array-callback-return
   .filter(function (val) {
     if (val === "") {
@@ -131,13 +155,13 @@ const View = () => {
   })
 
   // eslint-disable-next-line array-callback-return
-  .filter(function (val) {
-    if (val.branch === branch) {
-      return val;
-    } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
-      return val;
-    }
-  })
+  // .filter(function (val) {
+  //   if (val.branch === branch) {
+  //     return val;
+  //   } else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
+  //     return val;
+  //   }
+  // })
   // eslint-disable-next-line array-callback-return
   .filter(function (val) {
     if (val.div === div) {
@@ -154,12 +178,23 @@ const View = () => {
                           {/* <td style={{ textAlign: "center" }}>{item.branch}</td> */}
                           <td style={{ textAlign: "center" }}>{item.Company}</td>
                           <td style={{ textAlign: "center" }}>{item.Domain}</td>
+                          <td style={{ textAlign: "center" }}>01-02-2023</td>
+                          <td style={{ textAlign: "center" }}>01-12-2022</td>
+                          <td style={{ textAlign: "center" }}>2 month</td>
+                          <td style={{ textAlign: "center" }}><CgEye /></td>
+                          <td style={{ textAlign: "center" }}>{item.phone}</td>
+                          <td style={{ textAlign: "center" }}>{item.email}</td>
+                          {/* <td style={{ textAlign: "center" }}>{item.roll}</td>
+                          <td style={{ textAlign: "center" }}>{item.fname}</td>
+                          {/* <td style={{ textAlign: "center" }}>{item.branch}</td> */}
+                          {/* <td style={{ textAlign: "center" }}>{item.Company}</td>
+                          <td style={{ textAlign: "center" }}>{item.Domain}</td>
                           <td style={{ textAlign: "center" }}>{item.start}</td>
                           <td style={{ textAlign: "center" }}>{item.end}</td>
                           <td style={{ textAlign: "center" }}>{Duration(item.start,item.end)} month</td>
                           <td style={{ textAlign: "center" }}><CgEye /></td>
                           <td style={{ textAlign: "center" }}>{item.phone}</td>
-                          <td style={{ textAlign: "center" }}>{item.email}</td>
+                          <td style={{ textAlign: "center" }}>{item.email}</td> * */}
                         </tr>
                     )
                   })

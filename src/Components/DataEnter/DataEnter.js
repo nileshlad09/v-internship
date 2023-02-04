@@ -1,6 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import './DataEnter.css'
+import * as xlsx from 'xlsx'
+
 const DataEnter = () => {
     var data = JSON.parse(localStorage.getItem('forminfo'));
 
@@ -18,11 +20,27 @@ const DataEnter = () => {
         e.preventDefault();
         console.log(crediantial);
     }
+    const [excelData, setexceldata] = useState([]);
+    console.log(excelData);
+    const readUploadFile = async (e) => {
+        e.preventDefault();
+        if (e.target.files) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const data = e.target.result;
+                const workbook = xlsx.read(data, { type: "array" });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+                const json = xlsx.utils.sheet_to_json(worksheet);
+                setexceldata(json);
+            };
+            reader.readAsArrayBuffer(e.target.files[0]);
+        }
+
+    };
 
     return (
         <div>
-            {data.formstatus==="on" ?
-            <>
             <div style={{ paddingTop: "30px", overflow: "hidden" }}>
                 <form class="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
                     <h4>Internship Data ({data.year})</h4>
@@ -105,10 +123,9 @@ const DataEnter = () => {
                    <Link to="/addinternship/2"> <button type="submit"  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button></Link>
                 </form>
             </div>
-            
-            </>:
-            <span className='formstatus'>Form is currently close</span>
-            }
+            <div class="mb-3" id='excelfrom'>
+                <input class="form-control" type="file" id="formFile" onChange={(e) => readUploadFile(e)} />
+            </div>
         </div>
     )
 }
