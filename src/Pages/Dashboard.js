@@ -1,28 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
 import data from '../DataFiles/data';
 import Topcom from '../Components/DashBoard/Topcom'
+
+// import { useContext } from "react";
+// import studentContext from '../context/student/studentContext';
+
 const Dashboard = () => {
-  const batch3 = data.filter(val => val.Batch === 2023);
-  const batch2 = data.filter(val => val.Batch === 2024);
-  const batch1 = data.filter(val => val.Batch === 2025);
+
+  // const context = useContext(studentContext);
+  // const {dataFilter,batchdata,yeardata} = context;  
+
+
+  const [crediantial, setCrediential] = useState({});
+
+  const onchange = (e) => {
+    setCrediential({ ...crediantial, [e.target.name]: e.target.value });
+  };
+console.log(crediantial)
+  const data2 = data.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
+  console.log(data2)
+  const batch3 = data2.filter(val => val.Batch === 2023);
+  const batch2 = data2.filter(val => val.Batch === 2024);
+  const batch1 = data2.filter(val => val.Batch === 2025);
   const arr1 = [batch1, batch2, batch3];
+
+
 
   return (
     <>
+      
       <div className="dashboard">
-        <DashBoard1 arr1={arr1} />
+      <div className="row">
+        <div class="col-md-2">
+          <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.division}>
+            <option value="2020-21">2020-21</option>
+            <option value="2021-22">2021-22</option>
+            <option value="2022-23" selected>2022-23</option>
+          </select>
+        </div>
+      </div>
+        <DashBoard1 arr1={arr1} crediantial={crediantial} />
         <div className="row Dashboard_graph_section">
           <div className="graph_1 col-md-12 col-lg-4">
             <Graph arr1={arr1} />
           </div>
-          <div className="graph_1 col-md-12 col-lg-5">
-            <Graph2 data={data} />
+          <div className="graph_1 col-md-12 col-lg-6">
+            <Graph2 data2={data2} />
           </div>
           <div className="dashboard_table col-md-12 col-lg-4">
-            <Topcom data={data}/>
+            <Topcom data2={data2} />
           </div>
         </div>
       </div>

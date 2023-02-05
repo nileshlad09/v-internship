@@ -7,29 +7,36 @@ import { useParams } from 'react-router-dom'
 const View = () => {
   
   const params =useParams();
-
+  console.log(params)
   const b = params.batch;
+  const y = params.year;
+
 
   console.log(b);
+  console.log(y);
   
 
   const [name, setname] = useState("");
   const [roll, setroll] = useState("");
   const [branch, setbranch] = useState("");
-  const [batch, setbatch] = useState("");
+  const [year, setyear] = useState("");
   const [company, setcompany] = useState("");
   const [domain, setdomain] = useState("");
   const [div, setdiv] = useState("");
+  const [foryear, setforyear] = useState("");
 
 useEffect(()=>{
-  if(b=="batch1"){
-    setbatch(2025)
+  if(b=="SE"){
+    setyear("SE")
+    setforyear(y);
   }
-  else if(b=="batch2"){
-    setbatch(2024)
+  else if(b=="TE"){
+    setyear("TE")
+    setforyear(y);
   }
-  else if(b=="batch3"){
-    setbatch(2023)
+  else if(b=="BE"){
+    setyear("BE")
+    setforyear(y);
   }
 },[])
   
@@ -50,12 +57,15 @@ useEffect(()=>{
   return (
     <div>
       <div className="filter">
-        {/* <div class="search__container">
-          <input class="search__input" value={batch} onChange={(e) => { setbatch(e.target.value) }} type="tel" placeholder="Batch" />
-        </div> */}
+    
         <div class="search__container">
-          <input class="search__input" value={batch}  type="tel" placeholder="Batch" />
+          <input class="search__input" value={`For year:${foryear}`}  type="tel" placeholder="foryear" />
         </div>
+
+        <div class="search__container">
+          <input class="search__input" value={year}  type="tel" placeholder="year" />
+        </div>
+
 
         <div class="search__container">
           <select name="branch" id="branch" class="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
@@ -132,7 +142,12 @@ useEffect(()=>{
 
   // eslint-disable-next-line array-callback-return
   .filter(function (val) {
-    if (val.Batch === batch) {
+    if (val.year === year) {
+      return val;
+    } 
+  })
+  .filter(function (val) {
+    if (val.Foryear === foryear) {
       return val;
     } 
   })

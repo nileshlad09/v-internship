@@ -1,12 +1,13 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
 
-const Graph2 = ({ data }) => {
+const Graph2 = ({ data2 }) => {
 
-    function findOcc(data, key) {
+
+    function findOcc(data2, key) {
         let arr2 = [];
 
-        data.forEach((x) => {
+        data2.forEach((x) => {
             if (arr2.some((val) => { return val[key].toLowerCase() == x[key].toLowerCase() })) {
 
                 arr2.forEach((k) => {
@@ -28,7 +29,7 @@ const Graph2 = ({ data }) => {
 
 
     let key = "Company";
-	const topCompany = findOcc(data, key);
+	const topCompany = findOcc(data2, key);
 
     let sortedProducts = topCompany.sort(
         (p1, p2) => (p1.occurrence < p2.occurrence) ? 1 : (p1.occurrence > p2.occurrence) ? -1 : 0);
@@ -39,9 +40,9 @@ const Graph2 = ({ data }) => {
 
     var state = {
         options: {
-            labels: [sortedProducts[0].Company, sortedProducts[1].Company,
-            sortedProducts[2].Company, sortedProducts[3].Company
-    , sortedProducts[4].Company]
+            labels: [sortedProducts[0]?.Company, sortedProducts[1]?.Company,
+            sortedProducts[2]?.Company, sortedProducts[3]?.Company
+    , sortedProducts[4]?.Company]
         },
         series: [sortedProducts[0].occurrence, sortedProducts[1].occurrence,
                 sortedProducts[2].occurrence, sortedProducts[3].occurrence

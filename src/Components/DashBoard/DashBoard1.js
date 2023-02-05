@@ -2,13 +2,12 @@ import React, {useState} from 'react'
 import './DashBoard1.css'
 import { Link } from 'react-router-dom'
 
-import data from '../../DataFiles/data';
-const DashBoard = ({arr1}) => {
+const DashBoard = ({arr1,crediantial}) => {
     
     const batch3 = arr1[2].length;
     const batch2 = arr1[1].length;
     const batch1 = arr1[0].length;
-      
+    const Foryear = crediantial?crediantial.Foryear:"2022-23";  
     return (
         <div className='Dashboard_Section'>
             <div className="Dashboard_Section_1">
@@ -36,14 +35,14 @@ const DashBoard = ({arr1}) => {
                     <p className='Dashboard_title_1'>Total Number of Internship completed</p>
                 </div>
                 <div className="Dashboard_box">
-                   <Link to="/dashboard/view/batch1">
+                <Link to={`/dashboard/view/${Foryear?Foryear:"2022-23"}/SE`}>
                     <p className='Dashboard_title_2'>{batch1}</p></Link>
                 </div>
                 <div className="Dashboard_box">
-                <Link to="/dashboard/view/batch2"> <p className='Dashboard_title_2'>{batch2}</p></Link>
+                <Link to={`/dashboard/view/${Foryear?Foryear:"2022-23"}/TE`}> <p className='Dashboard_title_2'>{batch2}</p></Link>
                 </div>
                 <div className="Dashboard_box">
-                <Link to="/dashboard/view/batch3"> <p className='Dashboard_title_2'>{batch3}</p></Link>
+                <Link to={`/dashboard/view/${Foryear?Foryear:"2022-23"}/BE`}> <p className='Dashboard_title_2'>{batch3}</p></Link>
                 </div>
             </div>
         </div>

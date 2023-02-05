@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Topcom = ({ data }) => {
+const Topcom = ({ data2 }) => {
     let TScount=[];
         const id = ['Kids Galaxy', 'Bolt', 'YHills', 'Antenna', 'Cyber Secured India'];
         for(let i=0;i< id.length;i++){
-            const count = data.filter((obj) => obj.Company === id[i]).length;
+            const count = data2.filter((obj) => obj.Company === id[i]).length;
             TScount[i]={sr:i+1,comp:id[i],count:count};
         }
     

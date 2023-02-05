@@ -79,7 +79,7 @@ const DataEnter = () => {
                         <label for="inputSemester" class="form-label">Semester</label>
                         <select name="semster" id="InputSemester" class="form-select" required value={crediantial.semester}
                             onChange={onchange}>
-                            <option>semester</option>
+                            <option>--select--</option>
                             <>
                             <option value="3">3</option>
                             <option value="4">4</option>
@@ -94,7 +94,7 @@ const DataEnter = () => {
                         <label for="inputDivision" class="form-label">Division</label>
                         <select name="division" id="inputDivision" class="form-select" required value={crediantial.division}
                             onChange={onchange}>
-                            <option>Division</option>
+                            <option>--select--</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                         </select>
@@ -103,7 +103,7 @@ const DataEnter = () => {
                         <label for="inputBatch" class="form-label">Select Batch</label>
                         <select name="batch" id="inputBatch" class="form-select" required value={crediantial.batch}
                             onChange={onchange}>
-                            <option>Select Batch</option>
+                            <option>--select--</option>
                             <option value="2023">2023</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
@@ -113,7 +113,7 @@ const DataEnter = () => {
                         <label for="inputBranch" class="form-label">Select Branch</label>
                         <select name="branch" id="inputBranch" class="form-select" required value={crediantial.branch}
                             onChange={onchange}>
-                            <option>Select Branch</option>
+                            <option>--select--</option>
                             <option value="CMPN">CMPN</option>
                             <option value="INFT">INFT</option>
                             <option value="EXTC">EXTC</option>
