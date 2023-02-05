@@ -2,7 +2,8 @@ import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import './DataEnter.css'
 import * as xlsx from 'xlsx'
-
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 const DataEnter = () => {
     var data = JSON.parse(localStorage.getItem('forminfo'));
 
@@ -14,6 +15,24 @@ const DataEnter = () => {
     useEffect(()=>{
         setCrediential({...crediantial, "year": data.year})
     },[])
+
+    useEffect(()=>{
+        console.log(crediantial)
+    })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const docRef = await addDoc(collection(db, "todos"), {
+            sanyog: crediantial,
+          });
+          console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+
+    }
     
     
     const handleClick = (e) => {
@@ -120,7 +139,7 @@ const DataEnter = () => {
                         </select>
                     </div>
                     </div>
-                   <Link to="/addinternship/2"> <button type="submit"  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button></Link>
+                   <Link to="/addinternship/2"> <button type="submit" onClick={handleSubmit}  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button></Link>
                 </form>
             </div>
             <div class="mb-3" id='excelfrom'>
