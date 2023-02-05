@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import './DataEnter.css'
-import * as xlsx from 'xlsx'
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 const DataEnter = () => {
@@ -13,7 +12,7 @@ const DataEnter = () => {
         setCrediential({ ...crediantial, [e.target.name]: e.target.value });
     };
     useEffect(()=>{
-        setCrediential({...crediantial, "year": data.year})
+        setCrediential({...crediantial, "year": data?.year})
     },[])
 
     useEffect(()=>{
@@ -39,24 +38,7 @@ const DataEnter = () => {
         e.preventDefault();
         console.log(crediantial);
     }
-    const [excelData, setexceldata] = useState([]);
-    console.log(excelData);
-    const readUploadFile = async (e) => {
-        e.preventDefault();
-        if (e.target.files) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const data = e.target.result;
-                const workbook = xlsx.read(data, { type: "array" });
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-                const json = xlsx.utils.sheet_to_json(worksheet);
-                setexceldata(json);
-            };
-            reader.readAsArrayBuffer(e.target.files[0]);
-        }
-
-    };
+    
 
     return (
         <div>
@@ -141,9 +123,6 @@ const DataEnter = () => {
                     </div>
                    <Link to="/addinternship/2"> <button type="submit" onClick={handleSubmit}  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button></Link>
                 </form>
-            </div>
-            <div class="mb-3" id='excelfrom'>
-                <input class="form-control" type="file" id="formFile" onChange={(e) => readUploadFile(e)} />
             </div>
         </div>
     )
