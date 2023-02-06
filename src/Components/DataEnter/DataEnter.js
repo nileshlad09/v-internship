@@ -1,9 +1,24 @@
 import React,{useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
 import './DataEnter.css'
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useHistory } from 'react-router-dom';
+
+import { useContext } from "react";
+
+import studentContext from '../../context/student/studentContext';
+
 const DataEnter = () => {
+
+ const history = useHistory();
+
+
+   const context = useContext(studentContext);
+   const {addInternship} = context; 
+
+
+
+
     var data = JSON.parse(localStorage.getItem('forminfo'));
 
     const [crediantial, setCrediential] = useState({});
@@ -15,28 +30,30 @@ const DataEnter = () => {
         setCrediential({...crediantial, "year": data?.year})
     },[])
 
-    useEffect(()=>{
-        console.log(crediantial)
-    })
+    // useEffect(()=>{
+    //     console.log(crediantial)
+    // })
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
     
-        try {
-          const docRef = await addDoc(collection(db, "todos"), {
-            sanyog: crediantial,
-          });
-          console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
+    //     try {
+    //       const docRef = await addDoc(collection(db, "todos"), {
+    //         sanyog: crediantial,
+    //       });
+    //       console.log("Document written with ID: ", docRef.id);
+    //     } catch (e) {
+    //       console.error("Error adding document: ", e);
+    //     }
 
-    }
+    // }
     
     
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(crediantial);
+        addInternship(crediantial);
+        history.push('/addinternship/2');
+        // console.log(crediantial);
     }
     
 
@@ -121,7 +138,7 @@ const DataEnter = () => {
                         </select>
                     </div>
                     </div>
-                   <Link to="/addinternship/2"> <button type="submit" onClick={handleSubmit}  style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button></Link>
+                    <button type="submit"   style={{ overflow: "hidden"  }} class="btn btn-outline-success">Add Internship</button>
                 </form>
             </div>
         </div>
