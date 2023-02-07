@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { useContext } from "react";
 import studentContext from '../../context/student/studentContext';
-
+import './DataEnter.css'
 function AddInternship() {
 
 
@@ -33,8 +33,26 @@ function AddInternship() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    addInternship(crediantial);
+    var internshipContact = document.getElementById("internshipContact").value;
+    var companyName = document.getElementById("companyName").value;
+    var alert = document.getElementById("alert-caps");
+    if(internshipContact.length!==10){
+      alert.innerHTML="*Invalid Phone Number ";
+      return false; 
+   }
+
+   for(var i=0;i<companyName.length;i++){
+      if(companyName.charAt(i)===" "){
+            alert.innerHTML="*No white Space allowed"; 
+          return false;
+      }
+      else{
+          alert.innerHTML="";
   }
+   }
+       
+  addInternship(crediantial);
+}
 
 
   return (
@@ -71,16 +89,16 @@ function AddInternship() {
           </div>
           <div className="row" style={{ marginTop: "30px" }}>
             <div class="col-md-4 dataEnter_input ">
-              <label for="inputPassword4" class="form-label">
+              <label for="startDate" class="form-label">
                 Starting Date{" "}
               </label>
-              <input type="date" name="startdate" class="form-control" id="inputPassword4"
+              <input type="date" name="startdate" class="form-control" id="startDate"
                 value={crediantial.startdate}
                 onChange={onchange}
                 required />
             </div>
             <div class="col-md-4 dataEnter_input ">
-              <label for="inputAddress" class="form-label">
+              <label for="endDate" class="form-label">
                 Ending Date{" "}
               </label>
               <input type="date" class="form-control" name="enddate" id="user_register"
@@ -89,22 +107,22 @@ function AddInternship() {
                 required />
             </div>
             <div class="col-md-4 dataEnter_input ">
-              <label for="inputZip" class="form-label">
+              <label for="companyName" class="form-label">
                 Name of Company
               </label>
-              <input type="text" class="form-control" name="nameofcompany" id="inputZip"
+              <input type="text" class="form-control" name="nameofcompany" id="companyName"
                 value={crediantial.nameofcompany}
                 onChange={onchange}
                 required />
             </div>
             <div class="col-md-4 dataEnter_input ">
-              <label for="inputAddress" class="form-label">
+              <label for="Domain" class="form-label">
                 Domain of Internship
               </label>
-              <select name="domain" id="domain" class="form-select" value={crediantial.domain}
+              <select name="domain" id="Domain" class="form-select" value={crediantial.domain}
                 onChange={onchange}
                 required>
-                <option>--select--</option>
+                <option >--select--</option>
                 <option>Web Development</option>
                 <option>App Development</option>
                 <option>Data Science</option>
@@ -112,26 +130,22 @@ function AddInternship() {
               </select>
             </div>
             <div class="col-md-4 dataEnter_input ">
-              <label for="inputZip" class="form-label">
+              <label for="internshipContact" class="form-label">
                 Contact details of internship
               </label>
-              <input type="tel" class="form-control" id="inputZip" name="contactofcompany" value={crediantial.contactofcompany}
+              <input type="tel" class="form-control" id="internshipContact" name="contactofcompany"   maxlength="10" size="10" placeholder="+91" value={crediantial.contactofcompany}
                 onChange={onchange}
                 required />
             </div>
             <div class="col-md-4 dataEnter_input ">
-              <label for="inputZip" class="form-label">
+              <label for="Certificate" class="form-label">
                 Certificate/Joining Letter
               </label>
-              <input class="form-control" type="file" id="formFile" name="certificate" value={crediantial.certificate} onChange={onchange} />
+              <input class="form-control" type="file" id="Certificate" name="certificate" value={crediantial.certificate} onChange={onchange} />
             </div>
           </div>
-          <button
-            type="submit"
-            style={{ marginLeft: "20px", overflow: "hidden", marginBottom: "5px" }}
-            class="btn btn-outline-success"
-
-          >
+          <error id="alert-caps"></error>
+          <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} class="btn btn-outline-success">
             Add
           </button>
         </form>

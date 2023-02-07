@@ -14,3 +14,10 @@ a {
     align-items: center;
     justify-content: center;
 }
+#alert-caps{
+    display: block;
+    color:rgb(230, 86, 86);
+    font-weight: 600;
+    margin-bottom: 5px;
+    
+}

@@ -11,17 +11,17 @@ const Topcom = ({ data2 }) => {
     return (
         <table>
             <tr>
-                <th>sr</th>
-                <th>Company Name</th>
-                <th>No of student Joined</th>
+                <th style={{ textAlign: "center" }}>sr</th>
+                <th style={{ textAlign: "center" }}>Company Name</th>
+                <th style={{ textAlign: "center" }}>No of student Joined</th>
             </tr>
             {
                 // eslint-disable-next-line
                 TScount?.map((d) => (
                     <tr>
-                        <td>{d.sr}</td>
-                        <td>{d.comp}</td>
-                        <td>{d.count}</td>
+                        <td style={{ textAlign: "center" }}>{d.sr}</td>
+                        <td style={{ textAlign: "center" }}>{d.comp}</td>
+                        <td style={{ textAlign: "center" }}>{d.count}</td>
                     </tr>
                 ))
             }

@@ -87,7 +87,8 @@ const Verification = () => {
                                     </div>
                                     <div class="verification_input_box col-md-6">
                                         <label for="inputCity" class="form-label verification_title">Certificate/Joining Letter</label>
-                                        <input type="file" class="form-control" id="inputCity" />
+                                        {/* <input type="file" class="form-control" id="inputCity" /> */}
+                                         <a href=" " style={{color:"blue",listStyle:"none"}}> View</a>
                                     </div>
                                     
                                 </div>
