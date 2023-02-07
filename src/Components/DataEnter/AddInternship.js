@@ -1,19 +1,20 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import studentContext from '../../context/student/studentContext';
 import './DataEnter.css'
+import { useHistory } from 'react-router-dom';
 function AddInternship() {
-
-
+   const history=useHistory(); 
+  
+   
+   
 
   const context = useContext(studentContext);
-  const {addInternship,crediantial2} = context; 
+  const { addInternship, crediantial2 } = context;
 
-
-  
-
-
-
+  if(JSON.stringify(crediantial2)=="{}"){
+    history.push('/addinternship/1');   
+  }
   const enableCreateUser = () => {
     document.getElementById("user_register").disabled = true;
   };
@@ -24,35 +25,30 @@ function AddInternship() {
 
   const [crediantial, setCrediential] = useState({});
   const onchange = (e) => {
-    setCrediential({...crediantial, [e.target.name]: e.target.value });
+    setCrediential({ ...crediantial, [e.target.name]: e.target.value });
+    
   };
-  useEffect(()=>{
-    setCrediential({...crediantial2, ...crediantial});
-},[])
+  useEffect(() => {
+    setCrediential({ ...crediantial2, ...crediantial });     
+  }, [])
 
 
   const handleClick = (e) => {
     e.preventDefault();
-    var internshipContact = document.getElementById("internshipContact").value;
-    var companyName = document.getElementById("companyName").value;
-    var alert = document.getElementById("alert-caps");
-    if(internshipContact.length!==10){
-      alert.innerHTML="*Invalid Phone Number ";
-      return false; 
-   }
-
-   for(var i=0;i<companyName.length;i++){
-      if(companyName.charAt(i)===" "){
-            alert.innerHTML="*No white Space allowed"; 
-          return false;
-      }
-      else{
-          alert.innerHTML="";
+    if (crediantial.nameofcompany == undefined || crediantial.nameofcompany.replaceAll(' ', '').length < 1) {
+      alert("Company Name is required field");
+    }
+    else if (crediantial.contactofcompany.replaceAll(' ', '').length != 10) {
+      console.log(crediantial.contactofcompany)
+      alert("Invalid contact Number");
+    }
+    else if (crediantial.domain=="other" && crediantial.domain2.replaceAll(' ', '').length <1){
+      alert("Invalid domain");
+    }
+    else {
+      addInternship(crediantial);
+    }
   }
-   }
-       
-  addInternship(crediantial);
-}
 
 
   return (
@@ -122,18 +118,31 @@ function AddInternship() {
               <select name="domain" id="Domain" class="form-select" value={crediantial.domain}
                 onChange={onchange}
                 required>
-                <option >--select--</option>
-                <option>Web Development</option>
-                <option>App Development</option>
-                <option>Data Science</option>
-                <option>Other</option>
+                <option value="" >--select--</option>
+                <option value="web development">Web Development</option>
+                <option value="app development">App Development</option>
+                <option value="data science">Data Science</option>
+                <option value="other">Other</option>
               </select>
             </div>
+
+            <div class="col-md-4 dataEnter_input " style={{display: crediantial.domain=="other" ? "block":"none"}}>
+              <label for="Domain2" class="form-label">
+                please specify(domain)
+              </label>
+              <input type="text" name="domain2" id="Domain2" class="form-control" value={crediantial.domain2}
+                onChange={onchange}
+                >
+              </input>
+            </div>
+            
+
+
             <div class="col-md-4 dataEnter_input ">
               <label for="internshipContact" class="form-label">
                 Contact details of internship
               </label>
-              <input type="tel" class="form-control" id="internshipContact" name="contactofcompany"   maxlength="10" size="10" placeholder="+91" value={crediantial.contactofcompany}
+              <input type="tel" class="form-control" id="internshipContact" maxLength="10" name="contactofcompany" value={crediantial.contactofcompany}
                 onChange={onchange}
                 required />
             </div>

@@ -10,11 +10,7 @@ const View = () => {
   console.log(params)
   const b = params.batch;
   const y = params.year;
-  // const Div = params.div;
 
-
-  console.log(b);
-  console.log(y);
 
   const [name, setname] = useState("");
   const [roll, setroll] = useState("");
@@ -26,18 +22,9 @@ const View = () => {
   const [foryear, setforyear] = useState("");
 
   useEffect(() => {
-    if (b == "SE") {
-      setyear("SE")
+      setyear(`${b}`)
       setforyear(y);
-    }
-    else if (b == "TE") {
-      setyear("TE")
-      setforyear(y);
-    }
-    else if (b == "BE") {
-      setyear("BE")
-      setforyear(y);
-    }
+      // eslint-disable-next-line
   }, [])
 
 
@@ -60,22 +47,24 @@ const View = () => {
     <div>
       <div className="filter">
 
-        <div class="search__container">
+        {/* <div class="search__container">
           <input class="search__input" value={`For year:${foryear}`} type="tel" placeholder="foryear" />
         </div>
 
         <div class="search__container">
           <input class="search__input" value={year} type="tel" placeholder="year" />
+        </div> */}
+       <div class="search__container">
+         <p>For a Year: {foryear} ({year})</p>
         </div>
-
 
         <div class="search__container">
           <select name="branch" id="branch" class="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
-            <option>Select Branch</option>
-            <option >CMPN</option>
-            <option >INFT</option>
-            <option >EXTC</option>
-            <option>BIOM</option>
+            <option value="">Select Branch</option>
+            <option value="CMPN">CMPN</option>
+            <option value="INFT">INFT</option>
+            <option value="EXTC">EXTC</option>
+            <option value="BIOM">BIOM</option>
           </select>
         </div>
 
@@ -89,10 +78,9 @@ const View = () => {
 
         <div class="search__container">
           <select name="div" id="div" class="form-control search_input" option={div} value={div} onChange={(e) => { setdiv(e.target.value) }} >
-            <option >Select Div</option>
-            <option >A</option>
-            <option >B</option>
-            <option >Both</option>
+            <option value="">Select Div</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
           </select>
         </div>
 
@@ -154,6 +142,7 @@ const View = () => {
                     return val;
                   }
                 })
+                
                 .filter(function (val) {
                   if (val.Foryear === foryear) {
                     return val;

@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
 import data from '../DataFiles/data';
 import Topcom from '../Components/DashBoard/Topcom'
 
-// import { useContext } from "react";
-// import studentContext from '../context/student/studentContext';
-
 const Dashboard = () => {
-
-  // const context = useContext(studentContext);
-  // const {dataFilter,batchdata,yeardata} = context;  
-
 
   const [crediantial, setCrediential] = useState({});
 
