@@ -47,19 +47,19 @@ const View = () => {
     <div>
       <div className="filter">
 
-        {/* <div class="search__container">
-          <input class="search__input" value={`For year:${foryear}`} type="tel" placeholder="foryear" />
+        {/* <div className="search__container">
+          <input className="search__input" value={`For year:${foryear}`} type="tel" placeholder="foryear" />
         </div>
 
-        <div class="search__container">
-          <input class="search__input" value={year} type="tel" placeholder="year" />
+        <div className="search__container">
+          <input className="search__input" value={year} type="tel" placeholder="year" />
         </div> */}
-       <div class="search__container">
+       <div className="search__container">
          <p>For a Year: {foryear} ({year})</p>
         </div>
 
-        <div class="search__container">
-          <select name="branch" id="branch" class="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
+        <div className="search__container">
+          <select name="branch" id="branch" className="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
             <option value="">Select Branch</option>
             <option value="CMPN">CMPN</option>
             <option value="INFT">INFT</option>
@@ -68,28 +68,28 @@ const View = () => {
           </select>
         </div>
 
-        <div class="search__container">
-          <input class="search__input" value={company} onChange={(e) => { setcompany(e.target.value) }} type="text" placeholder="Company" />
+        <div className="search__container">
+          <input className="search__input" value={company} onChange={(e) => { setcompany(e.target.value) }} type="text" placeholder="Company" />
         </div>
 
-        <div class="search__container">
-          <input class="search__input" value={domain} onChange={(e) => { setdomain(e.target.value) }} type="text" placeholder="Domain" />
+        <div className="search__container">
+          <input className="search__input" value={domain} onChange={(e) => { setdomain(e.target.value) }} type="text" placeholder="Domain" />
         </div>
 
-        <div class="search__container">
-          <select name="div" id="div" class="form-control search_input" option={div} value={div} onChange={(e) => { setdiv(e.target.value) }} >
+        <div className="search__container">
+          <select name="div" id="div" className="form-control search_input" option={div} value={div} onChange={(e) => { setdiv(e.target.value) }} >
             <option value="">Select Div</option>
             <option value="A">A</option>
             <option value="B">B</option>
           </select>
         </div>
 
-        <div class="search__container">
-          <input class="search__input" value={name} onChange={(e) => { setname(e.target.value) }} type="text" placeholder="Name" />
+        <div className="search__container">
+          <input className="search__input" value={name} onChange={(e) => { setname(e.target.value) }} type="text" placeholder="Name" />
         </div>
 
-        <div class="search__container">
-          <input class="search__input" value={roll} onChange={(e) => { setroll(e.target.value) }} type="text" placeholder="Roll No." />
+        <div className="search__container">
+          <input className="search__input" value={roll} onChange={(e) => { setroll(e.target.value) }} type="text" placeholder="Roll No." />
         </div>
 
       </div>
@@ -98,7 +98,7 @@ const View = () => {
 
       {/* table data */}
       <section className='dataview_section'>
-        <div class="tbl-header">
+        <div className="tbl-header">
           <table >
             <tr>
               <th style={{ textAlign: "center" }}>Roll No.</th>

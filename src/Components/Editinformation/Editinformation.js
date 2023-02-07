@@ -17,35 +17,35 @@ const Editinformation = () => {
         <div className="Editinfo_section">
             <div className="makeForm_section">
                 <h4>Make a Form</h4>
-                <form class="row g-3" onSubmit={handleClick} >
+                <form className="row g-3" onSubmit={handleClick} >
                     <div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="formstatus" id="exampleRadios1" 
+                        <div className="form-check">
+                            <input className="form-check-input" type="radio" name="formstatus" id="exampleRadios1" 
                             value="on"
                             onChange={onchange} />
-                            <label class="form-check-label" for="exampleRadios1">
+                            <label className="form-check-label" for="exampleRadios1">
                                 Turn on Form
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="formstatus" id="exampleRadios1" 
+                        <div className="form-check">
+                            <input className="form-check-input" type="radio" name="formstatus" id="exampleRadios1" 
                             value="off"
                             onChange={onchange} />
-                            <label class="form-check-label" for="exampleRadios1">
+                            <label className="form-check-label" for="exampleRadios1">
                                 Turn off Form
                             </label>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <label for="inputYear" class="form-label">Year</label>
-                        <input type="text" name='year' class="form-control" id="inputYear"
+                    <div className="col-md-4">
+                        <label for="inputYear" className="form-label">Year</label>
+                        <input type="text" name='year' className="form-control" id="inputYear"
                             value={crediantial.year}
                             onChange={onchange} />
                     </div>
-                    <div class="col-md-4">
-                        <label for="inputAddress" class="form-label">Semester</label>
-                        <select name="semester" id="state" class="form-select"
+                    <div className="col-md-4">
+                        <label for="inputAddress" className="form-label">Semester</label>
+                        <select name="semester" id="state" className="form-select"
                             onChange={onchange}
                             value={crediantial.semester} >
                             <option>Semester</option>

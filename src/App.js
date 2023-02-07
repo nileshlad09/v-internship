@@ -12,12 +12,14 @@ import AddInternship from './Components/DataEnter/AddInternship';
 import Editinformation from './Components/Editinformation/Editinformation';
 import Verification from './Components/Verification/Verification';
 import StudentState from './context/student/StudentState';
+import Alert from './Components/Alert';
 
 function App() {
   return (
     <div>
       <StudentState>
      <Navbar/>
+     <Alert alert={alert}/>
      <Switch>
       <div className="container">
        <Route exact path='/' component={AdminLogin} ></Route>

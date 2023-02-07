@@ -21,21 +21,34 @@ const StudentState = (props) => {
     return flattened
   }
 
-
-
-
-
   const [crediantial2, setCrediential2] = useState({});
   const addInternship=(crediantial)=>{
     setCrediential2({ ...crediantial2, crediantial });
   }
-  console.log(crediantial2);
+
   console.log(flattenObject(crediantial2));
+  const formSubmit=()=>{
+  }
+
+
+
+
+
+  const[alert,setAlert]=useState(null);
+  const  showAlert=(type,message)=>{
+    setAlert({
+      msg:message,
+      type:type
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  }
 
 
 
   return (
-    <studentContext.Provider value={{ addInternship,crediantial2 }}>
+    <studentContext.Provider value={{ addInternship,crediantial2,alert,showAlert,formSubmit }}>
       {props.children}
     </studentContext.Provider>
   );

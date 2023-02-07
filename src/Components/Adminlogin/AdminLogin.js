@@ -54,7 +54,7 @@ const AdminLogin = () => {
                 onChange={onchange}
               />
             </div>
-            <button type="button" style={{ overflow: "hidden" }} class="btn btn-outline-success">Login</button>
+            <button type="button" style={{ overflow: "hidden" }} className="btn btn-outline-success">Login</button>
           </form>
         </div>
       </div>
