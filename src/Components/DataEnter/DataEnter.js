@@ -50,11 +50,14 @@ const DataEnter = () => {
         else if (crediantial.nameofstudent.replaceAll(' ', '').length < 1) {
             showAlert("warning","Name is required field");
         }
-        else if (crediantial.rollNumber.replaceAll(' ', '').length !== 10) {
+        else if (crediantial.rollNumber.replaceAll(' ', '').length !== 10 ) {
             showAlert("warning","Invalid Roll Number");
         }
         else if (crediantial?.mobileNo.replaceAll(' ', '').length !== 10) {
             showAlert("warning","Invalid Mobile Number");
+        }
+        else if(crediantial.division!==crediantial.rollNumber.charAt(5)){
+            showAlert("warning","Invalid Division or Invalid Roll Number");
         }
         else {
             addInternship(crediantial);
