@@ -22,8 +22,14 @@ const View = () => {
   const [foryear, setforyear] = useState("");
 
   useEffect(() => {
+    if(b=="ALL"){
+      setyear("ALL")
+      setforyear(y);   
+    }
+    else{
       setyear(`${b}`)
-      setforyear(y);
+      setforyear(y);   
+    }
       // eslint-disable-next-line
   }, [])
 
@@ -139,6 +145,9 @@ const View = () => {
                 // eslint-disable-next-line array-callback-return
                 .filter(function (val) {
                   if (val.year === year) {
+                    return val;
+                  }
+                  else if(year == "ALL"){
                     return val;
                   }
                 })

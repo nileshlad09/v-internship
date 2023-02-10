@@ -56,9 +56,6 @@ const DataEnter = () => {
         else if (crediantial?.mobileNo.replaceAll(' ', '').length !== 10) {
             showAlert("warning","Invalid Mobile Number");
         }
-        else if(crediantial.division!==crediantial.rollNumber.charAt(5)){
-            showAlert("warning","Invalid Division or Invalid Roll Number");
-        }
         else {
             addInternship(crediantial);
             history.push('/addinternship/2');

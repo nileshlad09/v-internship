@@ -21,7 +21,6 @@ console.log(crediantial)
   const arr1 = [batch1, batch2, batch3];
 
 
-
   return (
     <>
       
@@ -29,15 +28,15 @@ console.log(crediantial)
       <div className="row">
         <div class="col-md-2">
           <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.division}>
-            <option value="2020-21">2020-21</option>
-            <option value="2021-22">2021-22</option>
-            <option value="2022-23" selected>2022-23</option>
+            <option value="2020-21">July 2020 - June 21</option>
+            <option value="2021-22">July 2021 - June 22</option>
+            <option value="2022-23" selected> July 2022 - June 23</option>
           </select>
         </div>
       </div>
         <DashBoard1 arr1={arr1} crediantial={crediantial} />
         <div className="row Dashboard_graph_section">
-          <div className="graph_1 col-md-12 col-lg-4">
+          <div className="graph_1 col-md-12 col-lg-6">
             <Graph arr1={arr1} />
           </div>
           <div className="graph_1 col-md-12 col-lg-6">

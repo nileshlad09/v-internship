@@ -32,7 +32,9 @@ const DashBoard = ({arr1,crediantial}) => {
             </div>
             <div className="Dashboard_Section_1">
                 <div className="Dashboard_box Dashboard_main_box">
-                    <p className='Dashboard_title_1'>Total Number of Internship completed</p>
+                    <Link to={`/dashboard/view/${Foryear?Foryear:"2022-23"}/ALL`}>
+                       <p className='Dashboard_title_1'>Total Number of Internship completed</p>
+                    </Link>
                 </div>
                 <div className="Dashboard_box">
                 <Link to={`/dashboard/view/${Foryear?Foryear:"2022-23"}/SE`}>
