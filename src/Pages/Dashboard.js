@@ -26,7 +26,7 @@ console.log(crediantial)
       
       <div className="dashboard">
       <div className="row">
-        <div class="col-md-2">
+        <div class="col-md-4">
           <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.division}>
             <option value="2020-21">July 2020 - June 21</option>
             <option value="2021-22">July 2021 - June 22</option>

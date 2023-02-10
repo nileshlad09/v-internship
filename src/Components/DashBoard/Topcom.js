@@ -2,7 +2,7 @@ import React from 'react'
 
 const Topcom = ({ data2 }) => {
     let TScount=[];
-        const id = ['Google', 'Oracle', 'Amazon', 'JP Morgan', 'IBM','Morgan Stanley','TCS','LTI','Jio'];
+        const id = ['Google', 'Oracle', 'Amazon', 'JP Morgan', 'IBM','Morgan Stanley','Accenture','LTI','Jio','TCS'];
         for(let i=0;i< id.length;i++){
             const count = data2.filter((obj) => obj.Company === id[i]).length;
             TScount[i]={sr:i+1,comp:id[i],count:count};
