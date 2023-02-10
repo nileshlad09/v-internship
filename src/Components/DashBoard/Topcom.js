@@ -2,7 +2,7 @@ import React from 'react'
 
 const Topcom = ({ data2 }) => {
     let TScount=[];
-        const id = ['Kids Galaxy', 'Bolt', 'YHills', 'Antenna', 'Cyber Secured India'];
+        const id = ['Google', 'Oracle', 'Amazon', 'JP Morgan', 'IBM','Morgan Stanley','TCS','LTI','Jio'];
         for(let i=0;i< id.length;i++){
             const count = data2.filter((obj) => obj.Company === id[i]).length;
             TScount[i]={sr:i+1,comp:id[i],count:count};
@@ -12,7 +12,7 @@ const Topcom = ({ data2 }) => {
         <table>
             <tr>
                 <th style={{ textAlign: "center" }}>sr</th>
-                <th style={{ textAlign: "center" }}>Company Name</th>
+                <th style={{ textAlign: "center" }}>Top Company Name</th>
                 <th style={{ textAlign: "center" }}>No of student Joined</th>
             </tr>
             {
