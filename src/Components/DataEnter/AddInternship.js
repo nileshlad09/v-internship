@@ -9,6 +9,8 @@ function AddInternship() {
   const context = useContext(studentContext);
   const { addInternship, crediantial2 ,showAlert,formSubmit} = context;
 
+  useEffect(()=>{console.log(context)},[context])
+
   if(JSON.stringify(crediantial2)=="{}"){
     history.push('/addinternship/1');   
   }

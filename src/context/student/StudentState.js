@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import studentContext from "./studentContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getStorage, ref } from "firebase/storage";
+import { write } from "xlsx";
 
 const StudentState = (props) => {
 
-
+  const storage = getStorage();
+const storageRef = ref(storage, 'some-child');
 
   const flattenObject = (obj) => {
     const flattened = {}
@@ -27,7 +32,22 @@ const StudentState = (props) => {
   }
 
   console.log(flattenObject(crediantial2));
+
+  async function writetoDB(crediantial2){
+  try {
+    const docRef = await addDoc(collection(db, "students"), {
+     crediantial2: crediantial2,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
   const formSubmit=()=>{
+    console.log(crediantial2)
+    console.log("REACHED HERE")
+    writetoDB(flattenObject(crediantial2));
   }
 
 

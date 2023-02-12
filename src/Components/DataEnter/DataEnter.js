@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './DataEnter.css'
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase";
 import { useHistory } from 'react-router-dom';
 
 import { useContext } from "react";
