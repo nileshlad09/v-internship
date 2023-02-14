@@ -3,17 +3,24 @@ import { useContext } from "react";
 import studentContext from '../../context/student/studentContext';
 import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+// import { v4 } from "uuid";
+import { storage } from '../../firebase';
+
 function AddInternship() {
-   const history=useHistory(); 
-  
+  const history = useHistory();
+
   const context = useContext(studentContext);
-  const { addInternship, crediantial2 ,showAlert,formSubmit} = context;
+  const { crediantial2, showAlert } = context;
 
-  useEffect(()=>{console.log(context)},[context])
+  // useEffect(()=>{console.log(context)},[context])
 
-  if(JSON.stringify(crediantial2)=="{}"){
-    history.push('/addinternship/1');   
+  if (JSON.stringify(crediantial2) == "{}") {
+    history.push('/addinternship/1');
   }
+  
   const enableCreateUser = () => {
     document.getElementById("user_register").disabled = true;
   };
@@ -22,56 +29,72 @@ function AddInternship() {
     document.getElementById("user_register").disabled = false;
   };
 
+
   const [crediantial, setCrediential] = useState({});
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
-    
+
   };
   useEffect(() => {
-    setCrediential({ ...crediantial2, ...crediantial });     
+    setCrediential({ ...crediantial2, ...crediantial });
   }, [])
+
+//firebase code
+  async function writetoDB(cred) {
+    try {
+      const docRef = await addDoc(collection(db, "students"), {
+        internshipData: cred,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  // file upload 
+  const [imageuploaded, setImageuploaded] = useState(null);
+  const fileUpload = (imageuploaded) => {
+    if (imageuploaded == null) return;
+    // const imageRef = ref(storage, `image/${imageuploaded.name + v4()} `);
+    const imageRef = ref(storage, `image/${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate} `);
+    uploadBytes(imageRef, storage).then(() => {
+      console.log("image uploaded successfully");
+    });
+    console.log(imageuploaded);
+  }
 
 
   const handleClick = (e) => {
     e.preventDefault();
-    if(crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined ){
-      showAlert("warning","All fields are required");
-  }
-    else if ( crediantial.nameofcompany.replaceAll(' ', '').length < 1) {
-      showAlert("danger","Company Name is required field");
+    if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined ||crediantial.domain===undefined || crediantial.startdate===undefined) {
+      showAlert("warning", "All fields are required");
+    }
+    else if (crediantial.nameofcompany.replaceAll(' ', '').length < 1) {
+      showAlert("warning", "Company Name is required field");
     }
     else if (crediantial.contactofcompany.replaceAll(' ', '').length !== 10) {
-      showAlert("danger","Invalid contact Number");
+      showAlert("warning", "Invalid contact Number");
     }
-    else if (crediantial.domain==="other" && crediantial.domain2.replaceAll(' ', '').length <1){
-      showAlert("danger","Invalid domain");
+    else if (crediantial.domain === "other" && crediantial.domain2.replaceAll(' ', '').length < 1) {
+      showAlert("warning", "Invalid domain");
     }
     else {
-      addInternship(crediantial);
-      showAlert("success","Internship added successfully");
-      formSubmit();
+      // addInternship(crediantial);
+      console.log(crediantial);
+      fileUpload(imageuploaded);
+      showAlert("success", "Internship added successfully");
+      writetoDB(crediantial);
     }
   }
 
+  
+  
 
   return (
     <div style={{ overflow: "hidden" }}>
       <div className="internship">
         <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
           <div className="row">
-            <div className="col-md-3">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  onClick={disableCreateUser}
-                />
-                <label className="form-check-label" for="flexRadioDefault2">
-                  has Internship been done ?
-                </label>
-              </div>
-            </div>
             <div className="col-md-3 ">
               <div className="form-check">
                 <input
@@ -85,6 +108,23 @@ function AddInternship() {
                 </label>
               </div>
             </div>
+
+
+            <div className="col-md-3" >
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  onClick={disableCreateUser}
+                />
+                <label className="form-check-label" for="flexRadioDefault2">
+                  has Internship been done ?
+                </label>
+              </div>
+            </div>
+
+
           </div>
           <div className="row" style={{ marginTop: "30px" }}>
             <div className="col-md-4 dataEnter_input ">
@@ -94,16 +134,16 @@ function AddInternship() {
               <input type="date" name="startdate" className="form-control" id="startDate"
                 value={crediantial.startdate}
                 onChange={onchange}
-                required />
+                 />
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="endDate" className="form-label">
                 Ending Date{" "}
               </label>
-              <input type="date" className="form-control" name="enddate" id="user_register"
+              <input type="date" className="form-control" name="enddate" id="user_register" required
                 value={crediantial.enddate}
                 onChange={onchange}
-                required />
+                 />
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="companyName" className="form-label">
@@ -112,15 +152,14 @@ function AddInternship() {
               <input type="text" className="form-control" name="nameofcompany" id="companyName"
                 value={crediantial.nameofcompany}
                 onChange={onchange}
-                 />
+              />
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="Domain" className="form-label">
                 Domain of Internship
               </label>
               <select name="domain" id="Domain" className="form-select" value={crediantial.domain}
-                onChange={onchange}
-                required>
+                onChange={onchange}>
                 <option value="" >--select--</option>
                 <option value="web development">Web Development</option>
                 <option value="app development">App Development</option>
@@ -129,16 +168,16 @@ function AddInternship() {
               </select>
             </div>
 
-            <div className="col-md-4 dataEnter_input " style={{display: crediantial.domain==="other" ? "block":"none"}}>
+            <div className="col-md-4 dataEnter_input " style={{ display: crediantial.domain === "other" ? "block" : "none" }}>
               <label for="Domain2" className="form-label">
                 please specify(domain)
               </label>
               <input type="text" name="domain2" id="Domain2" className="form-control" value={crediantial.domain2}
                 onChange={onchange}
-                >
+              >
               </input>
             </div>
-            
+
 
 
             <div className="col-md-4 dataEnter_input ">
@@ -147,16 +186,18 @@ function AddInternship() {
               </label>
               <input type="tel" className="form-control" id="internshipContact" maxLength="10" name="contactofcompany" value={crediantial.contactofcompany}
                 onChange={onchange}
-                 />
+              />
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="Certificate" className="form-label">
                 Certificate/Joining Letter
               </label>
-              <input className="form-control" type="file" id="Certificate" name="certificate" value={crediantial.certificate} onChange={onchange} />
+              <input className="form-control" type="file" id="Certificate" name="certificate" required
+                value={crediantial.certificate} onChange={(e) => {
+                  setImageuploaded(e.target.files[0]);
+                }} />
             </div>
           </div>
-          <error id="alert-caps"></error>
           <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-success">
             Add
           </button>

@@ -11,7 +11,7 @@ const DataEnter = () => {
     const history = useHistory();
 
     const context = useContext(studentContext);
-    const { addInternship,showAlert } = context;
+    const { addInternship, showAlert } = context;
 
     const [crediantial, setCrediential] = useState({});
 
@@ -21,41 +21,31 @@ const DataEnter = () => {
         setCrediential({ ...crediantial, [e.target.name]: e.target.value });
     };
 
-    // useEffect(()=>{
-    //     console.log(crediantial)
-    // })
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     try {
-    //       const docRef = await addDoc(collection(db, "todos"), {
-    //         sanyog: crediantial,
-    //       });
-    //       console.log("Document written with ID: ", docRef.id);
-    //     } catch (e) {
-    //       console.error("Error adding document: ", e);
-    //     }
-
-    // }
-
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const handleClick = (e) => {
         e.preventDefault();
-        if(crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined || crediantial?.mobileNo === undefined){
-            showAlert("warning","All fields are required");
+        if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined || crediantial?.mobileNo === undefined || crediantial.email===undefined) {
+            showAlert("warning", "All fields are required");
+        }
+        else if (crediantial.semester === undefined || crediantial.division === undefined || crediantial.batch === undefined || crediantial.branch === undefined) {
+            showAlert("warning", "All fields are required");
+        }
+        else if (!crediantial.email.match(mailformat)) {
+            showAlert("warning", "invalid email address");
         }
         else if (crediantial.nameofstudent.replaceAll(' ', '').length < 1) {
-            showAlert("warning","Name is required field");
+            showAlert("warning", "Name is required field");
         }
-        else if (crediantial.rollNumber.replaceAll(' ', '').length !== 10 ) {
-            showAlert("warning","Invalid Roll Number");
+        else if (crediantial.rollNumber.replaceAll(' ', '').length !== 10) {
+            showAlert("warning", "Invalid Roll Number");
         }
         else if (crediantial?.mobileNo.replaceAll(' ', '').length !== 10) {
-            showAlert("warning","Invalid Mobile Number");
+            showAlert("warning", "Invalid Mobile Number");
         }
         else {
             addInternship(crediantial);
+            console.log(crediantial.semester)
             history.push('/addinternship/2');
         }
     }
@@ -82,10 +72,10 @@ const DataEnter = () => {
                         </div>
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputEmail" className="form-label">Email id</label>
-                            <input type="email" name='email' className="form-control" id="inputEmail" placeholder="Example@vit.edu.in"
+                            <input type="text" name='email' className="form-control" id="inputEmail" placeholder="Example@vit.edu.in"
                                 value={crediantial.email}
                                 onChange={onchange}
-                                required />
+                            />
                         </div>
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputMobile" className="form-label">Mobile No</label>
@@ -96,8 +86,8 @@ const DataEnter = () => {
                         </div>
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputSemester" className="form-label">Semester</label>
-                            <select name="semster" id="InputSemester" className="form-select" value={crediantial.semester}
-                                onChange={onchange} required>
+                            <select name="semester" id="InputSemester" className="form-select" value={crediantial.semester}
+                                onChange={onchange}>
                                 <option value="">--select--</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -110,7 +100,7 @@ const DataEnter = () => {
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputDivision" className="form-label">Division</label>
                             <select name="division" id="inputDivision" className="form-select" value={crediantial.division}
-                                onChange={onchange} required>
+                                onChange={onchange} >
                                 <option value="">--select--</option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
@@ -119,7 +109,7 @@ const DataEnter = () => {
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputBatch" className="form-label">Select Batch</label>
                             <select name="batch" id="inputBatch" className="form-select" value={crediantial.batch}
-                                onChange={onchange} required>
+                                onChange={onchange} >
                                 <option value="">--select--</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -129,7 +119,7 @@ const DataEnter = () => {
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputBranch" className="form-label">Select Branch</label>
                             <select name="branch" id="inputBranch" className="form-select" value={crediantial.branch}
-                                onChange={onchange} required>
+                                onChange={onchange} >
                                 <option value="">--select--</option>
                                 <option value="CMPN">CMPN</option>
                                 <option value="INFT">INFT</option>

@@ -26,12 +26,14 @@ console.log(crediantial)
       
       <div className="dashboard">
       <div className="row">
+        <div className="col-md-8">
         <div class="col-md-4">
           <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.division}>
             <option value="2020-21">July 2020 - June 21</option>
             <option value="2021-22">July 2021 - June 22</option>
             <option value="2022-23" selected> July 2022 - June 23</option>
           </select>
+        </div>
         </div>
       </div>
         <DashBoard1 arr1={arr1} crediantial={crediantial} />

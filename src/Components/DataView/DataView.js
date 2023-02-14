@@ -22,7 +22,7 @@ const View = () => {
   const [foryear, setforyear] = useState("");
 
   useEffect(() => {
-    if(b=="ALL"){
+    if(b==="ALL"){
       setyear("ALL")
       setforyear(y);   
     }
@@ -147,7 +147,7 @@ const View = () => {
                   if (val.year === year) {
                     return val;
                   }
-                  else if(year == "ALL"){
+                  else if(year === "ALL"){
                     return val;
                   }
                 })
