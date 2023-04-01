@@ -2,7 +2,7 @@ import React, {  useEffect, useState } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
-import data from '../DataFiles/data';
+// import data from '../DataFiles/data';
 import Topcom from '../Components/DashBoard/Topcom'
 import { collection, getDocs } from "firebase/firestore";
 
@@ -11,6 +11,7 @@ import { db } from "../firebase";
 const Dashboard = () => {
 
   const [todos, setTodos] = useState([]);
+  
  
   const fetchPost = async () => {    
       await getDocs(collection(db, "students"))

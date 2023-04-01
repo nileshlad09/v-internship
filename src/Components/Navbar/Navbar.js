@@ -1,6 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+
+
 const Navbar = () => {
+  
+  const logout=(e)=>{
+    localStorage.removeItem('vIauth');
+  }
+  
   return (
     <>
     <div className="navbar_Section">
@@ -13,6 +20,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <form className="form-inline my-2 my-lg-0 ml-auto">
             <ul className="navbar-nav mr-auto">
+              { localStorage.getItem("vIauth") == "true" ? <>
               <li className="nav-item active">
                 <Link className="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dashboard</Link>
               </li>
@@ -23,8 +31,15 @@ const Navbar = () => {
                 <Link className="nav-link active" aria-current="page" to="/editinfo" style={{ color: "#fff" }}>Edit Information</Link>
               </li>
               <li className="nav-item">
-                <button className='btn btn-outline-light'>Logout</button>
+                <button className='btn btn-outline-light' onClick={logout}>Logout</button>
               </li>
+              </>:
+              <li className="nav-item">
+              <button className='btn btn-outline-light' >
+                <Link to="/adminlogin"> Login </Link></button>
+            </li>
+              }
+              
             </ul>
           </form>
         </div>

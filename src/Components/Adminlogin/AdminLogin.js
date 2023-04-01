@@ -1,29 +1,58 @@
 import React, { useState } from 'react'
 import "./adminlogin.css";
+import { useContext } from "react";
+import studentContext from '../../context/student/studentContext';
+import {  AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseApp } from '../../firebase';
+import { useHistory } from 'react-router-dom';
+
 const AdminLogin = () => {
+  const context = useContext(studentContext);
+  const { showAlert } = context;
 
   const [crediantial, setCrediential] = useState({});
 
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
   };
+  const history = useHistory();
 
-  const handleClick = () => {
-
+  const auth = getAuth(firebaseApp);
+  const handleClick = (e) => {
+       e.preventDefault();
+       let email = crediantial.email.toLowerCase().trim();
+       let password = crediantial.password;
+       signInWithEmailAndPassword(auth, email, password)
+       .then((userCredential) => {
+         console.log(userCredential.user.accessToken);
+         localStorage.setItem("vIauth",true)
+         showAlert("success", "Login Successfully");
+         history.push('/dashboard');
+       })
+       .catch((err) => {
+         if (
+         err.code === AuthErrorCodes.INVALID_PASSWORD ||
+         err.code === AuthErrorCodes.USER_DELETED
+       ) {
+        showAlert("danger", "The email address or password is incorrect");
+       } else {
+        //  console.log(err.code);
+        //  alert(err.code);
+       }
+       });
   }
   return (
     <div>
       <div className="AdminLogin">
         <div className="AdminLogin_modalForm">
           <h2>Login</h2>
-          <form action="" onSubmit={handleClick} className="form user userForm">
-            <div className="AdminLogin_inputGroup">
+          <form  onSubmit={handleClick} className="form user userForm">
+            {/* <div className="AdminLogin_inputGroup">
               <select
                 className="AdminLogin_select"
                 onChange={onchange}
                 value={crediantial.loginas}
                 name="loginas"
-                required
               >
                 <option value="" style={{ fontSize: "14px" }}>
                   ---Select Branch---
@@ -35,13 +64,13 @@ const AdminLogin = () => {
                   INFT
                 </option>
               </select>
-            </div>
+            </div> */}
             <div className="AdminLogin_inputGroup">
               <input
-                type="text"
-                placeholder="Enter Phone no."
-                name="phone"
-                value={crediantial.phone}
+                type="email"
+                placeholder="Enter Email"
+                name="email"
+                value={crediantial.email}
                 onChange={onchange}
               />
             </div>
@@ -54,7 +83,7 @@ const AdminLogin = () => {
                 onChange={onchange}
               />
             </div>
-            <button type="button" style={{ overflow: "hidden" }} className="btn btn-outline-success">Login</button>
+            <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline-success">Login</button>
           </form>
         </div>
       </div>
