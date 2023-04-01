@@ -28,11 +28,12 @@ const Graph2 = ({ data2 }) => {
     }
 
 
-    let key = "Company";
+    let key = "nameofcompany";
 	const topCompany = findOcc(data2, key);
 
     let sortedProducts = topCompany.sort(
         (p1, p2) => (p1.occurrence < p2.occurrence) ? 1 : (p1.occurrence > p2.occurrence) ? -1 : 0);
+        console.log(sortedProducts)
 
 
 
@@ -40,9 +41,9 @@ const Graph2 = ({ data2 }) => {
 
     var state = {
         options: {
-            labels: [sortedProducts[0]?.Company, sortedProducts[1]?.Company,
-            sortedProducts[2]?.Company, sortedProducts[3]?.Company
-    , sortedProducts[4]?.Company]
+            labels: [sortedProducts[0]?.nameofcompany, sortedProducts[1]?.nameofcompany,
+            sortedProducts[2]?.nameofcompany, sortedProducts[3]?.nameofcompany
+    , sortedProducts[4]?.nameofcompany]
         },
         series: [sortedProducts[0].occurrence, sortedProducts[1].occurrence,
                 sortedProducts[2].occurrence, sortedProducts[3].occurrence

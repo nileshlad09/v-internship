@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { CgEye } from 'react-icons/cg'
-import data from '../../DataFiles/data'
+// import data from '../../DataFiles/data'
 import './dataview.css'
 import { useParams } from 'react-router-dom'
+import { collection, getDocs } from "firebase/firestore";
+
+import { db } from "../../firebase";
 
 const View = () => {
 
   const params = useParams();
-  console.log(params)
+  // console.log(params)
   const b = params.batch;
   const y = params.year;
 
@@ -21,17 +24,46 @@ const View = () => {
   const [div, setdiv] = useState("");
   const [foryear, setforyear] = useState("");
 
+
+
+  const [data, setTodos] = useState([]);
+
+  const fetchPost = async () => {
+    await getDocs(collection(db, "students"))
+      .then((querySnapshot) => {
+        const newData = querySnapshot.docs
+          .map((doc) => ({ ...doc.data() }));
+        setTodos(newData);
+      })
+  }
+
   useEffect(() => {
-    if(b==="ALL"){
-      setyear("ALL")
-      setforyear(y);   
-    }
-    else{
-      setyear(`${b}`)
-      setforyear(y);   
-    }
-      // eslint-disable-next-line
+    fetchPost();
   }, [])
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    if (b === "ALL") {
+      setyear("ALL")
+      setforyear(y);
+    }
+    else {
+      setyear(`${b}`)
+      setforyear(y);
+    }
+    // eslint-disable-next-line
+  }, [])
+
+
+
 
 
 
@@ -53,15 +85,15 @@ const View = () => {
     <div>
       <div className="filter">
 
-        {/* <div className="search__container">
+        <div className="search__container" style={{display:"none"}}>
           <input className="search__input" value={`For year:${foryear}`} type="tel" placeholder="foryear" />
         </div>
 
-        <div className="search__container">
+        <div className="search__container" style={{display:"none"}}>
           <input className="search__input" value={year} type="tel" placeholder="year" />
-        </div> */}
-       <div className="search__container">
-         <p>For a Year: {foryear} ({year})</p>
+        </div>
+        <div className="search__container">
+          <p>For a Year: {foryear} ({year})</p>
         </div>
 
         <div className="search__container">
@@ -122,22 +154,22 @@ const View = () => {
             {
               // eslint-disable-next-line array-callback-return
               data.filter(function (val) {
-                if (val.Company === company) {
+                if (val.nameofcompany === company) {
                   return val;
-                } else if (val.Company.toLowerCase().includes(company.toLowerCase())) {
+                } else if (val.nameofcompany.toLowerCase().includes(company.toLowerCase())) {
                   return val;
                 }
               })
 
-              // eslint-disable-next-line array-callback-return
-              .filter(function(val){
-                  return val;
-              })
                 // eslint-disable-next-line array-callback-return
                 .filter(function (val) {
-                  if (val.Domain === domain) {
+                  return val;
+                })
+                // eslint-disable-next-line array-callback-return
+                .filter(function (val) {
+                  if (val.domain === domain) {
                     return val;
-                  } else if (val.Domain.toLowerCase().includes(domain.toLowerCase())) {
+                  } else if (val.domain.toLowerCase().includes(domain.toLowerCase())) {
                     return val;
                   }
                 })
@@ -151,7 +183,7 @@ const View = () => {
                     return val;
                   }
                 })
-                
+
                 .filter(function (val) {
                   if (val.Foryear === foryear) {
                     return val;
@@ -162,57 +194,60 @@ const View = () => {
                 .filter(function (val) {
                   if (val === "") {
                     return val;
-                  } else if (val.fname.toLowerCase().includes(name.toLowerCase())) {
+                  } else if (val.nameofstudent.toLowerCase().includes(name.toLowerCase())) {
                     return val;
                   }
                 })
                 // eslint-disable-next-line array-callback-return
                 .filter(function (val) {
-                  if (val.roll === roll) {
+                  if (val.rollNumber === roll) {
                     return val;
-                  } else if (val.roll.toLowerCase().includes(roll.toLowerCase())) {
+                  } else if (val.rollNumber.toLowerCase().includes(roll.toLowerCase())) {
                     return val;
                   }
                 })
 
-                
+
                 // eslint-disable-next-line array-callback-return
                 .filter(function (val) {
-                  if (val.div ===div) {
+                  if (val.division === div) {
                     return val;
                   }
-                  else if (val.div.toLowerCase().includes(div.toLowerCase())) {
-                    if(val.div.valueOf==="Both"){
+                  else if (val.division.toLowerCase().includes(div.toLowerCase())) {
+                    if (val.division.valueOf === "Both") {
                       return val;
                     }
                     return val;
                   }
                 })
+
+                // eslint-disable-next-line array-callback-return
+                .filter(function (val) {
+                  if (val.branch === branch) {
+                    return val;
+                  }
+                  else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
+                    if (val.branch.valueOf === "Both") {
+                      return val;
+                    }
+                    return val;
+                  }
+                })
+
                 .map((item) => {
                   return (
                     <tr >
-                      <td style={{ textAlign: "center" }}>{item.roll}</td>
-                      <td style={{ textAlign: "center" }}>{item.fname}</td>
+                      <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
+                      <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
                       {/* <td style={{ textAlign: "center" }}>{item.branch}</td> */}
-                      <td style={{ textAlign: "center" }}>{item.Company}</td>
-                      <td style={{ textAlign: "center" }}>{item.Domain}</td>
+                      <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
+                      <td style={{ textAlign: "center" }}>{item.domain}</td>
                       <td style={{ textAlign: "center" }}>01-02-2023</td>
                       <td style={{ textAlign: "center" }}>01-12-2022</td>
                       <td style={{ textAlign: "center" }}>2 month</td>
                       <td style={{ textAlign: "center" }}><CgEye /></td>
-                      <td style={{ textAlign: "center" }}>{item.phone}</td>
+                      <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>
-                      {/* <td style={{ textAlign: "center" }}>{item.roll}</td>
-                          <td style={{ textAlign: "center" }}>{item.fname}</td>
-                          {/* <td style={{ textAlign: "center" }}>{item.branch}</td> */}
-                      {/* <td style={{ textAlign: "center" }}>{item.Company}</td>
-                          <td style={{ textAlign: "center" }}>{item.Domain}</td>
-                          <td style={{ textAlign: "center" }}>{item.start}</td>
-                          <td style={{ textAlign: "center" }}>{item.end}</td>
-                          <td style={{ textAlign: "center" }}>{Duration(item.start,item.end)} month</td>
-                          <td style={{ textAlign: "center" }}><CgEye /></td>
-                          <td style={{ textAlign: "center" }}>{item.phone}</td>
-                          <td style={{ textAlign: "center" }}>{item.email}</td> * */}
                     </tr>
                   )
                 })

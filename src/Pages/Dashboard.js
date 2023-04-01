@@ -1,25 +1,45 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
 import data from '../DataFiles/data';
 import Topcom from '../Components/DashBoard/Topcom'
+import { collection, getDocs } from "firebase/firestore";
+
+import { db } from "../firebase";
 
 const Dashboard = () => {
+
+  const [todos, setTodos] = useState([]);
+ 
+  const fetchPost = async () => {    
+      await getDocs(collection(db, "students"))
+          .then((querySnapshot)=>{               
+              const newData = querySnapshot.docs
+                  .map((doc) => ({...doc.data() }));
+              setTodos(newData);
+          })
+  }
+ 
+  useEffect(()=>{
+      fetchPost();
+  }, [])
+
 
   const [crediantial, setCrediential] = useState({});
 
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
   };
-console.log(crediantial)
-  const data2 = data.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
+// console.log(crediantial)
+  // const data2 = data.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
+  const data2 = todos.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
   console.log(data2)
-  const batch3 = data2.filter(val => val.Batch === 2023);
-  const batch2 = data2.filter(val => val.Batch === 2024);
-  const batch1 = data2.filter(val => val.Batch === 2025);
+  const batch3 = data2.filter(val => val.batch === "2023");
+  const batch2 = data2.filter(val => val.batch === "2024");
+  const batch1 = data2.filter(val => val.batch === "2025");
   const arr1 = [batch1, batch2, batch3];
-
+ console.log(arr1);
 
   return (
     <>
@@ -42,7 +62,7 @@ console.log(crediantial)
             <Graph arr1={arr1} />
           </div>
           <div className="graph_1 col-md-12 col-lg-6">
-            <Graph2 data2={data2} />
+            {/* <Graph2 data2={data2} /> */}
           </div>
           <div className="dashboard_table col-md-12 col-lg-4">
             <Topcom data2={data2} />

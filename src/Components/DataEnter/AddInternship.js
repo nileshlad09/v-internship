@@ -7,20 +7,21 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 // import { v4 } from "uuid";
-import { storage } from '../../firebase';
+import { v4 as uuid } from "uuid";
+import { storage } from '../../firebase'
 
 function AddInternship() {
-  const history = useHistory();
 
+  const history = useHistory();
   const context = useContext(studentContext);
-  const { crediantial2, showAlert } = context;
+  const { addInternship, crediantial2, showAlert } = context;
 
   // useEffect(()=>{console.log(context)},[context])
 
   if (JSON.stringify(crediantial2) == "{}") {
     history.push('/addinternship/1');
   }
-  
+
   const enableCreateUser = () => {
     document.getElementById("user_register").disabled = true;
   };
@@ -39,17 +40,32 @@ function AddInternship() {
     setCrediential({ ...crediantial2, ...crediantial });
   }, [])
 
-//firebase code
+  //firebase code
   async function writetoDB(cred) {
     try {
       const docRef = await addDoc(collection(db, "students"), {
-        internshipData: cred,
+        batch: cred.batch,
+        branch: cred.branch,
+        nameofstudent: cred.nameofstudent,
+        rollNumber: cred.rollNumber,
+        email: cred.email,
+        mobileNo: cred.mobileNo,
+        division: cred.division,
+        semester: cred.semester,
+
+        contactofcompany: cred.contactofcompany,
+        nameofcompany: cred.nameofcompany,
+        domain: cred.domain,
+        startdate: cred.startdate,
+        enddate: cred.enddate,
       });
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Document added");
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   }
+
+
 
   // file upload 
   const [imageuploaded, setImageuploaded] = useState(null);
@@ -66,7 +82,7 @@ function AddInternship() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined ||crediantial.domain===undefined || crediantial.startdate===undefined) {
+    if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || crediantial.domain === undefined || crediantial.startdate === undefined) {
       showAlert("warning", "All fields are required");
     }
     else if (crediantial.nameofcompany.replaceAll(' ', '').length < 1) {
@@ -79,16 +95,16 @@ function AddInternship() {
       showAlert("warning", "Invalid domain");
     }
     else {
-      // addInternship(crediantial);
-      console.log(crediantial);
+      addInternship(crediantial);
+      // console.log(crediantial);
       fileUpload(imageuploaded);
       showAlert("success", "Internship added successfully");
       writetoDB(crediantial);
     }
   }
 
-  
-  
+
+
 
   return (
     <div style={{ overflow: "hidden" }}>
@@ -134,7 +150,7 @@ function AddInternship() {
               <input type="date" name="startdate" className="form-control" id="startDate"
                 value={crediantial.startdate}
                 onChange={onchange}
-                 />
+              />
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="endDate" className="form-label">
@@ -143,7 +159,7 @@ function AddInternship() {
               <input type="date" className="form-control" name="enddate" id="user_register" required
                 value={crediantial.enddate}
                 onChange={onchange}
-                 />
+              />
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="companyName" className="form-label">
