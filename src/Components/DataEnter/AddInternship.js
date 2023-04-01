@@ -58,6 +58,7 @@ function AddInternship() {
         domain: cred.domain,
         startdate: cred.startdate,
         enddate: cred.enddate?cred.enddate:" ",
+        certificate: imageURL,
       });
       console.log(docRef)
       console.log("Document added");
@@ -70,17 +71,23 @@ function AddInternship() {
 
   // file upload 
   const [imageuploaded, setImageuploaded] = useState(null);
-  const [percent, setPercent] = useState(0);
+  const [imageURL, setimageURL] = useState("");
   useEffect(()=>{
-    console.log(percent)
-  },[percent])
+    console.log(imageURL)
+  },[imageURL])
   useEffect(()=>{console.log(imageuploaded)},[imageuploaded])
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
-    // const imageRef = ref(storage, `image/${imageuploaded.name + v4()} `);
-    const fileName = `${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
-    //const imageRef = ref(storage, `image/${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`);
-    storage.ref('/certificates/'+fileName).put(imageuploaded)
+    // generate a unique filename
+    const fileName = `${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
+    // filename will look like rollNumber_startdate.extension
+    // the actual code to upload the file
+    var task = storage.ref('/certificates/'+fileName).put(imageuploaded)
+    // and getting the download URL
+    task.then((res) => {
+      res.ref.getDownloadURL().then((url)=>{setimageURL(url);
+        writetoDB(crediantial);}); //finally write to DB after we get the URL
+   });
   }
 
 
@@ -103,7 +110,10 @@ function AddInternship() {
       console.log(crediantial);
       fileUpload(imageuploaded);
       showAlert("success", "Internship added successfully");
-      writetoDB(crediantial);
+      //writetoDB(crediantial);
+      // Commenting out this write because we need to write the data after the file is uploaded
+      // so we can get the URL
+      // Hence the writetoDB is called after we get the file URL
     }
   }
 
