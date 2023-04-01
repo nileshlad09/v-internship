@@ -4,11 +4,10 @@ import studentContext from '../../context/student/studentContext';
 import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../../firebase";
+//import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // import { v4 } from "uuid";
 //import { v4 as uuid } from "uuid";
-import { storage } from '../../firebase'
 
 function AddInternship() {
 
@@ -71,18 +70,17 @@ function AddInternship() {
 
   // file upload 
   const [imageuploaded, setImageuploaded] = useState(null);
+  const [percent, setPercent] = useState(0);
+  useEffect(()=>{
+    console.log(percent)
+  },[percent])
+  useEffect(()=>{console.log(imageuploaded)},[imageuploaded])
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
     // const imageRef = ref(storage, `image/${imageuploaded.name + v4()} `);
-    const imageRef = ref(storage, `image/${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`);
-    uploadBytes(imageRef, storage).then(() => {
-      console.log("image uploaded successfully");
-      /* console.log(imageRef) */
-    });
-    console.log(imageuploaded);
-   /*  getDownloadURL(imageRef).then((url) => {
-      console.log(url)
-    }) */
+    const fileName = `${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
+    //const imageRef = ref(storage, `image/${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`);
+    storage.ref('/certificates/'+fileName).put(imageuploaded)
   }
 
 
