@@ -5,9 +5,9 @@ import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // import { v4 } from "uuid";
-import { v4 as uuid } from "uuid";
+//import { v4 as uuid } from "uuid";
 import { storage } from '../../firebase'
 
 function AddInternship() {
@@ -72,11 +72,15 @@ function AddInternship() {
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
     // const imageRef = ref(storage, `image/${imageuploaded.name + v4()} `);
-    const imageRef = ref(storage, `image/${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate} `);
+    const imageRef = ref(storage, `image/${crediantial.rollNumber}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`);
     uploadBytes(imageRef, storage).then(() => {
       console.log("image uploaded successfully");
+      /* console.log(imageRef) */
     });
     console.log(imageuploaded);
+   /*  getDownloadURL(imageRef).then((url) => {
+      console.log(url)
+    }) */
   }
 
 
