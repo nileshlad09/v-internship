@@ -44,6 +44,7 @@ function AddInternship() {
   async function writetoDB(cred) {
     try {
       const docRef = await addDoc(collection(db, "students"), {
+        Foryear: "2022-23",
         batch: cred.batch,
         branch: cred.branch,
         nameofstudent: cred.nameofstudent,
