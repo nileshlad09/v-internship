@@ -39,7 +39,7 @@ const Dashboard = () => {
   const batch2 = data2.filter(val => val.batch === "2024");
   const batch1 = data2.filter(val => val.batch === "2025");
   const arr1 = [batch1, batch2, batch3];
- console.log(arr1);
+  console.log(arr1);
 
   return (
     <>

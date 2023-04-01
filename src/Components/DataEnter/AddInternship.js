@@ -53,13 +53,14 @@ function AddInternship() {
         mobileNo: cred.mobileNo,
         division: cred.division,
         semester: cred.semester,
-
+        year:  cred.year,
         contactofcompany: cred.contactofcompany,
         nameofcompany: cred.nameofcompany,
         domain: cred.domain,
         startdate: cred.startdate,
-        enddate: cred.enddate,
+        enddate: cred.enddate?cred.enddate:" ",
       });
+      console.log(docRef)
       console.log("Document added");
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -101,7 +102,7 @@ function AddInternship() {
     }
     else {
       addInternship(crediantial);
-      // console.log(crediantial);
+      console.log(crediantial);
       fileUpload(imageuploaded);
       showAlert("success", "Internship added successfully");
       writetoDB(crediantial);

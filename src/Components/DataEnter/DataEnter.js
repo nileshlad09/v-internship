@@ -21,6 +21,7 @@ const DataEnter = () => {
         setCrediential({ ...crediantial, [e.target.name]: e.target.value });
     };
 
+
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const handleClick = (e) => {
@@ -28,7 +29,7 @@ const DataEnter = () => {
         if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined || crediantial?.mobileNo === undefined || crediantial.email===undefined) {
             showAlert("warning", "All fields are required");
         }
-        else if (crediantial.semester === undefined || crediantial.division === undefined || crediantial.batch === undefined || crediantial.branch === undefined) {
+        else if (crediantial.semester === undefined || crediantial.division === undefined || crediantial.batch === undefined || crediantial.branch === undefined || crediantial.year===undefined) {
             showAlert("warning", "All fields are required");
         }
         else if (!crediantial.email.match(mailformat)) {
@@ -49,6 +50,7 @@ const DataEnter = () => {
             history.push('/addinternship/2');
         }
     }
+
 
     return (
         <div>
@@ -85,18 +87,42 @@ const DataEnter = () => {
                             />
                         </div>
                         <div className="col-md-4 dataEnter_input ">
+                            <label htmlFor="inputYear" className="form-label">Year</label>
+                            <select name="year" id="InputYear" className="form-select" value={crediantial.year}
+                                onChange={onchange}>
+                                <option value="">--select--</option>
+                                 <option value="SE" >SE</option>
+                                  <option value="TE" >TE</option>
+                                  <option value="BE" >BE</option>
+                            </select>
+                        </div>
+                        <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputSemester" className="form-label">Semester</label>
                             <select name="semester" id="InputSemester" className="form-select" value={crediantial.semester}
                                 onChange={onchange}>
                                 <option value="">--select--</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
+                                {(crediantial.year==="SE")? 
+                                <>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 </>:""
+                                }
+                                {(crediantial.year==="TE")? 
+                                <>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 </>:""
+                                }
+                                {(crediantial.year==="BE")? 
+                                <>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 </>:""
+                                }
+
                             </select>
                         </div>
+                        
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputDivision" className="form-label">Division</label>
                             <select name="division" id="inputDivision" className="form-select" value={crediantial.division}
@@ -111,6 +137,7 @@ const DataEnter = () => {
                             <select name="batch" id="inputBatch" className="form-select" value={crediantial.batch}
                                 onChange={onchange} >
                                 <option value="">--select--</option>
+
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
                                 <option value="2025">2025</option>
