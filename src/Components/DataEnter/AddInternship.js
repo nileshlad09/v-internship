@@ -40,7 +40,7 @@ function AddInternship() {
   }, [])
 
   //firebase code
-  async function writetoDB(cred) {
+  async function writetoDB(cred, imagelink) {
     try {
       const docRef = await addDoc(collection(db, "students"), {
         Foryear: "2022-23",
@@ -62,6 +62,7 @@ function AddInternship() {
       });
       console.log(docRef)
       console.log("Document added");
+      console.log(imageURL)
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -86,7 +87,7 @@ function AddInternship() {
     // and getting the download URL
     task.then((res) => {
       res.ref.getDownloadURL().then((url)=>{setimageURL(url);
-        writetoDB(crediantial);}); //finally write to DB after we get the URL
+        writetoDB(crediantial,url);}); //finally write to DB after we get the URL
    });
   }
 
