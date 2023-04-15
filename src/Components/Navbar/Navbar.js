@@ -29,9 +29,9 @@ const Navbar = () => {
               <li className="nav-item active">
                 <Link className="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dashboard</Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <button className='btn btn-outline-light loginBtn' onClick={logout}>Logout</button>
               </li>

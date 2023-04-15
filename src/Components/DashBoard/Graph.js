@@ -30,7 +30,7 @@ const Graph = ({arr1}) => {
             mode: 'lite',
           },
           xaxis: {
-            categories: ["SE - 2025", "TE - 2024", "BE - 2023"],
+            categories: ["SE", "TE", "BE"],
           },
           yaxis: {
             title: {
