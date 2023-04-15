@@ -1,8 +1,28 @@
+.images{
+    /* background-image: url("./Homepages.jpg"); */
+    background-color: beige;
+    padding: 40px;
+    box-shadow: 2px 2px 6px grey; 
+}
 .homeOptions{
     display: flex;
-    gap: 30px;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    margin-top: 30px;
+     gap: 20px;
+     padding: 30px;
+}
+.homePageHeadingmain{
+    color: rgb(23, 109, 44);
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding-bottom: 20px;
+}
+
+.homePageHeading{
+    color: rgb(47, 49, 47);
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .homeOption_box{
@@ -11,19 +31,32 @@
     height: 80px;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    /* box-shadow: 0px 2px 3px gray; */
+    transition: 0.45s;
+
 }
 .homeOption_box a{
     text-decoration: none;
+    list-style: 0;
 }
 .homeOption_title_2{
     padding: 0;
     margin: 0;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
 }
-.homeOption_title_2:hover{
-    color: white;
-    font-size: 1.3rem;
-    transition: all .6s;
+
+
+.homeOption_box:hover{
+    color: #fff;
+    border: 1px solid gray;
 }

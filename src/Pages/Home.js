@@ -5,27 +5,26 @@ const Home = () => {
 
 
 
-    
- 
-    return (
-        <div className='homePage'>
-             <h3 className="homePageHeading">V-Internship</h3>
-             <h4 className="homePageHeading">Internship Portal of Vidyalankar Institute of Technology, Mumbai</h4>
-            <div className="homeOptions">
-              <div className="homeOption_box"> 
-                 <Link to={`/addinternship/1`}>
-                    <p className='homeOption_title_2'>Add Internship Data</p>
-                </Link>
-              </div>
-              <div className="homeOption_box">
-                  <Link to={`/adminlogin`}>
-                    <p className='homeOption_title_2'>Admin Login  </p>
-                </Link>
-              </div>
-            </div>
-            
+
+
+  return (
+    <div className='images'>
+       <div className='homePage'>
+      <h3 className="homePageHeadingmain">V-Internship</h3>
+      <h4 className="homePageHeading">Internship Portal of <span style={{ color: "red" }}>Vidyalankar Institute of Technology(VIT)</span>, Mumbai</h4>
+      <div className="homeOptions">
+        <Link to={`/addinternship/1`}><div className="homeOption_box">
+          <p className='homeOption_title_2'>Add Internship Data</p>
         </div>
-    )
+        </Link>
+        <Link to={`/adminlogin`}> <div className="homeOption_box">
+          <p className='homeOption_title_2'>Admin Login  </p>
+        </div>
+        </Link>
+      </div>
+    </div>
+    </div>
+  )
 }
 
 export default Home

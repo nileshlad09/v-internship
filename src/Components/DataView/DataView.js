@@ -92,7 +92,7 @@ const View = () => {
     // var year1 = a.slice(6, 10);
     // var year2 = b.slice(6, 10);
 
-    
+
   }
   return (
     <div>
@@ -150,7 +150,7 @@ const View = () => {
       {/* table data */}
       <section className='dataview_section'>
         <div className="tbl-header">
-          <table >
+          <table  >
             <tr>
               <th style={{ textAlign: "center" }}>Roll No.</th>
               <th style={{ textAlign: "center" }}>Name</th>
@@ -192,7 +192,7 @@ const View = () => {
                   if (val.year === year) {
                     return val;
                   }
-                  else if(year === "ALL"){
+                  else if (year === "ALL") {
                     return val;
                   }
                 })
@@ -257,7 +257,7 @@ const View = () => {
                       <td style={{ textAlign: "center" }}>{item.domain}</td>
                       <td style={{ textAlign: "center" }}>{item.startdate}</td>
                       <td style={{ textAlign: "center" }}> {item.enddate}</td>
-                      <td style={{ textAlign: "center" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
+                      <td style={{ textAlign: "center" }}>{item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
                       <td style={{ textAlign: "center" }}><CgEye /></td>
                       <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>
