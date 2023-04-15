@@ -40,9 +40,9 @@ function AddInternship() {
   }, [])
 
   //firebase code
-  async function writetoDB(cred, imagelink) {
+   function writetoDB(cred, imagelink) {
     try {
-      const docRef = await addDoc(collection(db, "students"), {
+      const docRef = addDoc(collection(db, "students"), {
         Foryear: "2022-23",
         batch: cred.batch,
         branch: cred.branch,
@@ -58,7 +58,7 @@ function AddInternship() {
         domain: cred.domain,
         startdate: cred.startdate,
         enddate: cred.enddate?cred.enddate:" ",
-        certificate: imageURL,
+        certificate: imagelink,
       });
       console.log(docRef)
       console.log("Document added");
