@@ -1,8 +1,14 @@
 .images{
-    /* background-image: url("./vitlogo.png"); */
-    background-color: rgb(250, 250, 206);
+    background-color: rgb(229, 230, 242);
     padding: 40px;
-    /* box-shadow: 1px 1px 3px grey;  */
+}
+img{
+    background-repeat: no-repeat;
+    height: 90px;
+    width: 260px;
+    position: relative;
+    right: 50px;
+    bottom: 20px;
 }
 .homeOptions{
     display: flex;
@@ -12,22 +18,9 @@
      gap: 20px;
      padding: 30px;
 }
-.homePageHeadingmain{
-    color: rgb(23, 109, 44);
-    font-weight: 900;
-    letter-spacing: 3px;
-    padding-bottom: 20px;
-    border-bottom: 3px solid black;
-    /* background-image: url("./vitlogo.png"); */
-    /* width: 250px;        
-    border: 5px solid black; */
+.homeOptions a{
+    text-decoration: none;
 }
-
-/* .homePageHeadingmain img{
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-} */
 
 .homePageHeading{
     color: rgb(47, 49, 47);
@@ -39,6 +32,7 @@
     background-color: #28A745;
     width: 300px;
     height: 80px;
+    padding: 30px ;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -70,13 +64,6 @@
 }
 
 @media screen and (max-width: 680px) {
-    .homePageHeadingmain{
-        color: rgb(23, 109, 44);
-        font-weight: 600;
-        letter-spacing: 2px;
-        padding-bottom: 20px;
-        border-bottom: 3px solid black;
-    }
 
     .homeOption_box{
         background-color: #28A745;
@@ -104,7 +91,7 @@
     }
     .homePageHeading{
         color: rgb(47, 49, 47);
-        font-weight: 400;
-        letter-spacing: 1px;
+        font-weight: 500;
+        letter-spacing: 2px;
     }
   }

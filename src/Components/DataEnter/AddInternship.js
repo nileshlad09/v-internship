@@ -5,9 +5,7 @@ import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
-//import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { v4 } from "uuid";
-//import { v4 as uuid } from "uuid";
+
 
 function AddInternship() {
 
@@ -15,7 +13,7 @@ function AddInternship() {
   const context = useContext(studentContext);
   const { addInternship, crediantial2, showAlert } = context;
 
-  // useEffect(()=>{console.log(context)},[context])
+  
 
   if (JSON.stringify(crediantial2) == "{}") {
     history.push('/addinternship/1');
@@ -39,11 +37,23 @@ function AddInternship() {
     setCrediential({ ...crediantial2, ...crediantial });
   }, [])
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  var dummyYear;
+
+  if(month>6){
+      dummyYear = `${year}-${Number(String(year).slice(2,4)) + 1}`
+  }else{
+      dummyYear = `${year - 1}-${String(year).slice(2,4)}`
+  }
+
+
   //firebase code
    function writetoDB(cred, imagelink) {
     try {
       const docRef = addDoc(collection(db, "students"), {
-        Foryear: "2022-23",
+        Foryear: dummyYear,
         batch: cred.batch,
         branch: cred.branch,
         nameofstudent: cred.nameofstudent,
@@ -55,14 +65,14 @@ function AddInternship() {
         year:  cred.year,
         contactofcompany: cred.contactofcompany,
         nameofcompany: cred.nameofcompany,
-        domain: cred.domain,
+        domain: cred.domain=="other"?cred.domain2:cred.domain,
         startdate: cred.startdate,
         enddate: cred.enddate?cred.enddate:" ",
         certificate: imagelink,
       });
-      console.log(docRef)
-      console.log("Document added");
-      console.log(imageURL)
+      // console.log(docRef)
+      // console.log("Document added");
+      // console.log(imageURL)
     } catch (e) {
       console.error("Error adding document: ", e);
     }

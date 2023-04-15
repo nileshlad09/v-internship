@@ -27,20 +27,32 @@ const Dashboard = () => {
   }, [])
 
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  var dummyYear;
+
+  if(month>6){
+      dummyYear = `${year}-${Number(String(year).slice(2,4)) + 1}`
+  }else{
+      dummyYear = `${year - 1}-${String(year).slice(2,4)}`
+  }
+
   const [crediantial, setCrediential] = useState({});
 
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
   };
-// console.log(crediantial)
-  // const data2 = data.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
-  const data2 = todos.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
-  console.log(data2)
-  const batch3 = data2.filter(val => val.batch === "2023");
-  const batch2 = data2.filter(val => val.batch === "2024");
-  const batch1 = data2.filter(val => val.batch === "2025");
+
+  const data2 = todos.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : dummyYear));
+  
+  const batch3 = data2.filter(val => val.year === "BE");
+  const batch2 = data2.filter(val => val.year === "TE");
+  const batch1 = data2.filter(val => val.year === "SE");
   const arr1 = [batch1, batch2, batch3];
-  console.log(arr1);
+  
+  var dummyYear1=`${Number(String(dummyYear.slice(0,4))) - 2}-${Number(String(dummyYear.slice(5,7))) - 2}`;
+  var dummyYear2=`${Number(String(dummyYear.slice(0,4))) - 1}-${Number(String(dummyYear.slice(5,7))) - 1}`;;
 
   return (
     <>
@@ -49,24 +61,29 @@ const Dashboard = () => {
       <div className="row">
         <div className="col-md-8">
         <div class="col-md-4">
-          <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.division}>
-            <option value="2020-21">July 2020 - June 21</option>
-            <option value="2021-22">July 2021 - June 22</option>
-            <option value="2022-23" selected> July 2022 - June 23</option>
+          <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.Foryear}>
+            <option value={dummyYear1}>July {String(dummyYear1).slice(0,4)} - June {String(dummyYear1).slice(5,7)}</option>
+            <option value={dummyYear2}>July {String(dummyYear2).slice(0,4)} - June {String(dummyYear2).slice(5,7)}</option>
+            <option value={dummyYear} selected> July {String(dummyYear).slice(0,4)} - June {String(dummyYear).slice(5,7)}</option>
           </select>
         </div>
         </div>
       </div>
-        <DashBoard1 arr1={arr1} crediantial={crediantial} />
+        <DashBoard1 arr1={arr1} crediantial={crediantial} dummyYear={dummyYear}/>
         <div className="row Dashboard_graph_section">
-          <div className="graph_1 col-md-12 col-lg-6">
+          <div className="graph_1 chart col-md-8 col-lg-5">
             <Graph arr1={arr1} />
+            <p className='heading'>No.of students completed internship</p>
           </div>
-          <div className="graph_1 col-md-12 col-lg-6">
-            {/* <Graph2 data2={data2} /> */}
-          </div>
-          <div className="dashboard_table col-md-12 col-lg-4">
+          { data2.length?
+          <div className="graph_1 chart col-md-8 col-lg-5">
+            <Graph2 data2={data2} />
+            <p className='heading'>Most frequent company's student join</p>
+          </div>:""
+          }
+          <div className="dashboard_table chart col-md-8 col-lg-4">
             <Topcom data2={data2} />
+            <p className='heading'>Top Company</p>
           </div>
         </div>
       </div>
