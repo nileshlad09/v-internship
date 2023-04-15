@@ -83,9 +83,9 @@ const View = () => {
     var date1 = new Date(`${month1}/${day1}/${year1}`);
     var date2 = new Date(`${month2}/${day2}/${year2}`);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
-    console.log(diffDays)
-    return Math.round(diffDays / 30);    
-  }
+    return Math.round(diffDays / 30);  
+  }  
+
   return (
     <div>
       <div className="filter">
@@ -134,7 +134,7 @@ const View = () => {
       {/* table data */}
       <section className='dataview_section'>
         <div className="tbl-header">
-          <table >
+          <table  >
             <tr>
               <th style={{ textAlign: "center" }}>Roll No.</th>
               <th style={{ textAlign: "center" }}>Name</th>
@@ -175,7 +175,7 @@ const View = () => {
                   if (val.year === year) {
                     return val;
                   }
-                  else if(year === "ALL"){
+                  else if (year === "ALL") {
                     return val;
                   }
                 })
@@ -240,6 +240,7 @@ const View = () => {
                       <td style={{ textAlign: "center" }}>{item.domain}</td>
                       <td style={{ textAlign: "center" }}>{item.startdate}</td>
                       <td style={{ textAlign: "center" }}> {item.enddate}</td>
+
                       <td style={{ textAlign: "center" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
                       <td style={{ textAlign: "center" }}> 
                       <a href={item.certificate} target='_blank'><CgEye /></a>
