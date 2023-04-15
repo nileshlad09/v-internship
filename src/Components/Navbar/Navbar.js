@@ -8,7 +8,7 @@ const Navbar = () => {
   const history = useHistory();
   const logout=()=>{
       dispatch({type:"USER",payload:false})
-      history.push('/login');  
+      history.push('/adminlogin');  
       localStorage.clear("isVinternshipLogin")
   }
   
@@ -30,9 +30,6 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/editinfo" style={{ color: "#fff" }}>Edit Information</Link>
               </li>
               <li className="nav-item">
                 <button className='btn btn-outline-light' onClick={logout}>Logout</button>

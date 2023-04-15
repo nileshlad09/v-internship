@@ -17,7 +17,7 @@ const Verification = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             {
                 data.map((item) => {
                     return (
