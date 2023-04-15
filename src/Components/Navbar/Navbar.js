@@ -32,11 +32,11 @@ const Navbar = () => {
                 <Link className="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>
               </li>
               <li className="nav-item">
-                <button className='btn btn-outline-light' onClick={logout}>Logout</button>
+                <button className='btn btn-outline-light loginBtn' onClick={logout}>Logout</button>
               </li>
               </>:
               <li className="nav-item">
-              <button className='btn btn-outline-light' >
+              <button className='btn btn-outline-light loginBtn' >
                 <Link to="/adminlogin"> Login </Link></button>
             </li>
               }

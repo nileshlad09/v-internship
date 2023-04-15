@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CgEye } from 'react-icons/cg'
-// import data from '../../DataFiles/data'
+import { Link } from 'react-router-dom'
+
 import './dataview.css'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs } from "firebase/firestore";
@@ -83,28 +84,11 @@ const View = () => {
     var date2 = new Date(`${month2}/${day2}/${year2}`);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
     console.log(diffDays)
-    return Math.round(diffDays / 30);
-
-    // var day1 = a.slice(0, 2);
-    // var day2 = b.slice(0, 2);
-    // var month1 = a.slice(3, 5);
-    // var month2 = b.slice(3, 5);
-    // var year1 = a.slice(6, 10);
-    // var year2 = b.slice(6, 10);
-
-    
+    return Math.round(diffDays / 30);    
   }
   return (
     <div>
       <div className="filter">
-
-        {/* <div className="search__container" >
-          <input className="search__input" value={`For year:${foryear}`} type="tel" placeholder="foryear" />
-        </div>
-
-        <div className="search__container" >
-          <input className="search__input" value={year} type="tel" placeholder="year" />
-        </div> */}
         <div className="search__container">
           <p>For a Year: {foryear} ({year})</p>
         </div>
@@ -154,7 +138,6 @@ const View = () => {
             <tr>
               <th style={{ textAlign: "center" }}>Roll No.</th>
               <th style={{ textAlign: "center" }}>Name</th>
-              {/* <th style={{ textAlign: "center" }}>Branch</th> */}
               <th style={{ textAlign: "center" }}>organization</th>
               <th style={{ textAlign: "center" }}>Domain</th>
               <th style={{ textAlign: "center" }}>Starting Date</th>
@@ -248,17 +231,19 @@ const View = () => {
                 })
 
                 .map((item) => {
+                  console.log(item)
                   return (
                     <tr >
                       <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
-                      {/* <td style={{ textAlign: "center" }}>{item.branch}</td> */}
                       <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
                       <td style={{ textAlign: "center" }}>{item.domain}</td>
                       <td style={{ textAlign: "center" }}>{item.startdate}</td>
                       <td style={{ textAlign: "center" }}> {item.enddate}</td>
                       <td style={{ textAlign: "center" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
-                      <td style={{ textAlign: "center" }}><CgEye /></td>
+                      <td style={{ textAlign: "center" }}> 
+                      <a href={item.certificate} target='_blank'><CgEye /></a>
+                      </td>
                       <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>
                     </tr>

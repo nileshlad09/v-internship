@@ -1,4 +1,3 @@
-// export default App;
 import './App.css';
 import {Switch,Route, useHistory,Redirect} from 'react-router-dom';
 
@@ -8,7 +7,6 @@ import AdminLogin from './Components/Adminlogin/AdminLogin'
 import View from './Pages/View'
 import DataEnter from './Components/DataEnter/DataEnter'
 import AddInternship from './Components/DataEnter/AddInternship';
-// import Admin from './Components/Admin/Admin';
 import Verification from './Components/Verification/Verification';
 import StudentState from './context/student/StudentState';
 import Alert from './Components/Alert';
@@ -40,9 +38,7 @@ function App() {
        <Route exact path='/adminlogin' component={AdminLogin} ></Route>
        <Route exact path='/addinternship/1' component={DataEnter} ></Route>
        <Route exact path='/addinternship/2' component={AddInternship} ></Route>
-       
-       {/* <Route exact path='/dashboard' component={Dashboard} ></Route>         */}
-       {/* <Route exact path='/Verification' component={Verification} ></Route> */}
+
         <Redirect to="/" />
        </div>
      </Switch>

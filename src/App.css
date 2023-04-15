@@ -37,3 +37,8 @@
 .navbar_Section{
   background-color: #28A745;
 }
+
+.loginBtn a:hover{
+   text-decoration: none;
+   color: black; 
+}
