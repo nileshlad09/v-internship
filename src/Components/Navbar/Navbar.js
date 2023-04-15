@@ -4,6 +4,7 @@ import { UserContext } from '../../App';
 
 const Navbar = () => {
   
+
   const {state,dispatch} = useContext(UserContext)
   const history = useHistory();
   const logout=()=>{
@@ -35,7 +36,7 @@ const Navbar = () => {
                 <button className='btn btn-outline-light loginBtn' onClick={logout}>Logout</button>
               </li>
               </>:
-              <li className="nav-item">
+              <li className="nav-item loginBtn2">
               <button className='btn btn-outline-light loginBtn' >
                 <Link to="/adminlogin"> Login </Link></button>
             </li>

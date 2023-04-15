@@ -35,12 +35,13 @@ const Dashboard = () => {
 // console.log(crediantial)
   // const data2 = data.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
   const data2 = todos.filter(val => val.Foryear === (crediantial?.Foryear ? crediantial.Foryear : "2022-23"));
-  console.log(data2)
+  // console.log(data2)
   const batch3 = data2.filter(val => val.batch === "2023");
   const batch2 = data2.filter(val => val.batch === "2024");
   const batch1 = data2.filter(val => val.batch === "2025");
   const arr1 = [batch1, batch2, batch3];
-  console.log(arr1);
+  // console.log(arr1);
+  // console.log(data2)
 
   return (
     <>
@@ -59,14 +60,17 @@ const Dashboard = () => {
       </div>
         <DashBoard1 arr1={arr1} crediantial={crediantial} />
         <div className="row Dashboard_graph_section">
-          <div className="graph_1 col-md-12 col-lg-6">
+          <div className="graph_1 chart col-md-8 col-lg-5">
             <Graph arr1={arr1} />
+            <p className='heading'>No.of students completed internship</p>
           </div>
-          <div className="graph_1 col-md-12 col-lg-6">
-            {/* <Graph2 data2={data2} /> */}
+          <div className="graph_1 chart col-md-8 col-lg-5">
+            <Graph2 data2={data2} />
+            <p className='heading'>Most frequent company's student join</p>
           </div>
-          <div className="dashboard_table col-md-12 col-lg-4">
+          <div className="dashboard_table chart col-md-8 col-lg-4">
             <Topcom data2={data2} />
+            <p className='heading'>Top Company</p>
           </div>
         </div>
       </div>

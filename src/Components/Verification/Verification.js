@@ -31,7 +31,7 @@ const Verification = () => {
     var month2 = b.slice(5, 7);
     var year1 = a.slice(0, 4);
     var year2 = b.slice(0, 4);
-    console.log(year1)
+    // console.log(year1)
 
     var date1 = new Date(`${month1}/${day1}/${year1}`);
     var date2 = new Date(`${month2}/${day2}/${year2}`);
