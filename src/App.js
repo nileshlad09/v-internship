@@ -14,13 +14,20 @@ import Verification from './Components/Verification/Verification';
 import StudentState from './context/student/StudentState';
 import Alert from './Components/Alert';
 import Home from './Pages/Home';
+import { createContext, useReducer } from 'react';
+import { initialState,reducer} from './Reducer/useReducer';
 
+
+
+
+export const UserContext = createContext()
 function App() {
-
+  const [state,dispatch]= useReducer(reducer,initialState)
 
   return (
     <div>
     <StudentState>
+    <UserContext.Provider value={{state,dispatch}}>
      <Navbar/>
      <Alert alert={alert}/>
      <Switch>
@@ -37,6 +44,7 @@ function App() {
         <Redirect to="/" />
        </div>
      </Switch>
+     </UserContext.Provider>
      </StudentState>     
     </div>
   );

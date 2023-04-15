@@ -5,9 +5,14 @@ import studentContext from '../../context/student/studentContext';
 import {  AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseApp } from '../../firebase';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
+
+
 
 const AdminLogin = () => {
+  const {state,dispatch} = useContext(UserContext)
   const context = useContext(studentContext);
+   
   const { showAlert } = context;
 
   const [crediantial, setCrediential] = useState({});
@@ -18,14 +23,15 @@ const AdminLogin = () => {
   const history = useHistory();
 
   const auth = getAuth(firebaseApp);
+
   const handleClick = (e) => {
        e.preventDefault();
        let email = crediantial.email.toLowerCase().trim();
        let password = crediantial.password;
        signInWithEmailAndPassword(auth, email, password)
        .then((userCredential) => {
-         console.log(userCredential.user.accessToken);
-         localStorage.setItem("vIauth",true)
+        dispatch({type:"USER",payload:true});
+        localStorage.setItem("isVinternshipLogin",true);
          showAlert("success", "Login Successfully");
          history.push('/dashboard');
        })

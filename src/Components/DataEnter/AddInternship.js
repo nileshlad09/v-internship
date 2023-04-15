@@ -86,7 +86,7 @@ function AddInternship() {
     var task = storage.ref('/certificates/'+fileName).put(imageuploaded)
     // and getting the download URL
     task.then((res) => {
-      res.ref.getDownloadURL().then((url)=>{setimageURL(url);
+        res.ref.getDownloadURL().then((url)=>{
         writetoDB(crediantial,url);}); //finally write to DB after we get the URL
    });
   }
