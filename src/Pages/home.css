@@ -1,8 +1,8 @@
 .images{
-    /* background-image: url("./Homepages.jpg"); */
-    background-color: beige;
+    /* background-image: url("./vitlogo.png"); */
+    background-color: rgb(250, 250, 206);
     padding: 40px;
-    box-shadow: 2px 2px 6px grey; 
+    /* box-shadow: 1px 1px 3px grey;  */
 }
 .homeOptions{
     display: flex;
@@ -17,7 +17,17 @@
     font-weight: 900;
     letter-spacing: 3px;
     padding-bottom: 20px;
+    border-bottom: 3px solid black;
+    /* background-image: url("./vitlogo.png"); */
+    /* width: 250px;        
+    border: 5px solid black; */
 }
+
+/* .homePageHeadingmain img{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+} */
 
 .homePageHeading{
     color: rgb(47, 49, 47);
@@ -54,9 +64,47 @@
     text-decoration: none;
     list-style: none;
 }
-
-
 .homeOption_box:hover{
     color: #fff;
     border: 1px solid gray;
 }
+
+@media screen and (max-width: 680px) {
+    .homePageHeadingmain{
+        color: rgb(23, 109, 44);
+        font-weight: 600;
+        letter-spacing: 2px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid black;
+    }
+
+    .homeOption_box{
+        background-color: #28A745;
+        width: 200px;
+        height: 75px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        list-style: none;
+        transition: 0.45s;
+    
+    }
+    .homeOption_title_2{
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-decoration: none;
+        list-style: none;
+    }
+    .homePageHeading{
+        color: rgb(47, 49, 47);
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+  }
