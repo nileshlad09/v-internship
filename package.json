@@ -12,7 +12,6 @@
     "@testing-library/user-event": "^13.5.0",
     "apexcharts": "^3.36.3",
     "bootstrap": "^5.2.3",
-    "firebase": "5.0.4",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -37,6 +36,9 @@
       "react-app/jest"
     ]
   },
+  "overrides": {
+    "grpc": "../_EXCLUDED_"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -48,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "firebase": "^9.19.1"
   }
 }
