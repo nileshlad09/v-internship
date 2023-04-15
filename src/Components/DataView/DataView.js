@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { CgEye } from 'react-icons/cg'
-import { Link } from 'react-router-dom'
-
 import './dataview.css'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs } from "firebase/firestore";
@@ -11,12 +9,8 @@ import { db } from "../../firebase";
 const View = () => {
 
   const params = useParams();
-  // console.log(params)
   const b = params.batch;
   const y = params.year;
-  // console.log(params);
-  // console.log(y);
-
 
   const [name, setname] = useState("");
   const [roll, setroll] = useState("");
@@ -43,11 +37,6 @@ const View = () => {
   useEffect(() => {
     fetchPost();
   }, [])
-  console.log(data)
-
-
-
-
 
 
 

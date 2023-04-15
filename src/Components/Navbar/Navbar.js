@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
     <div className="navbar_Section">
       <nav className="navbar navbar-expand-lg navbar-success bg-success container">
-       <Link className="navbar-brand" to="/dashboard" style={{color:"#fff",fontWeight:"800",letterSpacing:"3px"}}><span style={{color:"yellow"}}>V</span><span style={{color:"yellow"}}>I</span>n<span style={{color:"yellow"}}>T</span>ernship </Link>
+       <Link className="navbar-brand" to="/" style={{color:"#fff",fontWeight:"800",letterSpacing:"3px"}}><span style={{color:"yellow"}}>V</span><span style={{color:"yellow"}}>I</span>n<span style={{color:"yellow"}}>T</span>ernship </Link>
         <button className="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

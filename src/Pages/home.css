@@ -1,4 +1,10 @@
-.images{
+.homePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:calc(100vh - 140px);
+}
+.homePage_container{
     /* background-image: url("./Homepages.jpg"); */
     background-color: beige;
     padding: 40px;
@@ -11,6 +17,9 @@
     flex-wrap: wrap;
      gap: 20px;
      padding: 30px;
+}
+.homeOptions a{
+    text-decoration: none;
 }
 .homePageHeadingmain{
     color: rgb(23, 109, 44);
