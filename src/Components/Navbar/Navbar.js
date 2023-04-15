@@ -1,11 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-
+import React,{useContext} from 'react'
+import { Link,useHistory} from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Navbar = () => {
   
-  const logout=(e)=>{
-    localStorage.removeItem('vIauth');
+  const {state,dispatch} = useContext(UserContext)
+  const history = useHistory();
+  const logout=()=>{
+      dispatch({type:"USER",payload:false})
+      history.push('/adminlogin');  
+      localStorage.clear("isVinternshipLogin")
   }
   
   return (
@@ -20,15 +24,12 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <form className="form-inline my-2 my-lg-0 ml-auto">
             <ul className="navbar-nav mr-auto">
-              { localStorage.getItem("vIauth") == "true" ? <>
+              { state ? <>
               <li className="nav-item active">
                 <Link className="nav-link active" aria-current="page" to="/dashboard" style={{ color: "#fff" }}>Dashboard</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/editinfo" style={{ color: "#fff" }}>Edit Information</Link>
               </li>
               <li className="nav-item">
                 <button className='btn btn-outline-light' onClick={logout}>Logout</button>

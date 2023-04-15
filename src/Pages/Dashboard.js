@@ -45,7 +45,7 @@ const Dashboard = () => {
   return (
     <>
       
-      <div className="dashboard">
+      <div className="dashboard container">
       <div className="row">
         <div className="col-md-8">
         <div class="col-md-4">
