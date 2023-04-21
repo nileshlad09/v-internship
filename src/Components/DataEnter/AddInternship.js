@@ -73,8 +73,11 @@ function AddInternship() {
       // console.log(docRef)
       // console.log("Document added");
       // console.log(imageURL)
+      showAlert("success", "Internship added successfully");
+      history.push('/');
     } catch (e) {
-      console.error("Error adding document: ", e);
+      // console.error("Error adding document: ", e);
+      showAlert("danger", "Internal Error");
     }
   }
 
@@ -118,9 +121,8 @@ function AddInternship() {
     }
     else {
       addInternship(crediantial);
-      console.log(crediantial);
       fileUpload(imageuploaded);
-      showAlert("success", "Internship added successfully");
+      // showAlert("success", "Internship added successfully");
       //writetoDB(crediantial);
       // Commenting out this write because we need to write the data after the file is uploaded
       // so we can get the URL
