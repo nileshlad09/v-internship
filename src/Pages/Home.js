@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './home.css'
 import logo from './vitlogo.png'
+import campus from './vitcampus.jpg'
 const Home = () => {
 
   return (
+    <>
     <div className='images'>
       <img src={logo}></img>
       <div className='homePage'>
@@ -21,6 +23,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

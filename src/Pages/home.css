@@ -1,3 +1,8 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .images{
     background-color: rgb(229, 230, 242);
     padding: 40px;
@@ -5,7 +10,7 @@
 img{
     background-repeat: no-repeat;
     height: 90px;
-    width: 260px;
+    width: 350px;
     position: relative;
     right: 50px;
     bottom: 20px;
@@ -33,7 +38,6 @@ img{
     width: 300px;
     height: 80px;
     padding: 30px ;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
