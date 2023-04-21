@@ -53,7 +53,7 @@ const DataEnter = () => {
 
 
     return (
-        <div>
+        <div style={{border:"1px solid red",padding:"20px",paddingBottom:"20px"}}>
             <div style={{ paddingTop: "30px", overflow: "hidden" }}>
                 <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
                     <h4>Internship Data </h4>
@@ -155,7 +155,7 @@ const DataEnter = () => {
                             </select>
                         </div>
                     </div>
-                    <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline-success">Add Internship</button>
+                    <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline-danger">Add Internship</button>
                 </form>
             </div>
         </div>

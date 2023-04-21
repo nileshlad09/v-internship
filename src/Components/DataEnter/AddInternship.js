@@ -134,7 +134,7 @@ function AddInternship() {
 
 
   return (
-    <div style={{ overflow: "hidden" }}>
+    <div  style={{overflow: "hidden",border:"1px solid red",padding:"20px"}}>
       <div className="internship">
         <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
           <div className="row">
@@ -241,7 +241,7 @@ function AddInternship() {
                 }} />
             </div>
           </div>
-          <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-success">
+          <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger">
             Add
           </button>
         </form>

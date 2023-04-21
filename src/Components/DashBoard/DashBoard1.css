@@ -23,8 +23,8 @@
     width: 250px;
     height: 100px;
     background-color: white;
-    box-shadow: 0 6px 15px 0 rgb(0 0 0 / 28%);
-    border-radius: 10px;
+    box-shadow: 0 2px 7px 0 rgb(0 0 0 / 28%);
+    /* border-radius: 10px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +55,9 @@
 }
 
 .Dashboard_main_box {
-    background-color: #28A745;
+    /* background-color: #28A745; */
+    background-color: orangered;
+    /* background-color: #17a2b8; */
 }
 
 .Dashboard_main_box p {

@@ -82,7 +82,7 @@ const View = () => {
           <p>For a Year: {foryear} ({year})</p>
         </div>
 
-        <div className="search__container">
+        <div className="search__container"  >
           <select name="branch" id="branch" className="form-control search_input" option={branch} value={branch} onChange={(e) => { setbranch(e.target.value) }} >
             <option value="">Select Branch</option>
             <option value="CMPN">CMPN</option>
@@ -124,17 +124,17 @@ const View = () => {
       <section className='dataview_section'>
         <div className="tbl-header">
           <table  >
-            <tr>
-              <th style={{ textAlign: "center" }}>Roll No.</th>
-              <th style={{ textAlign: "center" }}>Name</th>
-              <th style={{ textAlign: "center" }}>organization</th>
-              <th style={{ textAlign: "center" }}>Domain</th>
-              <th style={{ textAlign: "center" }}>Starting Date</th>
-              <th style={{ textAlign: "center" }}>Ending Date</th>
-              <th style={{ textAlign: "center" }}>Duration</th>
-              <th style={{ textAlign: "center" }}>Certificate</th>
-              <th style={{ textAlign: "center" }}>Phone</th>
-              <th style={{ textAlign: "center" }}>Email</th>
+            <tr >
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Roll No.</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered"  }}>Name</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>organization</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Domain</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Starting Date</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Ending Date</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Duration</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Certificate</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Phone</th>
+              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Email</th>
             </tr>
             {
               // eslint-disable-next-line array-callback-return
@@ -223,19 +223,19 @@ const View = () => {
                   console.log(item)
                   return (
                     <tr >
-                      <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
-                      <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
-                      <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
-                      <td style={{ textAlign: "center" }}>{item.domain}</td>
-                      <td style={{ textAlign: "center" }}>{item.startdate}</td>
-                      <td style={{ textAlign: "center" }}> {item.enddate}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange"}}>{item.rollNumber}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.nameofstudent}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.nameofcompany}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.domain}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.startdate}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}> {item.enddate}</td>
 
-                      <td style={{ textAlign: "center" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
-                      <td style={{ textAlign: "center" }}> 
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}> 
                       <a href={item.certificate} target='_blank'><CgEye /></a>
                       </td>
-                      <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
-                      <td style={{ textAlign: "center" }}>{item.email}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.mobileNo}</td>
+                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.email}</td>
                     </tr>
                   )
                 })
