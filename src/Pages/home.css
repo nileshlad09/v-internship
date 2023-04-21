@@ -4,7 +4,7 @@ body{
 }
 
 .images{
-    background-color: rgb(229, 230, 242);
+    background-color: #000000e6;
     padding: 40px;
 }
 img{
@@ -28,13 +28,13 @@ img{
 }
 
 .homePageHeading{
-    color: rgb(47, 49, 47);
+    color: white;
     font-weight: 600;
     letter-spacing: 2px;
 }
 
 .homeOption_box{
-    background-color: #28A745;
+    background-color: #17a2b8;
     width: 300px;
     height: 80px;
     padding: 30px ;

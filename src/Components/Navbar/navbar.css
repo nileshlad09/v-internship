@@ -1,0 +1,21 @@
+.navbar_Section{
+    /* background-color: #28A745; */
+    background-color: black;
+  }
+  .navbar-brand{
+    font-size: 1.8rem;
+  }
+  .logoColor{
+    color: orangered;
+  }
+  .loginBtn{
+    border-radius: 5px;
+    border: 2px solid white;
+  }
+  .loginBtn:hover{
+    color: black;
+  }
+  .loginBtn a:hover{
+     text-decoration: none;
+     color: black; 
+  }

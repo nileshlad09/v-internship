@@ -10,7 +10,7 @@ const Home = () => {
     <div className='images'>
       <img src={logo}></img>
       <div className='homePage'>
-        <h4 className="homePageHeading">Internship Portal of <span style={{ color: "blue" }}>Vidyalankar Institute of Technology(VIT)</span>, Mumbai</h4>
+        <h4 className="homePageHeading">Internship Portal of <span className='logoColor'>Vidyalankar Institute of Technology(VIT)</span>, Mumbai</h4>
         <div className="homeOptions">
           <Link to={`/addinternship/1`}><div className="homeOption_box">
             <p className='homeOption_title_2'>Add Internship Data</p>
