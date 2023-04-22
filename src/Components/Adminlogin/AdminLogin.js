@@ -44,6 +44,7 @@ const AdminLogin = () => {
         } else {
           //  console.log(err.code);
           //  alert(err.code);
+          showAlert("danger", "internal error");
         }
       });
   }
@@ -51,26 +52,8 @@ const AdminLogin = () => {
     <div>
       <div className="AdminLogin">
         <div className="AdminLogin_modalForm">
-          <h2>Login</h2>
+          <h2>Admin Login</h2>
           <form onSubmit={handleClick} className="form user userForm">
-            {/* <div className="AdminLogin_inputGroup">
-              <select
-                className="AdminLogin_select"
-                onChange={onchange}
-                value={crediantial.loginas}
-                name="loginas"
-              >
-                <option value="" style={{ fontSize: "14px" }}>
-                  ---Select Branch---
-                </option>
-                <option value="CMPN" style={{ fontSize: "14px" }}>
-                  CMPN
-                </option>
-                <option value="INFT" style={{ fontSize: "14px" }}>
-                  INFT
-                </option>
-              </select>
-            </div> */}
             <div className="AdminLogin_inputGroup">
               <input
                 type="email"

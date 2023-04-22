@@ -97,7 +97,7 @@ const Verification = () => {
                         aria-hidden="true"
 
                     >
-                        <div className="modal-dialog model-lg" style={{ backgroundColor: "red", width: "1900px" }}>
+                        <div className="modal-dialog model-lg" style={{ backgroundColor: "red", width: "90%" }}>
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h5 className="modal-title" id="exampleModalLabel">
@@ -181,6 +181,7 @@ const Verification = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="verificationPage">
                     <div className='container'>
                         {
                             data.map((item, id) => {
@@ -257,6 +258,7 @@ const Verification = () => {
                                 )
                             })
                         }
+                    </div>
                     </div>
                 </>
             }

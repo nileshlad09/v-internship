@@ -6,17 +6,19 @@
   box-sizing: border-box;
 }
 .AdminLogin {
-  /* background: red url('bgimg.jpg') no-repeat fixed 0px 0px; */
+  background: url(../../Images/vitcampus.jpg) no-repeat;
   background-size: cover;
+  min-height: calc(100vh - 50px);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .AdminLogin_modalForm {
   width: 400px;
   padding: 30px 0;
   /* min-height: 60vh; */
-  margin-top: 15vh;
   background-color: white;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
@@ -25,9 +27,6 @@
   align-items: center;
 }
 .AdminLogin_modalForm h2 {
-  margin-top: 7px;
-  width: 50%;
-  border-radius: 50px;
   text-align: center;
 }
 .AdminLogin .AdminLogin_select {

@@ -4,6 +4,12 @@
   padding: 20px;
   margin: 20px;
 }
+.verificationPage{
+  padding-top: 60px;
+  background: url(https://vit.edu.in/images/body_bg.png) no-repeat fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
 .verification_input_box{
   margin-top: 0.45rem;
 }

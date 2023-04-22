@@ -53,10 +53,10 @@ const DataEnter = () => {
 
 
     return (
-        <div style={{border:"1px solid gray",padding:"20px",paddingBottom:"20px"}}>
-            <div style={{ paddingTop: "30px", overflow: "hidden" }}>
+        <div style={{border:"1px solid gray", marginTop:"40px"}}>
+            <div style={{ paddingTop: "10px", overflow: "hidden" }}>
                 <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
-                    <h4>Personal Data </h4>
+                    <h4>Personal Detail</h4>
                     <div className="row">
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputnameofstudent" className="form-label">Name of Student</label>

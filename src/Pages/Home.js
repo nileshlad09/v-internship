@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './home.css'
-import logo from './vitlogo.png'
-
+import logo from '../Images/vitlogo.png'
+ 
 const Home = () => {
 
   return (
     <>
-      <div className='images'>
+    <div className="homeSec">
+      <div className='images container'>
         <img src={logo} ></img>
         <div className='homePage'>
           <h4 className="homePageHeading">Internship Portal of <span className='logoColor'>Vidyalankar Institute of Technology(VIT)</span>, Mumbai</h4>
@@ -22,6 +23,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

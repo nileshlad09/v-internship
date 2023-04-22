@@ -11,9 +11,9 @@ function AddInternship() {
 
   const history = useHistory();
   const context = useContext(studentContext);
-  const { addInternship, crediantial2, showAlert } = context;
+  const { addInternship,setCrediential2, crediantial2, showAlert } = context;
 
-  
+
 
   if (JSON.stringify(crediantial2) == "{}") {
     history.push('/addinternship/1');
@@ -31,10 +31,11 @@ function AddInternship() {
   const [crediantial, setCrediential] = useState({});
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
-
   };
+  
+
   useEffect(() => {
-    setCrediential({ ...crediantial2, ...crediantial });
+      setCrediential({ ...crediantial2, ...crediantial });
   }, [])
 
   const date = new Date();
@@ -42,15 +43,15 @@ function AddInternship() {
   const month = date.getMonth();
   var dummyYear;
 
-  if(month>=6){
-      dummyYear = `${year}-${Number(String(year).slice(2,4)) + 1}`
-  }else{
-      dummyYear = `${year - 1}-${String(year).slice(2,4)}`
+  if (month >= 6) {
+    dummyYear = `${year}-${Number(String(year).slice(2, 4)) + 1}`
+  } else {
+    dummyYear = `${year - 1}-${String(year).slice(2, 4)}`
   }
 
 
   //firebase code
-   function writetoDB(cred, imagelink) {
+  function writetoDB(cred, imagelink) {
     try {
       const docRef = addDoc(collection(db, "students"), {
         Foryear: dummyYear,
@@ -61,18 +62,17 @@ function AddInternship() {
         mobileNo: cred.mobileNo,
         division: cred.division,
         semester: cred.semester,
-        year:  cred.year,
+        year: cred.year,
         contactofcompany: cred.contactofcompany,
         nameofcompany: cred.nameofcompany,
-        domain: cred.domain=="other"?cred.domain2:cred.domain,
+        domain: cred.domain == "other" ? cred.domain2 : cred.domain,
         startdate: cred.startdate,
-        enddate: cred.enddate?cred.enddate:" ",
+        enddate: cred.enddate ? cred.enddate : " ",
         certificate: imagelink,
       });
-      // console.log(docRef)
-      // console.log("Document added");
-      // console.log(imageURL)
+     
       showAlert("success", "Internship added successfully");
+      setCrediential2(null);
       history.push('/');
     } catch (e) {
       // console.error("Error adding document: ", e);
@@ -85,22 +85,23 @@ function AddInternship() {
   // file upload 
   const [imageuploaded, setImageuploaded] = useState(null);
   const [imageURL, setimageURL] = useState("");
-  useEffect(()=>{
+  useEffect(() => {
     console.log(imageURL)
-  },[imageURL])
-  useEffect(()=>{console.log(imageuploaded)},[imageuploaded])
+  }, [imageURL])
+  useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
     // generate a unique filename
-    const fileName = `${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
+    const fileName = `${crediantial.Foryear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
     // filename will look like rollNumber_startdate.extension
     // the actual code to upload the file
-    var task = storage.ref('/certificates/'+fileName).put(imageuploaded)
+    var task = storage.ref('/certificates/' + fileName).put(imageuploaded)
     // and getting the download URL
     task.then((res) => {
-        res.ref.getDownloadURL().then((url)=>{
-        writetoDB(crediantial,url);}); //finally write to DB after we get the URL
-   });
+      res.ref.getDownloadURL().then((url) => {
+        writetoDB(crediantial, url);
+      }); //finally write to DB after we get the URL
+    });
   }
 
 
@@ -133,9 +134,10 @@ function AddInternship() {
 
 
   return (
-    <div  style={{overflow: "hidden",border:"1px solid gray",padding:"20px"}}>
+    <div style={{ overflow: "hidden", border: "1px solid gray", marginTop: "40px" }}>
       <div className="internship">
         <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
+          <h4>Internship Detail</h4>
           <div className="row">
             <div className="col-md-3 ">
               <div className="form-check">
@@ -176,6 +178,7 @@ function AddInternship() {
               <input type="date" name="startdate" className="form-control" id="startDate"
                 value={crediantial.startdate}
                 onChange={onchange}
+                required
               />
             </div>
             <div className="col-md-4 dataEnter_input ">

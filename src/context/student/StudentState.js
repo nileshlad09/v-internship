@@ -23,7 +23,7 @@ const StudentState = (props) => {
 
 
   return (
-    <studentContext.Provider value={{ addInternship, crediantial2, alert, showAlert }}>
+    <studentContext.Provider value={{ addInternship, crediantial2, alert, showAlert,setCrediential2 }}>
       {props.children}
     </studentContext.Provider>
   );

@@ -25,7 +25,6 @@ const Graph = ({arr1}) => {
           title: {
             style: { fontSize: 3 }
           },
-          colors: ['orangred'],
           theme: {
             mode: 'lite',
           },

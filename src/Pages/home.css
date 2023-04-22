@@ -4,6 +4,15 @@ body{
     line-height: 150%;
 }
 
+.homeSec{
+    background: url(../Images/vitcampus.jpg) no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 60px;
+    position: fixed;
+}
+
 .images{
     background-color: #000000e6;
     padding: 40px;
