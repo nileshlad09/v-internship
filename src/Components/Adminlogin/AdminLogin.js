@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./adminlogin.css";
 import { useContext } from "react";
 import studentContext from '../../context/student/studentContext';
-import {  AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseApp } from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
@@ -10,9 +10,9 @@ import { UserContext } from '../../App';
 
 
 const AdminLogin = () => {
-  const {state,dispatch} = useContext(UserContext)
+  const { state, dispatch } = useContext(UserContext)
   const context = useContext(studentContext);
-   
+
   const { showAlert } = context;
 
   const [crediantial, setCrediential] = useState({});
@@ -25,34 +25,34 @@ const AdminLogin = () => {
   const auth = getAuth(firebaseApp);
 
   const handleClick = (e) => {
-       e.preventDefault();
-       let email = crediantial.email.toLowerCase().trim();
-       let password = crediantial.password;
-       signInWithEmailAndPassword(auth, email, password)
-       .then((userCredential) => {
-        dispatch({type:"USER",payload:true});
-        localStorage.setItem("isVinternshipLogin",true);
-         showAlert("success", "Login Successfully");
-         history.push('/dashboard');
-       })
-       .catch((err) => {
-         if (
-         err.code === AuthErrorCodes.INVALID_PASSWORD ||
-         err.code === AuthErrorCodes.USER_DELETED
-       ) {
-        showAlert("danger", "The email address or password is incorrect");
-       } else {
-        //  console.log(err.code);
-        //  alert(err.code);
-       }
-       });
+    e.preventDefault();
+    let email = crediantial.email.toLowerCase().trim();
+    let password = crediantial.password;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        dispatch({ type: "USER", payload: true });
+        localStorage.setItem("isVinternshipLogin", true);
+        showAlert("success", "Login Successfully");
+        history.push('/dashboard');
+      })
+      .catch((err) => {
+        if (
+          err.code === AuthErrorCodes.INVALID_PASSWORD ||
+          err.code === AuthErrorCodes.USER_DELETED
+        ) {
+          showAlert("danger", "The email address or password is incorrect");
+        } else {
+          //  console.log(err.code);
+          //  alert(err.code);
+        }
+      });
   }
   return (
     <div>
       <div className="AdminLogin">
         <div className="AdminLogin_modalForm">
           <h2>Login</h2>
-          <form  onSubmit={handleClick} className="form user userForm">
+          <form onSubmit={handleClick} className="form user userForm">
             {/* <div className="AdminLogin_inputGroup">
               <select
                 className="AdminLogin_select"

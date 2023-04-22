@@ -1,23 +1,25 @@
-import React, { useEffect, useState,useReducer } from 'react'
+import React, { useEffect, useState, useReducer, useRef } from 'react'
 import './Verification.css'
 import data from '../../DataFiles/studentdata'
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
+
 const Verification = () => {
-    const [refesh,forceRefresh]=useReducer(x=>x+1,0);
+    const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
     const [data, setTodos] = useState([]);
     const reject = async (item) => {
-        await deleteDoc(doc(db,"students",item.id))
+        await deleteDoc(doc(db, "students", item.id))
         forceRefresh();
     }
-
+    const ref = useRef(null);
+    const refClose = useRef(null);
 
     const fetchPost = async () => {
         await getDocs(collection(db, "students"))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id:doc.id }));
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setTodos(newData);
             })
     }
@@ -26,7 +28,6 @@ const Verification = () => {
         fetchPost();
     }, [refesh])
 
-console.log(data)
 
     const Duration = (a, b) => {
         var day1 = a.slice(8, 10);
@@ -42,96 +43,223 @@ console.log(data)
         var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
         return Math.round(diffDays / 30);
     }
+    const [note, setNote] = useState({});
+
+    const onchange = (e) => {
+        setNote({ ...note, [e.target.name]: e.target.value });
+    };
+
+    const handleClick = (e) => {
+        console.log(note)
+    }
+
+    const edit = (item) => {
+        ref.current.click()
+        setNote({
+            ebranch: item.branch,
+            enameofstudent: item.nameofstudent,
+            erollNumber: item.rollNumber,
+            eemail: item.email,
+            emobileNo: item.mobileNo,
+            edivision: item.division,
+            esemester: item.semester,
+            eyear: item.year,
+            econtactofcompany: item.contactofcompany,
+            enameofcompany: item.nameofcompany,
+            edomain:  item.domain,
+            estartdate: item.startdate,
+            eenddate: item.enddate ? item.enddate : " ",
+            ecertificate:item.certificate,
+            eForyear:item.Foryear,
+        });
+    }
+
 
     return (
         <>
-        {data.length<=0?<h3 style={{textAlign:"center"}}>Nothing to display</h3>:
-        <div className='container'>
-            {
-                data.map((item,id) => {
-                    return (
-                        <div className="info verification_section" id={id}>
-                            <form className="row g-3">
-                                <div className="col-md-5 row">
-                                    <div className="verification_input_box col-md-7">
-                                        <label for="inputtext" className="form-label verification_title">Name</label>
-                                        <input type="text" value={item.nameofstudent} className="form-control" id="inputEmail4" />
-                                    </div>
-                                    <div className="verification_input_box col-md-5">
-                                        <label for="inputAddress" className="form-label verification_title">Roll Number</label>
-                                        <input type="text" value={item.rollNumber} className="form-control" id="inputAddress" placeholder="1234 Main St" />
-                                    </div>
-                                    <div className="verification_input_box col-md-7">
-                                        <label for="inputPassword4" className="form-label verification_title">Email</label>
-                                        <input type="email" value={item.email} className="form-control" id="inputPassword4" />
-                                    </div>
-                                    <div className="verification_input_box col-md-5">
-                                        <label for="inputPassword4" className="form-label verification_title">Phone Number</label>
-                                        <input type="tel" value={item.mobileNo} className="form-control" id="inputPassword4" />
-                                    </div>
+            {data.length <= 0 ? <h3 style={{ textAlign: "center" }}>Nothing to display</h3> :
+                <>
+                    <button
+                        type="button"
+                        ref={ref}
+                        className="btn btn-primary d-none "
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                    >
+                        Launch demo modal
+                    </button>
 
-                                    <div className="verification_input_box col-md-3">
-                                        <label for="inputAddress2" className="form-label verification_title">Branch</label>
-                                        <input type="text" value={item.branch} className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
-                                    </div>
-                                    <div className="verification_input_box col-md-2">
-                                        <label for="inputCity" className="form-label verification_title">Div</label>
-                                        <input type="text" value={item.division} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-2">
-                                        <label for="inputCity" className="form-label verification_title">Sem </label>
-                                        <input type="text" value={item.semester} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-3">
-                                        <label for="inputCity" className="form-label verification_title">Batch</label>
-                                        <input type="text" value={item.batch} className="form-control" id="inputCity" />
-                                    </div>
+                    <div
+                        className="modal fade"
+                        id="exampleModal"
+                        tabIndex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
 
+                    >
+                        <div className="modal-dialog model-lg" style={{ backgroundColor: "red", width: "1900px" }}>
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">
+                                        Modal title
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        className="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
                                 </div>
+                                <div className="modal-body">
+                                    <form className="row g-3">
+                                        <div className="col-md-12 col-lg-12 row">
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputtext" className="form-label verification_title">Name</label>
+                                                <input type="text" value={note.enameofstudent} className="form-control" id="inputEmail4" name='enameofstudent' onChange={onchange} />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputAddress" className="form-label verification_title">Roll Number</label>
+                                                <input type="text" value={note.erollNumber} className="form-control" id="inputAddress" placeholder="1234 Main St" name='erollNumber' onChange={onchange}/>
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputPassword4" className="form-label verification_title">Email</label>
+                                                <input type="email" value={note.eemail} className="form-control" id="inputPassword4" name='eemail' onChange={onchange}/>
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputPassword4" className="form-label verification_title">Phone Number</label>
+                                                <input type="tel" value={note.emobileNo} className="form-control" id="inputPassword4" name='emobileNo' onChange={onchange}/>
+                                            </div>
 
-                                <div className="col-md-6 row">
-                                    <div className="verification_input_box col-md-6">
-                                        <label for="inputCity" className="form-label verification_title">Company </label>
-                                        <input type="text" value={item.nameofcompany} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-6">
-                                        <label for="inputCity" className="form-label verification_title">Domain</label>
-                                        <input type="text" value={item.domain} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-4">
-                                        <label for="inputCity" className="form-label verification_title">Start </label>
-                                        <input type="text" value={item.startdate} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-4">
-                                        <label for="inputCity" className="form-label verification_title">End</label>
-                                        <input type="text" value={item.enddate} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-4">
-                                        <label for="inputCity" className="form-label verification_title">Duration</label>
-                                        <input type="text" value={item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-6">
-                                        <label for="inputCity" className="form-label verification_title">Contact details of internship</label>
-                                        <input type="text" value={item.contactofcompany} className="form-control" id="inputCity" />
-                                    </div>
-                                    <div className="verification_input_box col-md-6">
-                                        <label for="inputCity" className="form-label verification_title">Certificate/Joining Letter</label>
-                                        <a href={item.certificate} target='_blank' style={{ color: "blue", listStyle: "none" }}> View</a>
-                                    </div>
-
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputAddress2" className="form-label verification_title">Branch</label>
+                                                <input type="text" value={note.ebranch} className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name='ebranch' onChange={onchange}/>
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">Div</label>
+                                                <input type="text" value={note.edivision} name='edivision' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">Sem </label>
+                                                <input type="text" value={note.esemester} name='esemester' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">Company </label>
+                                                <input type="text" value={note.enameofcompany} name='enameofcompany' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">Domain</label>
+                                                <input type="text" value={note.edomain} name='edomain' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">Start </label>
+                                                <input type="text" value={note.estartdate} name='estartdate' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">End</label>
+                                                <input type="text" value={note.eenddate} name='eenddate' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                            <div className="verification_input_box col-lg-3 col-md-6 col-sm-6">
+                                                <label for="inputCity" className="form-label verification_title">Contact details of internship</label>
+                                                <input type="text" value={note.econtactofcompany} name='econtactofcompany' onChange={onchange} className="form-control" id="inputCity" />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div className="col-12 verification_Btn">
-                                    <button type="submit" className="btn btn-primary">Edit</button>
-                                    <button type="submit" className="btn btn-success">Accept</button>
-                                    <button type="button" className="btn btn-danger" onClick={() => reject(item)}>Reject</button>
+                                <div className="modal-footer">
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                        ref={refClose}
+                                    >
+                                        Close
+                                    </button>
+                                    <button onClick={handleClick} type="button" className="btn btn-primary">
+                                        Update & accept Details
+                                    </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    )
-                })
+                    </div>
+                    <div className='container'>
+                        {
+                            data.map((item, id) => {
+                                return (
+                                    <div className="info verification_section" id={id}>
+                                        <form className="row g-3">
+                                            <div className="col-md-12 row">
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputtext" className="form-label verification_title">Name</label>
+                                                    <input type="text" value={item.nameofstudent} className="form-control" id="inputEmail4" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputAddress" className="form-label verification_title">Roll Number</label>
+                                                    <input type="text" value={item.rollNumber} className="form-control" id="inputAddress" placeholder="1234 Main St" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputPassword4" className="form-label verification_title">Email</label>
+                                                    <input type="email" value={item.email} className="form-control" id="inputPassword4" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputPassword4" className="form-label verification_title">Phone Number</label>
+                                                    <input type="tel" value={item.mobileNo} className="form-control" id="inputPassword4" />
+                                                </div>
+
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputAddress2" className="form-label verification_title">Branch</label>
+                                                    <input type="text" value={item.branch} className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Div</label>
+                                                    <input type="text" value={item.division} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Sem </label>
+                                                    <input type="text" value={item.semester} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Company </label>
+                                                    <input type="text" value={item.nameofcompany} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Domain</label>
+                                                    <input type="text" value={item.domain} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Start </label>
+                                                    <input type="text" value={item.startdate} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">End</label>
+                                                    <input type="text" value={item.enddate} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Duration</label>
+                                                    <input type="text" value={item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Contact details of internship</label>
+                                                    <input type="text" value={item.contactofcompany} className="form-control" id="inputCity" />
+                                                </div>
+                                                <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
+                                                    <label for="inputCity" className="form-label verification_title">Certificate/Joining Letter</label>
+                                                    <a href={item.certificate} target='_blank' style={{ color: "blue", listStyle: "none" }}><button type="button" class="btn btn-info">view certificate</button></a>
+                                                </div>
+
+                                            </div>
+                                            <div className="col-12 verification_Btn">
+                                                <button type="submit" className="btn btn-success">Accept</button>
+                                                <button type="button" className="btn btn-danger" onClick={() => reject(item)}>Reject</button>
+                                                <button type="button" className="btn btn-primary" onClick={() => edit(item)}>Edit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </>
             }
-        </div>
-}
         </>
     )
 }
