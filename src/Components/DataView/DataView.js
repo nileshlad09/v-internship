@@ -222,20 +222,20 @@ const View = () => {
                 .map((item) => {
                   console.log(item)
                   return (
-                    <tr >
-                      <td style={{ textAlign: "center",backgroundColor:"orange"}}>{item.rollNumber}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.nameofstudent}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.nameofcompany}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.domain}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.startdate}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}> {item.enddate}</td>
+                    <tr style={{backgroundColor:"#000000ba"}}>
+                      <td style={{ textAlign: "center"}}>{item.rollNumber}</td>
+                      <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
+                      <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
+                      <td style={{ textAlign: "center" }}>{item.domain}</td>
+                      <td style={{ textAlign: "center" }}>{item.startdate}</td>
+                      <td style={{ textAlign: "center" }}> {item.enddate}</td>
 
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}> 
+                      <td style={{ textAlign: "center" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
+                      <td style={{ textAlign: "center" }}> 
                       <a href={item.certificate} target='_blank'><CgEye /></a>
                       </td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.mobileNo}</td>
-                      <td style={{ textAlign: "center",backgroundColor:"orange" }}>{item.email}</td>
+                      <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
+                      <td style={{ textAlign: "center" }}>{item.email}</td>
                     </tr>
                   )
                 })

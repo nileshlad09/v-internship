@@ -42,7 +42,7 @@ function AddInternship() {
   const month = date.getMonth();
   var dummyYear;
 
-  if(month>6){
+  if(month>=6){
       dummyYear = `${year}-${Number(String(year).slice(2,4)) + 1}`
   }else{
       dummyYear = `${year - 1}-${String(year).slice(2,4)}`
@@ -54,7 +54,6 @@ function AddInternship() {
     try {
       const docRef = addDoc(collection(db, "students"), {
         Foryear: dummyYear,
-        batch: cred.batch,
         branch: cred.branch,
         nameofstudent: cred.nameofstudent,
         rollNumber: cred.rollNumber,
@@ -134,7 +133,7 @@ function AddInternship() {
 
 
   return (
-    <div  style={{overflow: "hidden",border:"1px solid red",padding:"20px"}}>
+    <div  style={{overflow: "hidden",border:"1px solid gray",padding:"20px"}}>
       <div className="internship">
         <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
           <div className="row">

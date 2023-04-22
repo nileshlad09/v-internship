@@ -64,7 +64,7 @@ th {
   font-size: 13px;
   color: #fff;
   text-transform: uppercase;
-  background-color: #6AB792;
+  background-color: orangered;
   white-space: nowrap;
 }
 
@@ -85,7 +85,7 @@ td {
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
 section {
-  background-color: #299863;
+  background-color: "#000000ba" !important;
   font-family: "Roboto", sans-serif;
   margin-top: 30px;
 }

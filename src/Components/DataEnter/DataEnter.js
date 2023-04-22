@@ -29,7 +29,7 @@ const DataEnter = () => {
         if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined || crediantial?.mobileNo === undefined || crediantial.email===undefined) {
             showAlert("warning", "All fields are required");
         }
-        else if (crediantial.semester === undefined || crediantial.division === undefined || crediantial.batch === undefined || crediantial.branch === undefined || crediantial.year===undefined) {
+        else if (crediantial.semester === undefined || crediantial.division === undefined  || crediantial.branch === undefined || crediantial.year===undefined) {
             showAlert("warning", "All fields are required");
         }
         else if (!crediantial.email.match(mailformat)) {
@@ -53,10 +53,10 @@ const DataEnter = () => {
 
 
     return (
-        <div style={{border:"1px solid red",padding:"20px",paddingBottom:"20px"}}>
+        <div style={{border:"1px solid gray",padding:"20px",paddingBottom:"20px"}}>
             <div style={{ paddingTop: "30px", overflow: "hidden" }}>
                 <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
-                    <h4>Internship Data </h4>
+                    <h4>Personal Data </h4>
                     <div className="row">
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputnameofstudent" className="form-label">Name of Student</label>
@@ -130,17 +130,6 @@ const DataEnter = () => {
                                 <option value="">--select--</option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
-                            </select>
-                        </div>
-                        <div className="col-md-4 dataEnter_input ">
-                            <label htmlFor="inputBatch" className="form-label">Select Batch</label>
-                            <select name="batch" id="inputBatch" className="form-select" value={crediantial.batch}
-                                onChange={onchange} >
-                                <option value="">--select--</option>
-
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
                             </select>
                         </div>
                         <div className="col-md-4 dataEnter_input ">

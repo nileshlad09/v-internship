@@ -2,9 +2,8 @@ import React from 'react'
 import Chart from 'react-apexcharts'
 
 const Graph2 = (props) => {
-    const {data2}=props;
+    const { data2 } = props;
 
-    console.log(data2)
     function findOcc(data2, key) {
         let arr2 = [];
         data2.forEach((x) => {
@@ -28,30 +27,31 @@ const Graph2 = (props) => {
 
 
     let key = "nameofcompany";
-	const topCompany = findOcc(data2, key);
+    const topCompany = findOcc(data2, key);
 
     let sortedProducts = topCompany.sort(
         (p1, p2) => (p1.occurrence < p2.occurrence) ? 1 : (p1.occurrence > p2.occurrence) ? -1 : 0);
-        console.log(sortedProducts.length)
+    console.log(sortedProducts.length)
 
 
 
- 
-    
-        var state =  {
-            options: {
-                labels:
-                    [sortedProducts[0]?.nameofcompany, sortedProducts[1]?.nameofcompany] 
-            //     sortedProducts[2]?.nameofcompany, sortedProducts[3]?.nameofcompany
-            //    ,sortedProducts[4]?.nameofcompany]
-            },
-            series: 
-            [sortedProducts[0]?.occurrence, sortedProducts[1]?.occurrence]
-            //         sortedProducts[2]?.occurrence, sortedProducts[3]?.occurrence
-            // , sortedProducts[4]?.occurrence]
-        }
 
-        
+
+    var state = {
+        options: {
+            labels:
+                [sortedProducts[0]?sortedProducts[0].nameofcompany:"undefined",sortedProducts[1]?sortedProducts[1].nameofcompany:"undefined",
+                sortedProducts[2]?sortedProducts[2].nameofcompany:"undefined", sortedProducts[3]?sortedProducts[3].nameofcompany:"undefined"
+                ,sortedProducts[4]?sortedProducts[4].nameofcompany:"undefined"]
+        },
+        series:
+            [sortedProducts[0]?sortedProducts[0].occurrence:0, sortedProducts[1] ? sortedProducts[1].occurrence : 0,
+            sortedProducts[2] ? sortedProducts[2].occurrence : 0, sortedProducts[3] ? sortedProducts[3].occurrence : 0
+                , sortedProducts[4] ? sortedProducts[4].occurrence : 0]
+    }
+
+    console.log(state)
+
     return (
         <>
             <div className="donut">

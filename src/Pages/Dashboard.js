@@ -32,7 +32,7 @@ const Dashboard = () => {
   const month = date.getMonth();
   var dummyYear;
 
-  if(month>6){
+  if(month>=6){
       dummyYear = `${year}-${Number(String(year).slice(2,4)) + 1}`
   }else{
       dummyYear = `${year - 1}-${String(year).slice(2,4)}`
