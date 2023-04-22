@@ -77,7 +77,7 @@ const Verification = () => {
 
     return (
         <>
-            {data.length <= 0 ? <h3 style={{ textAlign: "center" }}>Nothing to display</h3> :
+           
                 <>
                     <button
                         type="button"
@@ -97,11 +97,11 @@ const Verification = () => {
                         aria-hidden="true"
 
                     >
-                        <div className="modal-dialog model-lg" style={{ backgroundColor: "red", width: "90%" }}>
+                        <div className="modal-dialog model-lg" style={{ width: "90%" }}>
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h5 className="modal-title" id="exampleModalLabel">
-                                        Modal title
+                                       Edit Information
                                     </h5>
                                     <button
                                         type="button"
@@ -182,6 +182,7 @@ const Verification = () => {
                         </div>
                     </div>
                     <div className="verificationPage">
+                    {data.length <= 0 ? <h3 style={{ textAlign: "center" }}>Nothing to display</h3> :
                     <div className='container'>
                         {
                             data.map((item, id) => {
@@ -259,9 +260,10 @@ const Verification = () => {
                             })
                         }
                     </div>
+}
                     </div>
                 </>
-            }
+               
         </>
     )
 }

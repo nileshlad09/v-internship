@@ -34,9 +34,11 @@ function App() {
             <PrivateRoute exact path='/dashboard/view/:year/:batch' component={View} auth={state} />
               <Route exact path='/' component={Home} ></Route>
               <Route exact path='/adminlogin' component={AdminLogin} ></Route>
+              <div className="addInternship">
             <div className="container">
               <Route exact path='/addinternship/1' component={DataEnter} ></Route>
               <Route exact path='/addinternship/2' component={AddInternship} ></Route>
+            </div>
             </div>
           </Switch>
         </UserContext.Provider>

@@ -188,6 +188,7 @@ function AddInternship() {
               <input type="date" className="form-control" name="enddate" id="user_register" required
                 value={crediantial.enddate}
                 onChange={onchange}
+                min={crediantial.startdate}
               />
             </div>
             <div className="col-md-4 dataEnter_input ">
