@@ -1,14 +1,21 @@
-export const studentCount = [
+export const domains = [
     {
-        "Batch":2025,
-        "Count":160
+        "domain":"web development",
     },
     {
-        "Batch":2024,
-        "Count":159
+        "domain":"app development",
     },
     {
-      "Batch":2023,
-      "Count":158
+        "domain":"data science",
     },
+    {
+        "domain":"machine learning",
+    },
+    {
+        "domain":"cyber security",
+    },
+    {
+        "domain":"other"
+    },
+
 ]

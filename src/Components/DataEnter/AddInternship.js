@@ -5,6 +5,7 @@ import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
+import {domains} from '../../DataFiles/dataManages'
 
 
 function AddInternship() {
@@ -86,9 +87,9 @@ function AddInternship() {
   const [imageuploaded, setImageuploaded] = useState(null);
   const [imageURL, setimageURL] = useState("");
   useEffect(() => {
-    console.log(imageURL)
+    // console.log(imageURL)
   }, [imageURL])
-  useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
+  // useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
     // generate a unique filename
@@ -206,11 +207,12 @@ function AddInternship() {
               </label>
               <select name="domain" id="Domain" className="form-select" value={crediantial.domain}
                 onChange={onchange}>
-                <option value="" >--select--</option>
-                <option value="web development">Web Development</option>
-                <option value="app development">App Development</option>
-                <option value="data science">Data Science</option>
-                <option value="other">Other</option>
+                <option value="" defaultValue>--select--</option>
+                {
+                  domains.map((d)=>(
+                        <option value={d.domain}>{d.domain}</option>
+                  ))
+                }
               </select>
             </div>
 

@@ -31,7 +31,6 @@ const Graph2 = (props) => {
 
     let sortedProducts = topCompany.sort(
         (p1, p2) => (p1.occurrence < p2.occurrence) ? 1 : (p1.occurrence > p2.occurrence) ? -1 : 0);
-    console.log(sortedProducts.length)
 
 
 
@@ -50,7 +49,6 @@ const Graph2 = (props) => {
                 , sortedProducts[4] ? sortedProducts[4].occurrence : 0]
     }
 
-    console.log(state)
 
     return (
         <>

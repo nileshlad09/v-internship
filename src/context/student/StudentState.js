@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import studentContext from "./studentContext";
-// import { write } from "xlsx";
 
 const StudentState = (props) => {
 
@@ -19,11 +18,9 @@ const StudentState = (props) => {
       setAlert(null);
     }, 1500);
   }
-
-
-
+  
   return (
-    <studentContext.Provider value={{ addInternship, crediantial2, alert, showAlert,setCrediential2 }}>
+    <studentContext.Provider value={{addInternship, crediantial2, alert, showAlert,setCrediential2 }}>
       {props.children}
     </studentContext.Provider>
   );

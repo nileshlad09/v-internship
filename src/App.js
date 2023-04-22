@@ -1,6 +1,5 @@
 import './App.css';
-import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar'
 import Dashboard from './Pages/Dashboard'
 import AdminLogin from './Components/Adminlogin/AdminLogin'
@@ -12,16 +11,24 @@ import StudentState from './context/student/StudentState';
 import Alert from './Components/Alert';
 import PrivateRoute from './Components/PrivateRoute';
 import Home from './Pages/Home';
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 import { initialState, reducer } from './Reducer/useReducer';
-
-
-
-
+import { firebaseApp } from "./firebase";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 export const UserContext = createContext()
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
-
+  const auth = getAuth(firebaseApp);
+  useEffect(()=>{
+    onAuthStateChanged(auth,(data)=>{
+      if(data){
+        dispatch({ type: "USER", payload: true });
+      }else{
+        dispatch({ type: "USER", payload: false });
+      }
+    })
+},[])
   return (
     <div>
       <StudentState>
