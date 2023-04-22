@@ -5,8 +5,11 @@ import { useParams } from 'react-router-dom'
 import { collection, getDocs } from "firebase/firestore";
 
 import { db } from "../../firebase";
+import * as XLSX from 'xlsx';
 
 const View = () => {
+
+
 
   const params = useParams();
   const b = params.batch;
@@ -24,6 +27,15 @@ const View = () => {
 
 
   const [data, setTodos] = useState([]);
+
+
+  var fav = [];
+  const downloadExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, `${b}_${y}_${div}_${domain}.xlsx`);
+  };
 
   const fetchPost = async () => {
     await getDocs(collection(db, "students"))
@@ -57,9 +69,6 @@ const View = () => {
 
 
 
-
-
-
   const Duration = (a, b) => {
     var day1 = a.slice(8, 10);
     var day2 = b.slice(8, 10);
@@ -67,13 +76,13 @@ const View = () => {
     var month2 = b.slice(5, 7);
     var year1 = a.slice(0, 4);
     var year2 = b.slice(0, 4);
-    console.log(year1)
+
 
     var date1 = new Date(`${month1}/${day1}/${year1}`);
     var date2 = new Date(`${month2}/${day2}/${year2}`);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
-    return Math.round(diffDays / 30);  
-  }  
+    return Math.round(diffDays / 30);
+  }
 
   return (
     <div>
@@ -116,6 +125,8 @@ const View = () => {
           <input className="search__input" value={roll} onChange={(e) => { setroll(e.target.value) }} type="text" placeholder="Roll No." />
         </div>
 
+        <button className='btn btn-primary' style={{width:"150px",marginTop:"20px"}} onClick={() => downloadExcel(fav)}>Export Data</button>
+
       </div>
 
 
@@ -125,16 +136,16 @@ const View = () => {
         <div className="tbl-header">
           <table  >
             <tr >
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Roll No.</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered"  }}>Name</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>organization</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Domain</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Starting Date</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Ending Date</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Duration</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Certificate</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Phone</th>
-              <th style={{ textAlign: "center",backgroundColor:"orangered" }}>Email</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>organization</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Domain</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Starting Date</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Ending Date</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Duration</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Certificate</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
+              <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
             </tr>
             {
               // eslint-disable-next-line array-callback-return
@@ -219,20 +230,21 @@ const View = () => {
                   }
                 })
 
+
                 .map((item) => {
-                  console.log(item)
+                  fav.push(item)
                   return (
-                    <tr style={{backgroundColor:"#000000ba"}}>
-                      <td style={{ textAlign: "center"}}>{item.rollNumber}</td>
+                    <tr style={{ backgroundColor: "#000000ba" }}>
+                      <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
                       <td style={{ textAlign: "center" }}>{item.domain}</td>
                       <td style={{ textAlign: "center" }}>{item.startdate}</td>
                       <td style={{ textAlign: "center" }}> {item.enddate}</td>
 
-                      <td style={{ textAlign: "center" }}>{item.enddate==" "?"NA":`${Duration(item.startdate,item.enddate)} months`}</td>
-                      <td style={{ textAlign: "center" }}> 
-                      <a href={item.certificate} target='_blank'><CgEye /></a>
+                      <td style={{ textAlign: "center" }}>{item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
+                      <td style={{ textAlign: "center" }}>
+                        <a href={item.certificate} target='_blank'><CgEye /></a>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>
@@ -240,6 +252,7 @@ const View = () => {
                   )
                 })
             }
+            
           </table>
         </div>
       </section>
