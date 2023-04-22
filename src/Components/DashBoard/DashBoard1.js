@@ -17,11 +17,9 @@ const DashBoard = ({ arr1, crediantial,dummyYear }) => {
                 {studentCount.map((d,i) => {
                     return (
                         <div className="Dashboard_box">
-                            <p className='Dashboard_title_1' style={{display:i==0?"block":"none"}}>SE</p>
-                            <p className='Dashboard_title_1' style={{display:i==1?"block":"none"}}>TE</p>
-                            <p className='Dashboard_title_1' style={{display:i==2?"block":"none"}}>BE</p>
-                            {/* <p className='Dashboard_title_1'>Batch {d.Batch}</p> */}
-                            {/* <p className='Dashboard_title_1'>{d.Count}</p> */}
+                            <p className='Dashboard_title_1' style={{display:i==0?"block":"none" ,fontSize:"1.6rem"} }>SE</p>
+                            <p className='Dashboard_title_1' style={{display:i==1?"block":"none",fontSize:"1.6rem"}}>TE</p>
+                            <p className='Dashboard_title_1' style={{display:i==2?"block":"none",fontSize:"1.6rem"}}>BE</p>
                         </div>
                     )
                 })}
