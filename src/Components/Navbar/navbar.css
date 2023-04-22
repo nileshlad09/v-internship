@@ -3,7 +3,29 @@
     background-color: black;
   }
   .navbar-brand{
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    /* color: hsl(0, 0%, 28%); */
+    /* font-size: 50px; */
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: 7px;
+    cursor: pointer;
+  }
+  .navbar-brand span {
+    transition: 0.5s ease-out;
+  }
+  .navbar-brand:hover span:nth-child(1) {
+    margin-right: 5px;
+  }
+  h .navbar-brand:hover span:nth-child(1):after {
+    content: "'";
+  }
+  .navbar-brand:hover span:nth-child(2) {
+    margin-left: 10px;
+  }
+  .navbar-brand:hover span {
+    color:orangered;
+    /* text-shadow: 1px 1px 10px #fff, 0 0 20px #fff, 0 0 40px #fff; */
   }
   .logoColor{
     color: orangered;
