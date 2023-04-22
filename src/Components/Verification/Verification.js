@@ -3,15 +3,13 @@ import './Verification.css'
 import data from '../../DataFiles/studentdata'
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { addDoc } from 'firebase/firestore';
 
 
 const Verification = () => {
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
     const [data, setTodos] = useState([]);
-    const reject = async (item) => {
-        await deleteDoc(doc(db, "students", item.id))
-        forceRefresh();
-    }
+   
     const ref = useRef(null);
     const refClose = useRef(null);
 
@@ -49,9 +47,7 @@ const Verification = () => {
         setNote({ ...note, [e.target.name]: e.target.value });
     };
 
-    const handleClick = (e) => {
-        console.log(note)
-    }
+   
 
     const edit = (item) => {
         ref.current.click()
@@ -68,12 +64,54 @@ const Verification = () => {
             enameofcompany: item.nameofcompany,
             edomain:  item.domain,
             estartdate: item.startdate,
-            eenddate: item.enddate ? item.enddate : " ",
+            eenddate: item.enddate ,
             ecertificate:item.certificate,
             eForyear:item.Foryear,
+            eid:item.id
         });
     }
 
+
+    function writetoDB(cred) {
+        try {
+          const docRef = addDoc(collection(db, "acceptedStudents"), {
+            Foryear: cred.Foryear?cred.Foryear:cred.eForyear,
+            branch: cred.branch?cred.branch:cred.ebranch,
+            nameofstudent: cred.nameofstudent?cred.nameofstudent:cred.enameofstudent,
+            rollNumber: cred.rollNumber?cred.rollNumber:cred.erollNumber,
+            email: cred.email?cred.email:cred.eemail,
+            mobileNo: cred.mobileNo?cred.mobileNo:cred.emobileNo,
+            division: cred.division?cred.division:cred.edivision,
+            semester: cred.semester?cred.semester:cred.esemester,
+            year: cred.year?cred.year:cred.eyear,
+            contactofcompany: cred.contactofcompany?cred.contactofcompany:cred.econtactofcompany,
+            nameofcompany: cred.nameofcompany?cred.nameofcompany:cred.enameofcompany,
+            domain: cred.domain?cred.domain:cred.edomain, 
+            startdate: cred.startdate?cred.startdate:cred.estartdate,
+            enddate: cred.enddate?cred.enddate:cred.eenddate,
+            certificate: cred.certificate?cred.certificate:cred.ecertificate
+        });
+        
+        reject(cred);
+        forceRefresh();
+        refClose.current.click();
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      }
+
+      const accept=(item)=>{
+         writetoDB(item)
+      }
+      const reject = async (item) => {
+        await deleteDoc(doc(db, "students", item.id?item.id:item.eid))
+        console.log("reject")
+        forceRefresh();
+    }
+
+    const handleClick = (e) => {
+        writetoDB(note)
+    }
 
     return (
         <>
@@ -250,7 +288,7 @@ const Verification = () => {
 
                                             </div>
                                             <div className="col-12 verification_Btn">
-                                                <button type="submit" className="btn btn-success">Accept</button>
+                                                <button type="button" className="btn btn-success" onClick={()=> accept(item)}>Accept</button>
                                                 <button type="button" className="btn btn-danger" onClick={() => reject(item)}>Reject</button>
                                                 <button type="button" className="btn btn-primary" onClick={() => edit(item)}>Edit</button>
                                             </div>

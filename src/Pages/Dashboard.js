@@ -14,7 +14,7 @@ const Dashboard = () => {
   
  
   const fetchPost = async () => {    
-      await getDocs(collection(db, "students"))
+      await getDocs(collection(db, "acceptedStudents"))
           .then((querySnapshot)=>{               
               const newData = querySnapshot.docs
                   .map((doc) => ({...doc.data() }));

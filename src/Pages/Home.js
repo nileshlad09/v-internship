@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext} from 'react'
 import { Link } from 'react-router-dom'
 import './home.css'
 import logo from '../Images/vitlogo.png'
- 
+import { UserContext } from '../App'; 
 const Home = () => {
-
+  const { state, dispatch } = useContext(UserContext)
   return (
     <>
     <div className="homeSec">
@@ -17,10 +17,14 @@ const Home = () => {
               <p className='homeOption_title_2'>Add Internship Data</p>
             </div>
             </Link>
-            <Link to={`/adminlogin`}> <div className="homeOption_box">
+            {state?
+            <Link to={`/dashboard`}> <div className="homeOption_box">
+            <p className='homeOption_title_2'>Dashboard</p>
+          </div>
+          </Link>:<Link to={`/adminlogin`}> <div className="homeOption_box">
               <p className='homeOption_title_2'>Admin Login  </p>
             </div>
-            </Link>
+            </Link>}
           </div>
         </div>
       </div>
