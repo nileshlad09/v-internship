@@ -2,15 +2,16 @@ import React,{useContext} from 'react'
 import { Link,useHistory} from 'react-router-dom';
 import { UserContext } from '../../App';
 import './navbar.css'
+import { firebaseApp } from '../../firebase';
+import { signOut ,getAuth} from 'firebase/auth';
 const Navbar = () => {
   
-
+  const auth = getAuth(firebaseApp);
   const {state,dispatch} = useContext(UserContext)
   const history = useHistory();
   const logout=()=>{
-      dispatch({type:"USER",payload:false})
+      signOut(auth)
       history.push('/adminlogin');  
-      localStorage.clear("isVinternshipLogin")
   }
   
   return (

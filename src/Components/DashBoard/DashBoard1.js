@@ -1,13 +1,13 @@
 import React from 'react'
 import './DashBoard1.css'
 import { Link } from 'react-router-dom'
-import { studentCount } from '../../DataFiles/dataManages'
 const DashBoard = ({ arr1, crediantial,dummyYear }) => {
 
     const batch3 = arr1[2].length;
     const batch2 = arr1[1].length;
     const batch1 = arr1[0].length;
     const Foryear = crediantial ? crediantial.Foryear : dummyYear;
+    var studentCount=[0,1,2];
     return (
         <div className='Dashboard_Section'>
             <div className="Dashboard_Section_1">

@@ -46,7 +46,6 @@ const DataEnter = () => {
         }
         else {
             addInternship(crediantial);
-            console.log(crediantial.semester)
             history.push('/addinternship/2');
         }
     }

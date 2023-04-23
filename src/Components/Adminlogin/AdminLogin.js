@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./adminlogin.css";
 import { useContext } from "react";
 import studentContext from '../../context/student/studentContext';
-import { AuthErrorCodes, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthErrorCodes, getAuth, signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
@@ -25,13 +25,12 @@ const AdminLogin = () => {
   const auth = getAuth(firebaseApp);
 
   const handleClick = (e) => {
+    
     e.preventDefault();
     let email = crediantial.email.toLowerCase().trim();
     let password = crediantial.password;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        dispatch({ type: "USER", payload: true });
-        localStorage.setItem("isVinternshipLogin", true);
         showAlert("success", "Login Successfully");
         history.push('/dashboard');
       })
@@ -42,12 +41,13 @@ const AdminLogin = () => {
         ) {
           showAlert("danger", "The email address or password is incorrect");
         } else {
-          //  console.log(err.code);
-          //  alert(err.code);
           showAlert("danger", "internal error");
         }
       });
   }
+
+
+
   return (
     <div>
       <div className="AdminLogin">

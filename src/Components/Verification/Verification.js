@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useReducer, useRef } from 'react'
 import './Verification.css'
-import data from '../../DataFiles/studentdata'
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { addDoc } from 'firebase/firestore';
@@ -34,7 +33,6 @@ const Verification = () => {
         var month2 = b.slice(5, 7);
         var year1 = a.slice(0, 4);
         var year2 = b.slice(0, 4);
-        // console.log(year1)
 
         var date1 = new Date(`${month1}/${day1}/${year1}`);
         var date2 = new Date(`${month2}/${day2}/${year2}`);
@@ -96,7 +94,7 @@ const Verification = () => {
         forceRefresh();
         refClose.current.click();
         } catch (e) {
-          console.error("Error adding document: ", e);
+        //   console.error("Error adding document: ", e);
         }
       }
 
@@ -105,7 +103,6 @@ const Verification = () => {
       }
       const reject = async (item) => {
         await deleteDoc(doc(db, "students", item.id?item.id:item.eid))
-        console.log("reject")
         forceRefresh();
     }
 
