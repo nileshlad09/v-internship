@@ -20,14 +20,6 @@ function AddInternship() {
     history.push('/addinternship/1');
   }
 
-  const enableCreateUser = () => {
-    document.getElementById("user_register").disabled = true;
-  };
-
-  const disableCreateUser = () => {
-    document.getElementById("user_register").disabled = false;
-  };
-
 
   const [crediantial, setCrediential] = useState({});
   const onchange = (e) => {
@@ -93,7 +85,7 @@ function AddInternship() {
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
     // generate a unique filename
-    const fileName = `${crediantial.dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
+    const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
     // filename will look like rollNumber_startdate.extension
     // the actual code to upload the file
     var task = storage.ref('/certificates/' + fileName).put(imageuploaded)
@@ -221,7 +213,7 @@ function AddInternship() {
               <label for="Certificate" className="form-label">
                 Certificate/Joining Letter
               </label>
-              <input className="form-control" type="file" id="Certificate" name="certificate" required
+              <input className="form-control" type="file" id="Certificate" accept="image/jpeg, image/png, application/pdf" name="certificate" required
                 value={crediantial.certificate} onChange={(e) => {
                   setImageuploaded(e.target.files[0]);
                 }} />
