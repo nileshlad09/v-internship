@@ -93,7 +93,7 @@ function AddInternship() {
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
     // generate a unique filename
-    const fileName = `${crediantial.Foryear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
+    const fileName = `${crediantial.dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
     // filename will look like rollNumber_startdate.extension
     // the actual code to upload the file
     var task = storage.ref('/certificates/' + fileName).put(imageuploaded)
