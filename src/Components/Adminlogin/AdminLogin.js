@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./adminlogin.css";
-import { useContext } from "react";
+import { AuthErrorCodes, getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import studentContext from '../../context/student/studentContext';
-import { AuthErrorCodes, getAuth, signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from '../../firebase';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../../App';
 
 
 
 const AdminLogin = () => {
-  const { state, dispatch } = useContext(UserContext)
   const context = useContext(studentContext);
-
   const { showAlert } = context;
-
   const [crediantial, setCrediential] = useState({});
-
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
   };

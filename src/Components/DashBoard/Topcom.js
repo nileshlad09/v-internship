@@ -18,7 +18,7 @@ const Topcom = ({ data2 }) => {
             {
                 // eslint-disable-next-line
                 TScount?.map((d) => (
-                    <tr style={{ textAlign: "center" }}>
+                    <tr style={{ textAlign: "center" }} key={d.sr}>
                         <td style={{ textAlign: "center" }}>{d.sr}</td>
                         <td style={{ textAlign: "center" }}>{d.comp}</td>
                         <td style={{ textAlign: "center" }}>{d.count}</td>

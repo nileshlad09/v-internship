@@ -11,34 +11,18 @@ import StudentState from './context/student/StudentState';
 import Alert from './Components/Alert';
 import PrivateRoute from './Components/PrivateRoute';
 import Home from './Pages/Home';
-import { createContext, useReducer, useEffect } from 'react';
-import { initialState, reducer } from './Reducer/useReducer';
-import { firebaseApp } from "./firebase";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-export const UserContext = createContext()
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const auth = getAuth(firebaseApp);
-  useEffect(()=>{
-    onAuthStateChanged(auth,(data)=>{
-      if(data){
-        dispatch({ type: "USER", payload: true });
-      }else{
-        dispatch({ type: "USER", payload: false });
-      }
-    })
-},[])
+
   return (
     <div>
       <StudentState>
-        <UserContext.Provider value={{ state, dispatch }}>
           <Navbar />
           <Alert alert={alert} />
           <Switch>
-            <PrivateRoute exact path="/dashboard" component={Dashboard} auth={state} />
-            <PrivateRoute exact path="/verification" component={Verification} auth={state} />
-            <PrivateRoute exact path='/dashboard/view/:year/:batch' component={View} auth={state} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+            <PrivateRoute exact path="/verification" component={Verification} />
+            <PrivateRoute exact path='/dashboard/view/:year/:batch' component={View}/>
               <Route exact path='/' component={Home} ></Route>
               <Route exact path='/adminlogin' component={AdminLogin} ></Route>
               <div className="addInternship">
@@ -48,7 +32,6 @@ function App() {
             </div>
             </div>
           </Switch>
-        </UserContext.Provider>
       </StudentState>
     </div>
   );

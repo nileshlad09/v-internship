@@ -5,14 +5,14 @@ import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
-import {domains} from '../../DataFiles/dataManages'
+import { domains } from '../../DataFiles/dataManages'
 
 
 function AddInternship() {
 
   const history = useHistory();
   const context = useContext(studentContext);
-  const { addInternship,setCrediential2, crediantial2, showAlert } = context;
+  const { addInternship, setCrediential2, crediantial2, showAlert } = context;
 
 
 
@@ -33,10 +33,10 @@ function AddInternship() {
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
   };
-  
+
 
   useEffect(() => {
-      setCrediential({ ...crediantial2, ...crediantial });
+    setCrediential({ ...crediantial2, ...crediantial });
   }, [])
 
   const date = new Date();
@@ -71,7 +71,7 @@ function AddInternship() {
         enddate: cred.enddate ? cred.enddate : " ",
         certificate: imagelink,
       });
-     
+
       showAlert("success", "Internship added successfully");
       setCrediential2(null);
       history.push('/');
@@ -85,10 +85,10 @@ function AddInternship() {
 
   // file upload 
   const [imageuploaded, setImageuploaded] = useState(null);
-  const [imageURL, setimageURL] = useState("");
-  useEffect(() => {
-    // console.log(imageURL)
-  }, [imageURL])
+  // const [imageURL, setimageURL] = useState("");
+  // useEffect(() => {
+  //   // console.log(imageURL)
+  // }, [imageURL])
   // useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
     if (imageuploaded == null) return;
@@ -131,7 +131,11 @@ function AddInternship() {
     }
   }
 
-
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const intStatus = (e) => {
+    console.log(e.target.checked)
+    setIsSubscribed(current => !current);
+  }
 
 
   return (
@@ -139,38 +143,6 @@ function AddInternship() {
       <div className="internship">
         <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
           <h4>Internship Detail</h4>
-          <div className="row">
-            <div className="col-md-3 ">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  onClick={enableCreateUser}
-                />
-                <label className="form-check-label" for="flexRadioDefault1">
-                  is Internship going on?
-                </label>
-              </div>
-            </div>
-
-
-            <div className="col-md-3" >
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  onClick={disableCreateUser}
-                />
-                <label className="form-check-label" for="flexRadioDefault2">
-                  has Internship been done ?
-                </label>
-              </div>
-            </div>
-
-
-          </div>
           <div className="row" style={{ marginTop: "30px" }}>
             <div className="col-md-4 dataEnter_input ">
               <label for="startDate" className="form-label">
@@ -190,7 +162,16 @@ function AddInternship() {
                 value={crediantial.enddate}
                 onChange={onchange}
                 min={crediantial.startdate}
+                disabled={isSubscribed}
               />
+
+              <div className="form-check mt-3" >
+                <input className="form-check-input" type="checkbox" value={isSubscribed} id="flexCheckDefault" onClick={intStatus} />
+                <label className="form-check-label" for="flexCheckDefault">
+                  is internship going on?
+                </label>
+              </div>
+
             </div>
             <div className="col-md-4 dataEnter_input ">
               <label for="companyName" className="form-label">
@@ -209,8 +190,8 @@ function AddInternship() {
                 onChange={onchange}>
                 <option value="" defaultValue>--select--</option>
                 {
-                  domains.map((d)=>(
-                        <option value={d.domain}>{d.domain}</option>
+                  domains.map((d) => (
+                    <option value={d.domain}>{d.domain}</option>
                   ))
                 }
               </select>

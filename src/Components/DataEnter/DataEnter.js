@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './DataEnter.css'
 import { useHistory } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ const DataEnter = () => {
         setCrediential({ ...crediantial, [e.target.name]: e.target.value });
     };
 
-
+    // eslint-disable-next-line
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const handleClick = (e) => {

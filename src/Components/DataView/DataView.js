@@ -231,10 +231,10 @@ const View = () => {
                 })
 
 
-                .map((item) => {
+                .map((item,i) => {
                   fav.push(item)
                   return (
-                    <tr style={{ backgroundColor: "#000000ba" }}>
+                    <tr style={{ backgroundColor: "#000000ba" }} key={i}>
                       <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>

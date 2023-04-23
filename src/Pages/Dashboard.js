@@ -2,7 +2,6 @@ import React, {  useEffect, useState } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
-// import data from '../DataFiles/data';
 import Topcom from '../Components/DashBoard/Topcom'
 import { collection, getDocs } from "firebase/firestore";
 
@@ -61,8 +60,8 @@ const Dashboard = () => {
         <div className="container">
       <div className="row">
         <div className="col-md-8">
-        <div class="col-md-4">
-          <select name="Foryear" id="year" class="form-select" onChange={onchange} value={crediantial.Foryear}>
+        <div className="col-md-4">
+          <select name="Foryear" id="year" className="form-select" onChange={onchange} value={crediantial.Foryear}>
             <option value={dummyYear1}>July {String(dummyYear1).slice(0,4)} - June {String(dummyYear1).slice(5,7)}</option>
             <option value={dummyYear2}>July {String(dummyYear2).slice(0,4)} - June {String(dummyYear2).slice(5,7)}</option>
             <option value={dummyYear} selected> July {String(dummyYear).slice(0,4)} - June {String(dummyYear).slice(5,7)}</option>

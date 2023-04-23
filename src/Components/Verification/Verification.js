@@ -149,52 +149,52 @@ const Verification = () => {
                                     <form className="row g-3">
                                         <div className="col-md-12 col-lg-12 row">
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputtext" className="form-label verification_title">Name</label>
+                                                <label htmlFor="inputtext" className="form-label verification_title">Name</label>
                                                 <input type="text" value={note.enameofstudent} className="form-control" id="inputEmail4" name='enameofstudent' onChange={onchange} />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputAddress" className="form-label verification_title">Roll Number</label>
+                                                <label htmlFor="inputAddress" className="form-label verification_title">Roll Number</label>
                                                 <input type="text" value={note.erollNumber} className="form-control" id="inputAddress" placeholder="1234 Main St" name='erollNumber' onChange={onchange}/>
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputPassword4" className="form-label verification_title">Email</label>
+                                                <label htmlFor="inputPassword4" className="form-label verification_title">Email</label>
                                                 <input type="email" value={note.eemail} className="form-control" id="inputPassword4" name='eemail' onChange={onchange}/>
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputPassword4" className="form-label verification_title">Phone Number</label>
+                                                <label htmlFor="inputPassword4" className="form-label verification_title">Phone Number</label>
                                                 <input type="tel" value={note.emobileNo} className="form-control" id="inputPassword4" name='emobileNo' onChange={onchange}/>
                                             </div>
 
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputAddress2" className="form-label verification_title">Branch</label>
+                                                <label htmlFor="inputAddress2" className="form-label verification_title">Branch</label>
                                                 <input type="text" value={note.ebranch} className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name='ebranch' onChange={onchange}/>
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">Div</label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">Div</label>
                                                 <input type="text" value={note.edivision} name='edivision' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">Sem </label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">Sem </label>
                                                 <input type="text" value={note.esemester} name='esemester' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">Company </label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">Company </label>
                                                 <input type="text" value={note.enameofcompany} name='enameofcompany' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">Domain</label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">Domain</label>
                                                 <input type="text" value={note.edomain} name='edomain' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">Start </label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">Start </label>
                                                 <input type="text" value={note.estartdate} name='estartdate' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">End</label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">End</label>
                                                 <input type="text" value={note.eenddate} name='eenddate' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                             <div className="verification_input_box col-lg-3 col-md-6 col-sm-6">
-                                                <label for="inputCity" className="form-label verification_title">Contact details of internship</label>
+                                                <label htmlFor="inputCity" className="form-label verification_title">Contact details of internship</label>
                                                 <input type="text" value={note.econtactofcompany} name='econtactofcompany' onChange={onchange} className="form-control" id="inputCity" />
                                             </div>
                                         </div>
@@ -226,60 +226,60 @@ const Verification = () => {
                                         <form className="row g-3">
                                             <div className="col-md-12 row">
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputtext" className="form-label verification_title">Name</label>
+                                                    <label htmlFor="inputtext" className="form-label verification_title">Name</label>
                                                     <input type="text" value={item.nameofstudent} className="form-control" id="inputEmail4" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputAddress" className="form-label verification_title">Roll Number</label>
+                                                    <label htmlFor="inputAddress" className="form-label verification_title">Roll Number</label>
                                                     <input type="text" value={item.rollNumber} className="form-control" id="inputAddress" placeholder="1234 Main St" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputPassword4" className="form-label verification_title">Email</label>
+                                                    <label htmlFor="inputPassword4" className="form-label verification_title">Email</label>
                                                     <input type="email" value={item.email} className="form-control" id="inputPassword4" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputPassword4" className="form-label verification_title">Phone Number</label>
+                                                    <label htmlFor="inputPassword4" className="form-label verification_title">Phone Number</label>
                                                     <input type="tel" value={item.mobileNo} className="form-control" id="inputPassword4" />
                                                 </div>
 
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputAddress2" className="form-label verification_title">Branch</label>
+                                                    <label htmlFor="inputAddress2" className="form-label verification_title">Branch</label>
                                                     <input type="text" value={item.branch} className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Div</label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Div</label>
                                                     <input type="text" value={item.division} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Sem </label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Sem </label>
                                                     <input type="text" value={item.semester} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Company </label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Company </label>
                                                     <input type="text" value={item.nameofcompany} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Domain</label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Domain</label>
                                                     <input type="text" value={item.domain} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Start </label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Start </label>
                                                     <input type="text" value={item.startdate} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">End</label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">End</label>
                                                     <input type="text" value={item.enddate} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Duration</label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Duration</label>
                                                     <input type="text" value={item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Contact details of internship</label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Contact details of internship</label>
                                                     <input type="text" value={item.contactofcompany} className="form-control" id="inputCity" />
                                                 </div>
                                                 <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
-                                                    <label for="inputCity" className="form-label verification_title">Certificate/Joining Letter</label>
+                                                    <label htmlFor="inputCity" className="form-label verification_title">Certificate/Joining Letter</label>
                                                     <a href={item.certificate} target='_blank' style={{ color: "blue", listStyle: "none" }}><button type="button" class="btn btn-info">view certificate</button></a>
                                                 </div>
 
