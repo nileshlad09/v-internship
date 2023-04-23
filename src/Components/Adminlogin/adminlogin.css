@@ -20,7 +20,8 @@
   padding: 30px 0;
   /* min-height: 60vh; */
   background-color: white;
-  border-radius: 10px;
+  opacity: 0.95;
+  /* border-radius: 10px; */
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   flex-direction: column;
@@ -40,7 +41,7 @@
 .AdminLogin_inputGroup {
   width: 300px;
   margin: 0.8em 0em;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.1);
   background-color: rgb(245, 245, 245);
   font-weight: 500;

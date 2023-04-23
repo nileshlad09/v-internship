@@ -33,12 +33,12 @@ const Navbar = () => {
                 <Link className="nav-link active" aria-current="page" to="/verification" style={{ color: "#fff" }}>Verify</Link>
               </li>
               <li className="nav-item">
-                <button className='btn btn-outline-light loginBtn' onClick={logout}>Logout</button>
+                <button className='btn btn-outline-light loginBtn' onClick={logout} style={{borderRadius:"0px"}}>Logout</button>
               </li>
               </>:
               <li className="nav-item loginBtn2">
                 <Link to="/adminlogin">
-              <button className='btn btn-outline-light loginBtn' >
+              <button className='btn btn-outline-light loginBtn' style={{borderRadius:"0px"}} >
                  Login </button></Link>
             </li>
               }
