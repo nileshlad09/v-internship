@@ -8,10 +8,9 @@ import gif from './verificationgif.gif'
 const Verification = () => {
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
     const [data, setTodos] = useState([]);
-   
     const ref = useRef(null);
     const refClose = useRef(null);
-
+    
     const fetchPost = async () => {
         await getDocs(collection(db, "students"))
             .then((querySnapshot) => {
