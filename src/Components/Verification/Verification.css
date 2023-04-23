@@ -6,8 +6,10 @@
 }
 .verificationPage{
   padding-top: 60px;
-  background: url(https://vit.edu.in/images/body_bg.png) no-repeat fixed;
+  /* background: url(https://vit.edu.in/images/body_bg.png) no-repeat fixed; */
   background-size: cover;
+  /* background-color: rgba(250,252,249,255); */
+  background-color: #fff;
   min-height: 100vh;
 }
 .verification_input_box{
@@ -34,9 +36,25 @@
   background-color: red;
 }
 
-@media (min-width: 576px){
+.gifimage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 85px;
+   min-height: 65vh;
+}
+.gifimage img{
+  height: 150px;
+  width: 150px;
+}
+
+@media (min-width:786px){
  .modal-dialog {
     max-width: 80%;
     margin: 1.75rem auto;
+}
+.gifimage img{
+  height: 150px;
+  width: 150px;
 }
 }

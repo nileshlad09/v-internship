@@ -3,7 +3,7 @@ import './Verification.css'
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { addDoc } from 'firebase/firestore';
-
+import gif from './verificationgif.gif'
 
 const Verification = () => {
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
@@ -217,8 +217,9 @@ const Verification = () => {
                         </div>
                     </div>
                     <div className="verificationPage">
-                    {data.length <= 0 ? <h3 style={{ textAlign: "center" }}>Nothing to display</h3> :
+                    {data.length <= 0 ? <div  className='gifimage'><img src={gif}></img></div>:
                     <div className='container'>
+
                         {
                             data.map((item, id) => {
                                 return (
