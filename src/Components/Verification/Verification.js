@@ -5,11 +5,15 @@ import { db } from "../../firebase";
 import { addDoc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import studentContext from '../../context/student/studentContext';
+import Spinner from '../Spinner/Spinner';
 
 const Verification = () => {
 
     const context = useContext(studentContext);
     const { showAlert } = context;
+
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
     const [data, setTodos] = useState([]);
@@ -22,10 +26,12 @@ const Verification = () => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setTodos(newData);
+                setIsLoading(false)
             })
     }
 
     useEffect(() => {
+        setIsLoading(true);
         fetchPost();
     }, [refesh])
 
@@ -124,6 +130,7 @@ const Verification = () => {
     const handleClick = (e) => {
         writetoDB(note)
     }
+    
 
     return (
         <>
@@ -231,7 +238,9 @@ const Verification = () => {
                         </div>
                     </div>
                 </div>
+                {isLoading ? <Spinner/> :
                 <div className="verificationPage">
+                
                     {data.length <= 0 ? <h3 style={{ textAlign: "center" }}> Nothing to display</h3> :
                         <div className='container'>
 
@@ -312,7 +321,9 @@ const Verification = () => {
                             }
                         </div>
                     }
+                
                 </div>
+            }
             </>
 
         </>

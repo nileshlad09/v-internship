@@ -6,10 +6,11 @@ import { collection, getDocs,query,where } from "firebase/firestore";
 
 import { db } from "../../firebase";
 import * as XLSX from 'xlsx';
+import Spinner from '../Spinner/Spinner';
 
 const View = () => {
 
-
+  const [isLoading, setIsLoading] = useState(false);
 
   const params = useParams();
   const b = params.batch;
@@ -57,6 +58,7 @@ const View = () => {
         const newData = querySnapshot.docs
           .map((doc) => ({ ...doc.data() }));
         setTodos(newData);
+        setIsLoading(false);
       })
     }else{
       await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", foryear), where("year", "==", year)))
@@ -64,21 +66,16 @@ const View = () => {
           const newData = querySnapshot.docs
             .map((doc) => ({ ...doc.data() }));
           setTodos(newData);
+          setIsLoading(false);
         })
     }
   }
   // console.log(data)
 
   useEffect(() => {
+    setIsLoading(true);
     fetchPost(y,b);
   }, [y,b])
-
-
-
-
-
- 
-
 
 
 
@@ -99,6 +96,8 @@ const View = () => {
 
   return (
     <div>
+{isLoading? <Spinner/>:
+<>
       <div className="filter">
         <div className="search__container">
           <p>For a Year: {foryear} ({year})</p>
@@ -269,6 +268,8 @@ const View = () => {
           </table>
         </div>
       </section>
+      </>
+      }
     </div>
   )
 }

@@ -5,11 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { useContext } from "react";
 
 import studentContext from '../../context/student/studentContext';
+import Spinner from '../Spinner/Spinner';
 
 
 const DataEnter = () => {
     const history = useHistory();
-
+    const [isLoading, setIsLoading] = useState(false);
     const context = useContext(studentContext);
     const { addInternship, showAlert } = context;
 
@@ -45,6 +46,7 @@ const DataEnter = () => {
             showAlert("warning", "Invalid Mobile Number");
         }
         else {
+            setIsLoading(false)
             addInternship(crediantial);
             history.push('/addinternship/2');
         }
@@ -53,6 +55,7 @@ const DataEnter = () => {
 
     return (
         <div style={{border:"1px solid gray", marginTop:"40px"}}>
+            {isLoading? <Spinner/>:
             <div style={{ paddingTop: "10px", overflow: "hidden" }}>
                 <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
                     <h4>Personal Detail</h4>
@@ -147,6 +150,7 @@ const DataEnter = () => {
                     <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline-danger">Add Internship</button>
                 </form>
             </div>
+            }
         </div>
     )
 }

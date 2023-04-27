@@ -4,26 +4,29 @@ import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
 import Topcom from '../Components/DashBoard/Topcom'
 import { Link } from 'react-router-dom'
-import { collection, getDocs, query,where} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { db } from "../firebase";
+import Spinner from '../Components/Spinner/Spinner'
 
 const Dashboard = () => {
-  
+
+  const [isLoading, setIsLoading] = useState(false);
   const [todos, setTodos] = useState([]);
   const [crediantial, setCrediential] = useState({});
-  
-  
+
+
   const fetchPost = async (foryear) => {
     await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", foryear)))
       .then((querySnapshot) => {
         const newData = querySnapshot.docs
           .map((doc) => ({ ...doc.data() }));
         setTodos(newData);
+        setIsLoading(false);
       })
   }
 
-  
+
 
 
   const date = new Date();
@@ -53,49 +56,50 @@ const Dashboard = () => {
   var dummyYear2 = `${Number(String(dummyYear.slice(0, 4))) - 1}-${Number(String(dummyYear.slice(5, 7))) - 1}`;;
 
 
-  console.log(todos)
   useEffect(() => {
-    fetchPost(crediantial.Foryear?crediantial.Foryear:dummyYear);
-  }, [crediantial.Foryear,dummyYear])
+    setIsLoading(true);
+    fetchPost(crediantial.Foryear ? crediantial.Foryear : dummyYear);
+  }, [crediantial.Foryear, dummyYear])
 
   return (
     <>
-
-      <div className="dashboard ">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8">
-              <div className="col-md-4">
-                <select name="Foryear" id="year" className="form-select" onChange={onchange} value={crediantial.Foryear}>
-                  <option value={dummyYear1}>July {String(dummyYear1).slice(0, 4)} - June {String(dummyYear1).slice(5, 7)}</option>
-                  <option value={dummyYear2}>July {String(dummyYear2).slice(0, 4)} - June {String(dummyYear2).slice(5, 7)}</option>
-                  <option value={dummyYear} selected> July {String(dummyYear).slice(0, 4)} - June {String(dummyYear).slice(5, 7)}</option>
-                </select>
+      {isLoading ? <Spinner /> :
+        <div className="dashboard ">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8">
+                <div className="col-md-4">
+                  <select name="Foryear" id="year" className="form-select" onChange={onchange} value={crediantial.Foryear}>
+                    <option value={dummyYear1}>July {String(dummyYear1).slice(0, 4)} - June {String(dummyYear1).slice(5, 7)}</option>
+                    <option value={dummyYear2}>July {String(dummyYear2).slice(0, 4)} - June {String(dummyYear2).slice(5, 7)}</option>
+                    <option value={dummyYear} selected> July {String(dummyYear).slice(0, 4)} - June {String(dummyYear).slice(5, 7)}</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-4 dashBoardBtn">
+                <Link to="/dashboard/deleteold"><button className='btn btn-dark'>Delete old data</button></Link>
               </div>
             </div>
-            <div className="col-md-4 dashBoardBtn">
-             <Link to="/dashboard/deleteold"><button className='btn btn-dark'>Delete old data</button></Link>
-            </div>
-          </div>
-          <DashBoard1 arr1={arr1} crediantial={crediantial} dummyYear={dummyYear} />
-          <div className="row Dashboard_graph_section">
-            <div className="graph_1 chart col-md-8 col-lg-5">
-              <Graph arr1={arr1} />
-              <p className='heading'>No.of students completed internship</p>
-            </div>
-            {data2.length ?
+            <DashBoard1 arr1={arr1} crediantial={crediantial} dummyYear={dummyYear} />
+            <div className="row Dashboard_graph_section">
               <div className="graph_1 chart col-md-8 col-lg-5">
-                <Graph2 data2={data2} />
-                <p className='heading'>Most frequent company's student join</p>
-              </div> : ""
-            }
-            <div className="dashboard_table chart col-md-8 col-lg-4">
-              <Topcom data2={data2} />
-              <p className='heading'>Top Company</p>
+                <Graph arr1={arr1} />
+                <p className='heading'>No.of students completed internship</p>
+              </div>
+              {data2.length ?
+                <div className="graph_1 chart col-md-8 col-lg-5">
+                  <Graph2 data2={data2} />
+                  <p className='heading'>Most frequent company's student join</p>
+                </div> : ""
+              }
+              <div className="dashboard_table chart col-md-8 col-lg-4">
+                <Topcom data2={data2} />
+                <p className='heading'>Top Company</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      }
 
     </>
   )

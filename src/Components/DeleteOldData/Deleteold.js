@@ -3,8 +3,9 @@ import './deleteOld.css'
 import { collection, getDocs, query, where,deleteDoc, doc, limit } from "firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { db } from "../../firebase"
+import Spinner from '../Spinner/Spinner';
 const Deleteold = () => {
-
+    const [isLoading, setIsLoading] = useState(false);
     const [todos, setTodos] = useState([]);
     const [year, setYear] = useState();
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
@@ -15,13 +16,15 @@ const Deleteold = () => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data() ,id: doc.id}));
                 setTodos(newData);
+                setIsLoading(false)
             })
     }
     useEffect(() => {
-            fetchPost(year);
+        fetchPost(year);
     }, [refesh])
 
     const reject = async (item) => {
+        setIsLoading(true);
        const storage = getStorage();
        const desertRef = ref(storage, item.certificate);
        await deleteObject(desertRef).then(() => {
@@ -29,7 +32,13 @@ const Deleteold = () => {
             forceRefresh();
         })
     }
+    const handleClick=(year)=>{
+        setIsLoading(true);
+        fetchPost(year)
+    }
     return (
+<>
+{isLoading? <Spinner/>:
         <div className='deleteOldSection'>
             <div className="container">
                 <div className="row">
@@ -39,7 +48,7 @@ const Deleteold = () => {
                                 onChange={(e)=>setYear(e.target.value)}
                                 placeholder='ex 2022-23'
                             />
-                            <button className="btn btn-primary" onClick={() => fetchPost(year)}>Search</button>
+                            <button className="btn btn-primary" onClick={() =>handleClick(year)}>Search</button>
                         </div>
                     </div>
                 </div>
@@ -83,6 +92,8 @@ const Deleteold = () => {
                 </section>
             </div>
         </div>
+        }
+        </>
     )
 }
 

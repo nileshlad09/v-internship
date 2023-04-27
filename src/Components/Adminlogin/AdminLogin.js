@@ -4,12 +4,16 @@ import { AuthErrorCodes, getAuth, signInWithEmailAndPassword} from "firebase/aut
 import studentContext from '../../context/student/studentContext';
 import { firebaseApp } from '../../firebase';
 import { useHistory } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 
 
 const AdminLogin = () => {
   const context = useContext(studentContext);
   const { showAlert } = context;
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const [crediantial, setCrediential] = useState({});
   const onchange = (e) => {
     setCrediential({ ...crediantial, [e.target.name]: e.target.value });
@@ -19,12 +23,13 @@ const AdminLogin = () => {
   const auth = getAuth(firebaseApp);
 
   const handleClick = (e) => {
-    
+    setIsLoading(true);
     e.preventDefault();
     let email = crediantial.email.toLowerCase().trim();
     let password = crediantial.password;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        setIsLoading(false)
         showAlert("success", "Login Successfully");
         history.push('/dashboard');
       })
@@ -37,6 +42,8 @@ const AdminLogin = () => {
         } else {
           showAlert("danger", "internal error");
         }
+
+        setIsLoading(false)
       });
   }
 
@@ -44,6 +51,8 @@ const AdminLogin = () => {
 
   return (
     <div>
+      
+      {isLoading? <Spinner/>:
       <div className="AdminLogin">
         <div className="AdminLogin_modalForm">
           <h2>Admin Login</h2>
@@ -70,6 +79,7 @@ const AdminLogin = () => {
           </form>
         </div>
       </div>
+      }
     </div>
   )
 }

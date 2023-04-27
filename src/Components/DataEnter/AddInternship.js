@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { domains } from '../../DataFiles/dataManages'
-
+import Spinner from "../Spinner/Spinner"
 
 function AddInternship() {
 
@@ -14,7 +14,7 @@ function AddInternship() {
   const context = useContext(studentContext);
   const { addInternship, setCrediential2, crediantial2, showAlert } = context;
 
-
+  const [isLoading, setIsLoading] = useState(false);
 
   if (JSON.stringify(crediantial2) == "{}") {
     history.push('/addinternship/1');
@@ -63,6 +63,7 @@ function AddInternship() {
         enddate: cred.enddate ? cred.enddate : " ",
         certificate: imagelink,
       });
+      setIsLoading(false);
       showAlert("success", "Internship added successfully");
       setCrediential2(null);
       history.push('/');
@@ -99,6 +100,7 @@ function AddInternship() {
 
 
   const handleClick = (e) => {
+    
     e.preventDefault();
     if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || crediantial.domain === undefined || crediantial.startdate === undefined) {
       showAlert("warning", "All fields are required");
@@ -118,6 +120,7 @@ function AddInternship() {
     else {
       addInternship(crediantial);
       fileUpload(imageuploaded);
+      setIsLoading(true);
       // showAlert("success", "Internship added successfully");
       //writetoDB(crediantial);
       // Commenting out this write because we need to write the data after the file is uploaded
@@ -133,6 +136,8 @@ function AddInternship() {
 
 
   return (
+    <>
+      {isLoading? <Spinner/>:
     <div style={{ overflow: "hidden", border: "1px solid gray", marginTop: "40px" }}>
       <div className="internship">
         <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
@@ -221,14 +226,14 @@ function AddInternship() {
                 }} />
             </div>
           </div>
-          <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger">
+          <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger" disabled={isLoading}>
             Add
           </button>
         </form>
       </div>
-
-
-    </div>
+      </div>
+    }
+    </>
   );
 }
 
