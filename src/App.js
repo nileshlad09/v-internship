@@ -11,6 +11,7 @@ import StudentState from './context/student/StudentState';
 import Alert from './Components/Alert';
 import PrivateRoute from './Components/PrivateRoute';
 import Home from './Pages/Home';
+import Deleteold from './Components/DeleteOldData/Deleteold';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <PrivateRoute exact path="/dashboard" component={Dashboard}/>
             <PrivateRoute exact path="/verification" component={Verification} />
             <PrivateRoute exact path='/dashboard/view/:year/:batch' component={View}/>
+            <PrivateRoute exact path='/dashboard/deleteold' component={Deleteold}/>
               <Route exact path='/' component={Home} ></Route>
               <Route exact path='/adminlogin' component={AdminLogin} ></Route>
               <div className="addInternship">

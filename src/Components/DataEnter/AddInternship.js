@@ -44,9 +44,9 @@ function AddInternship() {
 
 
   //firebase code
-  function writetoDB(cred, imagelink) {
+  async function writetoDB (cred, imagelink) {
     try {
-      const docRef = addDoc(collection(db, "students"), {
+      const docRef = await addDoc(collection(db, "students"), {
         Foryear: dummyYear,
         branch: cred.branch,
         nameofstudent: cred.nameofstudent,
@@ -63,7 +63,6 @@ function AddInternship() {
         enddate: cred.enddate ? cred.enddate : " ",
         certificate: imagelink,
       });
-
       showAlert("success", "Internship added successfully");
       setCrediential2(null);
       history.push('/');
@@ -77,6 +76,7 @@ function AddInternship() {
 
   // file upload 
   const [imageuploaded, setImageuploaded] = useState(null);
+
   // const [imageURL, setimageURL] = useState("");
   // useEffect(() => {
   //   // console.log(imageURL)
@@ -112,6 +112,9 @@ function AddInternship() {
     else if (crediantial.domain === "other" && crediantial.domain2.replaceAll(' ', '').length < 1) {
       showAlert("warning", "Invalid domain");
     }
+    else if(imageuploaded != null && imageuploaded?.size > 1e+6){
+      showAlert("warning", "Please upload a file smaller than 1 MB");
+    }
     else {
       addInternship(crediantial);
       fileUpload(imageuploaded);
@@ -125,7 +128,6 @@ function AddInternship() {
 
   const [isSubscribed, setIsSubscribed] = useState(false);
   const intStatus = (e) => {
-    console.log(e.target.checked)
     setIsSubscribed(current => !current);
   }
 

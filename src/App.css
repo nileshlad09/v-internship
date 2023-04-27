@@ -28,7 +28,13 @@
   font-size: 0.8rem;
   padding: 10px;
 }
-
+.dashBoardBtn{
+  display: flex;
+  justify-content: flex-end;
+}
+.dashBoardBtn button{
+  outline: none;
+}
 
 .custom-toggler.navbar-toggler {
   border-color: white;

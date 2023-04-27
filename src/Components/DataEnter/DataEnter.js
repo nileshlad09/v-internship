@@ -64,6 +64,7 @@ const DataEnter = () => {
                                 onChange={onchange}
                             />
                         </div>
+                        
                         <div className="col-md-4 dataEnter_input ">
                             <label htmlFor="inputrollNumber" className="form-label">Roll Number</label>
                             <input type="text" name='rollNumber' className="form-control" id="inputrollNumber" maxLength="10"

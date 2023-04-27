@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useReducer, useRef, useContext } from 'react'
 import './Verification.css'
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, query, limit } from "firebase/firestore";
 import { db } from "../../firebase";
 import { addDoc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
@@ -17,7 +17,7 @@ const Verification = () => {
     const refClose = useRef(null);
 
     const fetchPost = async () => {
-        await getDocs(collection(db, "students"))
+        await getDocs(query(collection(db, "students"), limit(10)))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -111,7 +111,7 @@ const Verification = () => {
         const storage = getStorage();
 
         const desertRef = ref(storage, item.certificate);
-        deleteObject(desertRef).then(() => {
+        await deleteObject(desertRef).then(() => {
             deleteDoc(doc(db, "students", item.id ? item.id : item.eid))
             showAlert("success", "data deleted successfully")
             forceRefresh();
@@ -236,9 +236,9 @@ const Verification = () => {
                         <div className='container'>
 
                             {
-                                data.map((item, id) => {
+                                data.map((item) => {
                                     return (
-                                        <div className="info verification_section" id={id}>
+                                        <div className="info verification_section" key={item.id}>
                                             <form className="row g-3">
                                                 <div className="col-md-12 row">
                                                     <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
@@ -296,7 +296,7 @@ const Verification = () => {
                                                     </div>
                                                     <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
                                                         <label htmlFor="inputCity" className="form-label verification_title">Certificate/Joining Letter</label>
-                                                        <a href={item.certificate} target='_blank' style={{ color: "blue", listStyle: "none" }}><button type="button" class="btn btn-info">view certificate</button></a>
+                                                        <a href={item.certificate} target='_blank' style={{ color: "blue", listStyle: "none" }}><button type="button" className="btn btn-info">view certificate</button></a>
                                                     </div>
 
                                                 </div>

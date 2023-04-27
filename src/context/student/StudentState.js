@@ -19,7 +19,7 @@ const StudentState = (props) => {
     })
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 2500);
   }
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
