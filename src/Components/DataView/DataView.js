@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CgEye } from 'react-icons/cg'
 import './dataview.css'
 import { useParams } from 'react-router-dom'
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs,query,where } from "firebase/firestore";
 
 import { db } from "../../firebase";
 import * as XLSX from 'xlsx';
@@ -29,31 +29,6 @@ const View = () => {
   const [data, setTodos] = useState([]);
 
 
-  var fav = [];
-  const downloadExcel = (data) => {
-    const worksheet = XLSX.utils.json_to_sheet(data);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-    XLSX.writeFile(workbook, `${b}_${y}_${div}_${domain}.xlsx`);
-  };
-
-  const fetchPost = async () => {
-    await getDocs(collection(db, "acceptedStudents"))
-      .then((querySnapshot) => {
-        const newData = querySnapshot.docs
-          .map((doc) => ({ ...doc.data() }));
-        setTodos(newData);
-      })
-  }
-
-  useEffect(() => {
-    fetchPost();
-  }, [])
-
-
-
-
-
   useEffect(() => {
     if (b === "ALL") {
       setyear("ALL")
@@ -65,6 +40,44 @@ const View = () => {
     }
     // eslint-disable-next-line
   }, [])
+
+  var fav = [];
+  const downloadExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, `${b}_${y}_${div}_${domain}.xlsx`);
+  };
+
+  const fetchPost = async (foryear,year) => {
+    // console.log(foryear,year)
+    if(year=="ALL"){
+      await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", foryear)))
+      .then((querySnapshot) => {
+        const newData = querySnapshot.docs
+          .map((doc) => ({ ...doc.data() }));
+        setTodos(newData);
+      })
+    }else{
+      await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", foryear), where("year", "==", year)))
+        .then((querySnapshot) => {
+          const newData = querySnapshot.docs
+            .map((doc) => ({ ...doc.data() }));
+          setTodos(newData);
+        })
+    }
+  }
+  // console.log(data)
+
+  useEffect(() => {
+    fetchPost(y,b);
+  }, [y,b])
+
+
+
+
+
+ 
 
 
 
@@ -231,10 +244,10 @@ const View = () => {
                 })
 
 
-                .map((item) => {
+                .map((item,i) => {
                   fav.push(item)
                   return (
-                    <tr style={{ backgroundColor: "#000000ba" }}>
+                    <tr style={{ backgroundColor: "#000000ba" }} key={i}>
                       <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
                       <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
