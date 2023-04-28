@@ -11,7 +11,7 @@ const Deleteold = () => {
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
 
     const fetchPost = async (year) => {
-        await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", year)))
+        await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", year), limit(10)))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data() ,id: doc.id}));
@@ -21,7 +21,7 @@ const Deleteold = () => {
     }
     useEffect(() => {
         fetchPost(year);
-    }, [refesh])
+    }, [refesh,year])
 
     const reject = async (item) => {
         setIsLoading(true);

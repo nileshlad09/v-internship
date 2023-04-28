@@ -12,6 +12,7 @@ import Alert from './Components/Alert';
 import PrivateRoute from './Components/PrivateRoute';
 import Home from './Pages/Home';
 import Deleteold from './Components/DeleteOldData/Deleteold';
+import Popup from './Components/Popup/Popup';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <div className="container">
               <Route exact path='/addinternship/1' component={DataEnter} ></Route>
               <Route exact path='/addinternship/2' component={AddInternship} ></Route>
+              <Route exact path='/popup' component={Popup} ></Route>
             </div>
             </div>
           </Switch>

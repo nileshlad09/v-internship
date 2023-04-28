@@ -21,3 +21,19 @@ a {
     margin-bottom: 5px;
     
 }
+
+.modelPopup{
+    width: 400px;
+    max-width: 300px;
+    border-radius: 10px;
+}
+.modelPopup2{
+    padding: 20px;
+}
+.popupicon{
+    text-align: center;
+    margin-bottom: 5px;
+}
+.popupicon i{
+    font-size: 3rem;
+}

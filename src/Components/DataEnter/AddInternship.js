@@ -7,9 +7,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { domains } from '../../DataFiles/dataManages'
 import Spinner from "../Spinner/Spinner"
-
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 function AddInternship() {
 
+  const ref = useRef(null);
   const history = useHistory();
   const context = useContext(studentContext);
   const { addInternship, setCrediential2, crediantial2, showAlert } = context;
@@ -44,7 +46,7 @@ function AddInternship() {
 
 
   //firebase code
-  async function writetoDB (cred, imagelink) {
+  async function writetoDB(cred, imagelink) {
     try {
       const docRef = await addDoc(collection(db, "students"), {
         Foryear: dummyYear,
@@ -64,11 +66,12 @@ function AddInternship() {
         certificate: imagelink,
       });
       setIsLoading(false);
-      showAlert("success", "Internship added successfully");
+      // showAlert("success", "Internship added successfully");
       setCrediential2(null);
-      history.push('/');
+      // history.push('/');
+      ref.current.click()
     } catch (e) {
-      // console.error("Error adding document: ", e);
+      console.error("Error adding document: ", e);
       showAlert("danger", "Internal Error");
     }
   }
@@ -84,12 +87,13 @@ function AddInternship() {
   // }, [imageURL])
   // useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
+    var time = new Date().getMilliseconds().toString();
     if (imageuploaded == null) return;
     // generate a unique filename
-    const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}.${imageuploaded.name.split('.').pop()}`
+    const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}_${time}.${imageuploaded.name.split('.').pop()}`
     // filename will look like rollNumber_startdate.extension
     // the actual code to upload the file
-    var task = storage.ref('/certificates/' + fileName).put(imageuploaded)
+    var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded)
     // and getting the download URL
     task.then((res) => {
       res.ref.getDownloadURL().then((url) => {
@@ -100,7 +104,7 @@ function AddInternship() {
 
 
   const handleClick = (e) => {
-    
+
     e.preventDefault();
     if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || crediantial.domain === undefined || crediantial.startdate === undefined) {
       showAlert("warning", "All fields are required");
@@ -114,7 +118,7 @@ function AddInternship() {
     else if (crediantial.domain === "other" && crediantial.domain2.replaceAll(' ', '').length < 1) {
       showAlert("warning", "Invalid domain");
     }
-    else if(imageuploaded != null && imageuploaded?.size > 1e+6){
+    else if (imageuploaded != null && imageuploaded?.size > 1e+6) {
       showAlert("warning", "Please upload a file smaller than 1 MB");
     }
     else {
@@ -134,105 +138,123 @@ function AddInternship() {
     setIsSubscribed(current => !current);
   }
 
+ 
 
   return (
     <>
-      {isLoading? <Spinner/>:
-    <div style={{ overflow: "hidden", border: "1px solid gray", marginTop: "40px" }}>
-      <div className="internship">
-        <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
-          <h4>Internship Detail</h4>
-          <div className="row" style={{ marginTop: "30px" }}>
-            <div className="col-md-4 dataEnter_input ">
-              <label for="startDate" className="form-label">
-                Starting Date{" "}
-              </label>
-              <input type="date" name="startdate" className="form-control" id="startDate"
-                value={crediantial.startdate}
-                onChange={onchange}
-                required
-              />
-            </div>
-            <div className="col-md-4 dataEnter_input ">
-              <label for="endDate" className="form-label">
-                Ending Date{" "}
-              </label>
-              <input type="date" className="form-control" name="enddate" id="user_register" required
-                value={crediantial.enddate}
-                onChange={onchange}
-                min={crediantial.startdate}
-                disabled={isSubscribed}
-              />
-
-              <div className="form-check mt-3" >
-                <input className="form-check-input" type="checkbox" value={isSubscribed} id="flexCheckDefault" onClick={intStatus} />
-                <label className="form-check-label" for="flexCheckDefault">
-                  is internship going on?
-                </label>
-              </div>
-
-            </div>
-            <div className="col-md-4 dataEnter_input ">
-              <label for="companyName" className="form-label">
-                Name of Company
-              </label>
-              <input type="text" className="form-control" name="nameofcompany" id="companyName"
-                value={crediantial.nameofcompany}
-                onChange={onchange}
-              />
-            </div>
-            <div className="col-md-4 dataEnter_input ">
-              <label for="Domain" className="form-label">
-                Domain of Internship
-              </label>
-              <select name="domain" id="Domain" className="form-select" value={crediantial.domain}
-                onChange={onchange}>
-                <option value="" defaultValue>--select--</option>
-                {
-                  domains.map((d) => (
-                    <option value={d.domain}>{d.domain}</option>
-                  ))
-                }
-              </select>
-            </div>
-
-            <div className="col-md-4 dataEnter_input " style={{ display: crediantial.domain === "other" ? "block" : "none" }}>
-              <label for="Domain2" className="form-label">
-                please specify(domain)
-              </label>
-              <input type="text" name="domain2" id="Domain2" className="form-control" value={crediantial.domain2}
-                onChange={onchange}
-              >
-              </input>
-            </div>
-
-
-
-            <div className="col-md-4 dataEnter_input ">
-              <label for="internshipContact" className="form-label">
-                Contact details of internship
-              </label>
-              <input type="tel" className="form-control" id="internshipContact" maxLength="10" name="contactofcompany" value={crediantial.contactofcompany}
-                onChange={onchange}
-              />
-            </div>
-            <div className="col-md-4 dataEnter_input ">
-              <label for="Certificate" className="form-label">
-                Certificate/Joining Letter
-              </label>
-              <input className="form-control" type="file" id="Certificate" accept="image/jpeg, image/png, application/pdf" name="certificate" required
-                value={crediantial.certificate} onChange={(e) => {
-                  setImageuploaded(e.target.files[0]);
-                }} />
+<button type="button" class="btn btn-primary" ref={ref} data-toggle="modal" style={{display:"none"}} data-target=".bd-example-modal-sm">Small modal</button>
+      <div class="modal fade bd-example-modal-sm"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modelPopup">
+          <div class="modal-content modelPopup2">
+            <div className="popupicon">
+          <i class="far fa-check-circle"></i>
+          </div>
+            <h5 className="popupheading">Your submission has been received.</h5>
+            <div className="popupBtn">
+              <Link to="/">
+              <button className="btn btn-primary">Back to Home Page</button>
+              </Link>
             </div>
           </div>
-          <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger" disabled={isLoading}>
-            Add
-          </button>
-        </form>
+        </div>
       </div>
-      </div>
-    }
+
+      {isLoading ? <Spinner /> :
+        <div style={{ overflow: "hidden", border: "1px solid gray", marginTop: "40px" }}>
+          <div className="internship">
+            <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
+              <h4>Internship Detail</h4>
+              <div className="row" style={{ marginTop: "30px" }}>
+                <div className="col-md-4 dataEnter_input ">
+                  <label for="startDate" className="form-label">
+                    Starting Date{" "}
+                  </label>
+                  <input type="date" name="startdate" className="form-control" id="startDate"
+                    value={crediantial.startdate}
+                    onChange={onchange}
+                    required
+                  />
+                </div>
+                <div className="col-md-4 dataEnter_input ">
+                  <label for="endDate" className="form-label">
+                    Ending Date{" "}
+                  </label>
+                  <input type="date" className="form-control" name="enddate" id="user_register" required
+                    value={crediantial.enddate}
+                    onChange={onchange}
+                    min={crediantial.startdate}
+                    disabled={isSubscribed}
+                  />
+
+                  <div className="form-check mt-3" >
+                    <input className="form-check-input" type="checkbox" value={isSubscribed} id="flexCheckDefault" onClick={intStatus} />
+                    <label className="form-check-label" for="flexCheckDefault">
+                      is internship going on?
+                    </label>
+                  </div>
+
+                </div>
+                <div className="col-md-4 dataEnter_input ">
+                  <label for="companyName" className="form-label">
+                    Name of Company
+                  </label>
+                  <input type="text" className="form-control" name="nameofcompany" id="companyName"
+                    value={crediantial.nameofcompany}
+                    onChange={onchange}
+                  />
+                </div>
+                <div className="col-md-4 dataEnter_input ">
+                  <label for="Domain" className="form-label">
+                    Domain of Internship
+                  </label>
+                  <select name="domain" id="Domain" className="form-select" value={crediantial.domain}
+                    onChange={onchange}>
+                    <option value="" defaultValue>--select--</option>
+                    {
+                      domains.map((d) => (
+                        <option value={d.domain}>{d.domain}</option>
+                      ))
+                    }
+                  </select>
+                </div>
+
+                <div className="col-md-4 dataEnter_input " style={{ display: crediantial.domain === "other" ? "block" : "none" }}>
+                  <label for="Domain2" className="form-label">
+                    please specify(domain)
+                  </label>
+                  <input type="text" name="domain2" id="Domain2" className="form-control" value={crediantial.domain2}
+                    onChange={onchange}
+                  >
+                  </input>
+                </div>
+
+
+
+                <div className="col-md-4 dataEnter_input ">
+                  <label for="internshipContact" className="form-label">
+                    Contact details of internship
+                  </label>
+                  <input type="tel" className="form-control" id="internshipContact" maxLength="10" name="contactofcompany" value={crediantial.contactofcompany}
+                    onChange={onchange}
+                  />
+                </div>
+                <div className="col-md-4 dataEnter_input ">
+                  <label for="Certificate" className="form-label">
+                    Certificate/Joining Letter
+                  </label>
+                  <input className="form-control" type="file" id="Certificate" accept="image/jpeg, image/png, application/pdf" name="certificate" required
+                    value={crediantial.certificate} onChange={(e) => {
+                      setImageuploaded(e.target.files[0]);
+                    }} />
+                </div>
+              </div>
+              <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger" disabled={isLoading}>
+                Add
+              </button>
+            </form>
+          </div>
+        </div>
+      }
     </>
   );
 }
