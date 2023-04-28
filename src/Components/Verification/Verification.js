@@ -36,6 +36,7 @@ const Verification = () => {
 
     useEffect(() => {
         fetchPost();
+        // eslint-disable-next-line
     }, [refesh])
 
 
@@ -246,6 +247,7 @@ const Verification = () => {
                 
                     {data.length <= 0 ? <h3 style={{ textAlign: "center" }}> Nothing to display</h3> :
                         <div className='container'>
+                            <h2>Verification</h2>
 
                             {
                                 data.map((item) => {

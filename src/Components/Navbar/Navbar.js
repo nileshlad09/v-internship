@@ -26,8 +26,8 @@ const Navbar = () => {
 
           <button className="navbar-toggler custom-toggler" style={{border:"0px"}} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <input id="menu-toggle" type="checkbox" />
-          <label class='menu-button-container' for="menu-toggle">
-            <div class='menu-button'></div>
+          <label className='menu-button-container' htmlFor="menu-toggle">
+            <div className='menu-button'></div>
           </label>
           </button>
 
