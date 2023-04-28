@@ -21,17 +21,20 @@ const Verification = () => {
     const refClose = useRef(null);
 
     const fetchPost = async () => {
+        setIsLoading(true);
         await getDocs(query(collection(db, "students"), orderBy("startdate"), limit(10)))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setTodos(newData);
                 setIsLoading(false)
+            }).catch((e)=>{
+                showAlert("danger", "Internal error")
+                setIsLoading(false)
             })
     }
 
     useEffect(() => {
-        setIsLoading(true);
         fetchPost();
     }, [refesh])
 

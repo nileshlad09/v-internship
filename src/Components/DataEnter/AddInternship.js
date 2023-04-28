@@ -96,7 +96,8 @@ function AddInternship() {
       const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}_${b}.${imageuploaded.name.split('.').pop()}`
       // filename will look like rollNumber_startdate.extension
       // the actual code to upload the file
-      var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded)
+      var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded);
+       
       // and getting the download URL
       task.then((res) => {
         res.ref.getDownloadURL().then((url) => {

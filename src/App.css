@@ -1,6 +1,6 @@
 .addInternship,
 .dashboard{
-  padding-top: 60px;
+  padding: 60px 0;
   background: url(https://vit.edu.in/images/body_bg.png) no-repeat fixed;
   background-size: cover;
   min-height: 100vh;
