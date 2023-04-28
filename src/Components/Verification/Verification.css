@@ -1,10 +1,11 @@
-.info{
+.info {
   border: 1px solid gray;
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
 }
-.verificationPage{
+
+.verificationPage {
   padding-top: 60px;
   /* background: url(https://vit.edu.in/images/body_bg.png) no-repeat fixed; */
   background-size: cover;
@@ -12,14 +13,16 @@
   background-color: #fff;
   min-height: 100vh;
 }
-.verification_input_box{
+
+.verification_input_box {
   margin-top: 0.45rem;
 }
-.verification_input_box input{
+
+.verification_input_box input {
   font-size: 0.9rem;
 }
 
-.verification_title{
+.verification_title {
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
@@ -27,34 +30,36 @@
 
 
 
-.verification_Btn{
+.verification_Btn {
   display: flex;
   gap: 10px;
 }
 
-.p-data{
+.p-data {
   background-color: red;
 }
 
-.gifimage{
+.gifimage {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 85px;
-   min-height: 65vh;
+  min-height: 65vh;
 }
-.gifimage img{
+
+.gifimage img {
   height: 150px;
   width: 150px;
 }
 
-@media (min-width:786px){
- .modal-dialog {
+@media (min-width:786px) {
+  .modal-dialog {
     max-width: 80%;
     margin: 1.75rem auto;
-}
-.gifimage img{
-  height: 150px;
-  width: 150px;
-}
+  }
+
+  .gifimage img {
+    height: 150px;
+    width: 150px;
+  }
 }

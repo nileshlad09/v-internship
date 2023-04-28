@@ -71,7 +71,7 @@ const Deleteold = () => {
                                         <td style={{ textAlign: "center" }}>{item.email}</td>
                                         <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
                                         <td style={{ textAlign: "center" }}>
-                                            <button className="btn btn-primary" onClick={()=>reject(item)}>Delete</button>
+                                            <button className="btn btn-primary"  onClick={()=>reject(item)}>Delete</button>
                                         </td>
                                     </tr>
                                 )
