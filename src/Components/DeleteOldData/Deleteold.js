@@ -17,7 +17,7 @@ const Deleteold = () => {
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
 
     const fetchPost = async (year, branch) => {
-        await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", year), limit(10)))
+        await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", year), limit(12)))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));

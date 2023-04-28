@@ -22,7 +22,7 @@ const Verification = () => {
 
     const fetchPost = async () => {
         setIsLoading(true);
-        await getDocs(query(collection(db, "students"), orderBy("startdate"), limit(10)))
+        await getDocs(query(collection(db, "students"), orderBy("startdate"), limit(12)))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));

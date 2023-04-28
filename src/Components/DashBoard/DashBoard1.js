@@ -1,26 +1,25 @@
 import React from 'react'
 import './DashBoard1.css'
 import { Link } from 'react-router-dom'
-
 const DashBoard = ({ arr1, crediantial,dummyYear }) => {
 
     const batch3 = arr1[2].length;
     const batch2 = arr1[1].length;
     const batch1 = arr1[0].length;
     const Foryear = crediantial ? crediantial.Foryear : dummyYear;
-    var studentCount=[0,1,2];
+    var studentCount = [0, 1, 2];
     return (
         <div className='Dashboard_Section'>
             <div className="Dashboard_Section_1">
                 <div className="Dashboard_box Dashboard_main_box">
                     <p className='Dashboard_title_1'>Total Number of Students</p>
                 </div>
-                {studentCount.map((d,i) => {
+                {studentCount.map((d, i) => {
                     return (
-                        <div className="Dashboard_box" key={i}>
-                            <p className='Dashboard_title_1' style={{display:i===0?"block":"none" ,fontSize:"1.6rem"} }>SE</p>
-                            <p className='Dashboard_title_1' style={{display:i===1?"block":"none",fontSize:"1.6rem"}}>TE</p>
-                            <p className='Dashboard_title_1' style={{display:i===2?"block":"none",fontSize:"1.6rem"}}>BE</p>
+                        <div className="Dashboard_box">
+                            <p className='Dashboard_title_1' style={{display:i==0?"block":"none" ,fontSize:"1.6rem"} }>SE</p>
+                            <p className='Dashboard_title_1' style={{display:i==1?"block":"none",fontSize:"1.6rem"}}>TE</p>
+                            <p className='Dashboard_title_1' style={{display:i==2?"block":"none",fontSize:"1.6rem"}}>BE</p>
                         </div>
                     )
                 })}
