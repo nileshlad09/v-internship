@@ -7,7 +7,7 @@ const Graph2 = (props) => {
     function findOcc(data2, key) {
         let arr2 = [];
         data2.forEach((x) => {
-            if (arr2.some((val) => { return val[key].toLowerCase() == x[key].toLowerCase() })) {
+            if (arr2.some((val) => { return val[key].toLowerCase() === x[key].toLowerCase() })) {
                 arr2.forEach((k) => {
                     if (k[key].toLowerCase() === x[key].toLowerCase()) {
                         k["occurrence"]++

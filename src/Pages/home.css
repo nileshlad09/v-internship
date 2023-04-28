@@ -5,25 +5,19 @@ body{
 }
 
 .homeSec{
-    background: url(../Images/vitcampus.jpg) no-repeat;
+    background: url(../Images/vitcampus.jpg) no-repeat fixed;
     background-size: cover;
     min-height: 100vh;
     width: 100%;
     padding-top: 60px;
-    position: fixed;
 }
 
-.images{
+.Homeimages{
     background-color: #000000e6;
     padding: 40px;
 }
-img{
-    background-repeat: no-repeat;
-    height: 90px;
-    width: 350px;
-    position: relative;
-    right: 50px;
-    bottom: 20px;
+.vitlogo{
+    width: 250px;
 }
 /* .backimg{
     position: relative;
@@ -83,6 +77,9 @@ img{
 
 @media screen and (max-width: 680px) {
 
+    .vitlogo{
+        width: 200px;
+    }
     .homeOption_box{
         background-color: #17a2b8;
         width: 200px;
@@ -114,3 +111,15 @@ img{
         text-align: center;
     }
   }
+@media screen and (max-width:580px) {
+    .homeSec{
+        padding: 0;
+    }
+    .Homeimages{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+}

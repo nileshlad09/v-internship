@@ -8,7 +8,6 @@ import { db, storage } from "../../firebase";
 import { domains } from '../../DataFiles/dataManages'
 import Spinner from "../Spinner/Spinner"
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 function AddInternship() {
 
   const ref = useRef(null);
@@ -18,7 +17,7 @@ function AddInternship() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  if (JSON.stringify(crediantial2) == "{}") {
+  if (JSON.stringify(crediantial2) === "{}") {
     history.push('/addinternship/1');
   }
 
@@ -31,6 +30,7 @@ function AddInternship() {
 
   useEffect(() => {
     setCrediential({ ...crediantial2, ...crediantial });
+    // eslint-disable-next-line 
   }, [])
 
   const date = new Date();
@@ -48,7 +48,7 @@ function AddInternship() {
   //firebase code
   async function writetoDB(cred, imagelink) {
     try {
-      const docRef = await addDoc(collection(db, "students"), {
+      await addDoc(collection(db, "students"), {
         Foryear: dummyYear,
         branch: cred.branch,
         nameofstudent: cred.nameofstudent,
@@ -60,7 +60,7 @@ function AddInternship() {
         year: cred.year,
         contactofcompany: cred.contactofcompany,
         nameofcompany: cred.nameofcompany,
-        domain: cred.domain == "other" ? cred.domain2 : cred.domain,
+        domain: cred.domain === "other" ? cred.domain2 : cred.domain,
         startdate: cred.startdate,
         enddate: cred.enddate ? cred.enddate : " ",
         certificate: imagelink,
@@ -71,6 +71,7 @@ function AddInternship() {
       // history.push('/');
       ref.current.click()
     } catch (e) {
+      setIsLoading(false);
       console.error("Error adding document: ", e);
       showAlert("danger", "Internal Error");
     }
@@ -87,19 +88,27 @@ function AddInternship() {
   // }, [imageURL])
   // useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
-    var time = new Date().getMilliseconds().toString();
-    if (imageuploaded == null) return;
-    // generate a unique filename
-    const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}_${time}.${imageuploaded.name.split('.').pop()}`
-    // filename will look like rollNumber_startdate.extension
-    // the actual code to upload the file
-    var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded)
-    // and getting the download URL
-    task.then((res) => {
-      res.ref.getDownloadURL().then((url) => {
-        writetoDB(crediantial, url);
-      }); //finally write to DB after we get the URL
-    });
+
+      var a = new Date();
+      var b = String(a).slice(0,25).replaceAll(' ', '').toLowerCase()
+      if (imageuploaded === null) return;
+      // generate a unique filename
+      const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}_${b}.${imageuploaded.name.split('.').pop()}`
+      // filename will look like rollNumber_startdate.extension
+      // the actual code to upload the file
+      var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded)
+      // and getting the download URL
+      task.then((res) => {
+        res.ref.getDownloadURL().then((url) => {
+          writetoDB(crediantial, url);
+        }).catch(()=>{
+          showAlert("danger", "Internal Error");
+          setIsLoading(false);   
+        }); //finally write to DB after we get the URL
+      }).catch(()=>{
+        showAlert("danger", "Internal Error");
+        setIsLoading(false);   
+      }) 
   }
 
 
@@ -138,22 +147,24 @@ function AddInternship() {
     setIsSubscribed(current => !current);
   }
 
- 
+  const popupaccepted = ()=>{
+    history.push("/")
+    ref.current.click();
+  }
+
 
   return (
     <>
-<button type="button" class="btn btn-primary" ref={ref} data-toggle="modal" style={{display:"none"}} data-target=".bd-example-modal-sm">Small modal</button>
-      <div class="modal fade bd-example-modal-sm"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modelPopup">
-          <div class="modal-content modelPopup2">
+      <button type="button" className="btn btn-primary" ref={ref} data-toggle="modal" style={{ display: "none" }} data-target=".bd-example-modal-sm">Small modal</button>
+      <div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-sm modelPopup">
+          <div className="modal-content modelPopup2">
             <div className="popupicon">
-          <i class="far fa-check-circle"></i>
-          </div>
+              <i className="far fa-check-circle"></i>
+            </div>
             <h5 className="popupheading">Your submission has been received.</h5>
             <div className="popupBtn">
-              <Link to="/">
-              <button className="btn btn-primary">Back to Home Page</button>
-              </Link>
+                <button className="btn btn-primary" onClick={popupaccepted}>Back to Home Page</button>
             </div>
           </div>
         </div>
@@ -166,7 +177,7 @@ function AddInternship() {
               <h4>Internship Detail</h4>
               <div className="row" style={{ marginTop: "30px" }}>
                 <div className="col-md-4 dataEnter_input ">
-                  <label for="startDate" className="form-label">
+                  <label htmlFor="startDate" className="form-label">
                     Starting Date{" "}
                   </label>
                   <input type="date" name="startdate" className="form-control" id="startDate"
@@ -176,7 +187,7 @@ function AddInternship() {
                   />
                 </div>
                 <div className="col-md-4 dataEnter_input ">
-                  <label for="endDate" className="form-label">
+                  <label htmlFor="endDate" className="form-label">
                     Ending Date{" "}
                   </label>
                   <input type="date" className="form-control" name="enddate" id="user_register" required
@@ -188,14 +199,14 @@ function AddInternship() {
 
                   <div className="form-check mt-3" >
                     <input className="form-check-input" type="checkbox" value={isSubscribed} id="flexCheckDefault" onClick={intStatus} />
-                    <label className="form-check-label" for="flexCheckDefault">
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
                       is internship going on?
                     </label>
                   </div>
 
                 </div>
                 <div className="col-md-4 dataEnter_input ">
-                  <label for="companyName" className="form-label">
+                  <label htmlFor="companyName" className="form-label">
                     Name of Company
                   </label>
                   <input type="text" className="form-control" name="nameofcompany" id="companyName"
@@ -204,7 +215,7 @@ function AddInternship() {
                   />
                 </div>
                 <div className="col-md-4 dataEnter_input ">
-                  <label for="Domain" className="form-label">
+                  <label htmlFor="Domain" className="form-label">
                     Domain of Internship
                   </label>
                   <select name="domain" id="Domain" className="form-select" value={crediantial.domain}
@@ -212,14 +223,14 @@ function AddInternship() {
                     <option value="" defaultValue>--select--</option>
                     {
                       domains.map((d) => (
-                        <option value={d.domain}>{d.domain}</option>
+                        <option key={d.domain} value={d.domain}>{d.domain}</option>
                       ))
                     }
                   </select>
                 </div>
 
                 <div className="col-md-4 dataEnter_input " style={{ display: crediantial.domain === "other" ? "block" : "none" }}>
-                  <label for="Domain2" className="form-label">
+                  <label htmlFor="Domain2" className="form-label">
                     please specify(domain)
                   </label>
                   <input type="text" name="domain2" id="Domain2" className="form-control" value={crediantial.domain2}
@@ -231,7 +242,7 @@ function AddInternship() {
 
 
                 <div className="col-md-4 dataEnter_input ">
-                  <label for="internshipContact" className="form-label">
+                  <label htmlFor="internshipContact" className="form-label">
                     Contact details of internship
                   </label>
                   <input type="tel" className="form-control" id="internshipContact" maxLength="10" name="contactofcompany" value={crediantial.contactofcompany}
@@ -239,7 +250,7 @@ function AddInternship() {
                   />
                 </div>
                 <div className="col-md-4 dataEnter_input ">
-                  <label for="Certificate" className="form-label">
+                  <label htmlFor="Certificate" className="form-label">
                     Certificate/Joining Letter
                   </label>
                   <input className="form-control" type="file" id="Certificate" accept="image/jpeg, image/png, application/pdf" name="certificate" required

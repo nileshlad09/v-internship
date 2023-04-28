@@ -1,18 +1,27 @@
 export const domains = [
     {
-        "domain":"web development",
+        "domain":"Web Development",
     },
     {
-        "domain":"app development",
+        "domain":"App Development",
     },
     {
-        "domain":"data science",
+        "domain":"Data Science",
     },
     {
-        "domain":"machine learning",
+        "domain":"Machine Learning",
     },
     {
-        "domain":"cyber security",
+        "domain":"Cyber Security",
+    },
+    {
+        "domain":"Business Analytics",
+    },
+    {
+        "domain":"Software Developer",
+    },
+    {
+        "domain":"Content Writing",
     },
     {
         "domain":"other"

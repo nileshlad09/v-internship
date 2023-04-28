@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useContext} from 'react'
 import { CgEye } from 'react-icons/cg'
 import './dataview.css'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs,query,where } from "firebase/firestore";
-
+import studentContext from '../../context/student/studentContext';
 import { db } from "../../firebase";
 import * as XLSX from 'xlsx';
 import Spinner from '../Spinner/Spinner';
 
 const View = () => {
+
+  const context = useContext(studentContext);
+  const { showAlert } = context;
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -52,14 +55,16 @@ const View = () => {
 
   const fetchPost = async (foryear,year) => {
     // console.log(foryear,year)
-    if(year=="ALL"){
+    if(year==="ALL"){
       await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", foryear)))
       .then((querySnapshot) => {
         const newData = querySnapshot.docs
           .map((doc) => ({ ...doc.data() }));
         setTodos(newData);
         setIsLoading(false);
-      })
+      }).catch((error) => {
+        showAlert("danger", "Internal error")
+    });
     }else{
       await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", foryear), where("year", "==", year)))
         .then((querySnapshot) => {
@@ -67,7 +72,9 @@ const View = () => {
             .map((doc) => ({ ...doc.data() }));
           setTodos(newData);
           setIsLoading(false);
-        })
+        }).catch((error) => {
+          showAlert("danger", "Internal error")
+      });
     }
   }
   // console.log(data)
@@ -75,6 +82,7 @@ const View = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchPost(y,b);
+    // eslint-disable-next-line 
   }, [y,b])
 
 
@@ -192,6 +200,7 @@ const View = () => {
                   }
                 })
 
+                // eslint-disable-next-line 
                 .filter(function (val) {
                   if (val.Foryear === foryear) {
                     return val;
@@ -254,9 +263,9 @@ const View = () => {
                       <td style={{ textAlign: "center" }}>{item.startdate}</td>
                       <td style={{ textAlign: "center" }}> {item.enddate}</td>
 
-                      <td style={{ textAlign: "center" }}>{item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
+                      <td style={{ textAlign: "center" }}>{item.enddate === " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
                       <td style={{ textAlign: "center" }}>
-                        <a href={item.certificate} target='_blank'><CgEye /></a>
+                        <a href={item.certificate} target='_blank' rel="noreferrer" ><CgEye /></a>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>

@@ -42,7 +42,6 @@ const AdminLogin = () => {
         } else {
           showAlert("danger", "internal error");
         }
-
         setIsLoading(false)
       });
   }
@@ -51,7 +50,6 @@ const AdminLogin = () => {
 
   return (
     <div>
-      
       {isLoading? <Spinner/>:
       <div className="AdminLogin">
         <div className="AdminLogin_modalForm">

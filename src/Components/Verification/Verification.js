@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useReducer, useRef, useContext } from 'react'
 import './Verification.css'
-import { collection, getDocs, deleteDoc, doc, query, limit } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, query, limit, orderBy } from "firebase/firestore";
 import { db } from "../../firebase";
 import { addDoc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
@@ -21,7 +21,7 @@ const Verification = () => {
     const refClose = useRef(null);
 
     const fetchPost = async () => {
-        await getDocs(query(collection(db, "students"), limit(10)))
+        await getDocs(query(collection(db, "students"), orderBy("startdate"), limit(10)))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -82,7 +82,7 @@ const Verification = () => {
 
     const writetoDB = async (cred) => {
         try {
-            const docRef = addDoc(collection(db, "acceptedStudents"), {
+            await addDoc(collection(db, "acceptedStudents"), {
                 Foryear: cred.Foryear ? cred.Foryear : cred.eForyear,
                 branch: cred.branch ? cred.branch : cred.ebranch,
                 nameofstudent: cred.nameofstudent ? cred.nameofstudent : cred.enameofstudent,
@@ -297,7 +297,7 @@ const Verification = () => {
                                                     </div>
                                                     <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
                                                         <label htmlFor="inputCity" className="form-label verification_title">Duration</label>
-                                                        <input type="text" value={item.enddate == " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`} className="form-control" id="inputCity" />
+                                                        <input type="text" value={item.enddate === " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`} className="form-control" id="inputCity" />
                                                     </div>
                                                     <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
                                                         <label htmlFor="inputCity" className="form-label verification_title">Contact details of internship</label>
@@ -305,7 +305,7 @@ const Verification = () => {
                                                     </div>
                                                     <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
                                                         <label htmlFor="inputCity" className="form-label verification_title">Certificate/Joining Letter</label>
-                                                        <a href={item.certificate} target='_blank' style={{ color: "blue", listStyle: "none" }}><button type="button" className="btn btn-info">view certificate</button></a>
+                                                        <a href={item.certificate} target='_blank' rel="noreferrer" style={{ color: "blue", listStyle: "none" }}><button type="button" className="btn btn-info">view certificate</button></a>
                                                     </div>
 
                                                 </div>

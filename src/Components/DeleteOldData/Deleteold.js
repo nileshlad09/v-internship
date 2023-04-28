@@ -1,10 +1,16 @@
-import React, { useState, useReducer,useEffect } from 'react'
+import React, { useState, useReducer,useEffect, useContext } from 'react'
 import './deleteOld.css'
 import { collection, getDocs, query, where,deleteDoc, doc, limit } from "firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { db } from "../../firebase"
 import Spinner from '../Spinner/Spinner';
+import studentContext from '../../context/student/studentContext';
+
 const Deleteold = () => {
+
+    const context = useContext(studentContext);
+  const { showAlert } = context;
+
     const [isLoading, setIsLoading] = useState(false);
     const [todos, setTodos] = useState([]);
     const [year, setYear] = useState();
@@ -17,10 +23,13 @@ const Deleteold = () => {
                     .map((doc) => ({ ...doc.data() ,id: doc.id}));
                 setTodos(newData);
                 setIsLoading(false)
-            })
+            }).catch((error) => {
+                showAlert("danger", "Internal error")
+            });
     }
     useEffect(() => {
         fetchPost(year);
+        // eslint-disable-next-line 
     }, [refesh,year])
 
     const reject = async (item) => {

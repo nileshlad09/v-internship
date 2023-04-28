@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <>
     <div className="homeSec">
-      <div className='images container'>
-        <img src={logo} alt='logo'></img>
+      <div className='Homeimages container'>
+        <img src={logo} alt='logo' className='vitlogo'></img>
         <div className='homePage'>
           <h4 className="homePageHeading">Internship Portal of <span className='logoColor'>Vidyalankar Institute of Technology(VIT)</span>, Mumbai</h4>
           <div className="homeOptions">

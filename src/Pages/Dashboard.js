@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
 import Topcom from '../Components/DashBoard/Topcom'
 import { Link } from 'react-router-dom'
 import { collection, getDocs, query, where } from "firebase/firestore";
+import studentContext from '../context/student/studentContext';
 
 import { db } from "../firebase";
 import Spinner from '../Components/Spinner/Spinner'
 
 const Dashboard = () => {
+
+  const context = useContext(studentContext);
+  const { showAlert } = context;
 
   const [isLoading, setIsLoading] = useState(false);
   const [todos, setTodos] = useState([]);
@@ -23,7 +27,9 @@ const Dashboard = () => {
           .map((doc) => ({ ...doc.data() }));
         setTodos(newData);
         setIsLoading(false);
-      })
+      }).catch((error) => {
+        showAlert("danger", "Internal error")
+    });
   }
 
 
@@ -59,6 +65,7 @@ const Dashboard = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchPost(crediantial.Foryear ? crediantial.Foryear : dummyYear);
+    // eslint-disable-next-line 
   }, [crediantial.Foryear, dummyYear])
 
   return (
