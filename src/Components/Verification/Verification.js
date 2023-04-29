@@ -120,8 +120,7 @@ const Verification = () => {
     const reject = async (item) => {
         try {
         const storage = getStorage();
-        await deleteDoc(doc(db, "students", item.id ? item.id : item.eid))
-        await deleteObject(ref(storage, item.certificate))
+        await deleteDoc(doc(db, "students", item.id ? item.id : item.eid)).then(()=>{deleteObject(ref(storage, item.certificate)).then(()=>{  showAlert("success", "data deleted successfully")})})
         showAlert("success", "data deleted successfully")
         forceRefresh();}
         catch (error) {
