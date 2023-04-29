@@ -118,17 +118,15 @@ const Verification = () => {
     }
 
     const reject = async (item) => {
+        try {
         const storage = getStorage();
-
-        const desertRef = ref(storage, item.certificate);
-        await deleteObject(desertRef).then(() => {
-            deleteDoc(doc(db, "students", item.id ? item.id : item.eid))
-            showAlert("success", "data deleted successfully")
-            forceRefresh();
-        }).catch((error) => {
-            showAlert("danger", "Internal error")
-        });
-
+        await deleteDoc(doc(db, "students", item.id ? item.id : item.eid))
+        await deleteObject(ref(storage, item.certificate))
+        showAlert("success", "data deleted successfully")
+        forceRefresh();}
+        catch (error) {
+            showAlert("danger", "Internal Error")
+        }
     }
 
     const handleClick = (e) => {

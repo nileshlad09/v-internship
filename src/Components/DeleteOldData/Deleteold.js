@@ -36,20 +36,7 @@ const Deleteold = () => {
         // eslint-disable-next-line 
     }, [refesh, year])
 
-    const reject = async (item) => {
-        setIsLoading(true);
-        const storage = getStorage();
-        // console.log(item);
-        // const desertRef = ref(storage, item.certificate);
-        await deleteObject(ref(storage, item.certificate)).then(() => {
-            deleteDoc(doc(db, "acceptedStudents", item.id ? item.id : item.eid))
-            forceRefresh();
-            // console.log("Deleted")
-        }).catch(() => {
-            showAlert("danger", "Internal error");
-            setIsLoading(false)
-        })
-    }
+    
 
     const deleteAll = async (year) => {
         if (year === undefined) {
@@ -63,16 +50,13 @@ const Deleteold = () => {
         else {
             setIsLoading(true)
             todos.forEach(async (todos) => {
+                console.log("deleted")
                 try {
                     const storage = getStorage();
-                    const desertRef = ref(storage, todos.certificate);
-                    await deleteObject(desertRef).then(() => {
-                        deleteDoc(doc(db, "acceptedStudents", todos.id))
-                        showAlert("success", `Internship data for year ${year} deleted successfully`)
-                        forceRefresh();
-                    }).catch((error) => {
-                        showAlert("danger", "Internal error")
-                    });
+                    await deleteDoc(doc(db, "acceptedStudents", todos.id))
+                    await deleteObject(ref(storage, todos.certificate))
+                    console.log(todos.id)
+                    showAlert("success", `Internship data for year ${year} deleted successfully`)
                     forceRefresh();
                     setIsLoading(false)
                 } catch (error) {
@@ -81,7 +65,6 @@ const Deleteold = () => {
                 }
             })
         }
-
     }
     return (
         <>
@@ -98,13 +81,7 @@ const Deleteold = () => {
                             <div className=" deleteAllbtn">
                                 <button className="btn btn-primary" onClick={() => deleteAll(year)}>Delete all selected data</button>
                             </div>
-
                         </div>
-
-
-
-
-
 
                         <section className='dataview_section'>
                             <div className="tbl-header">
@@ -117,7 +94,8 @@ const Deleteold = () => {
                                                 <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
                                                 <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
                                                 <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}></th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Year</th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Sem</th>
                                             </tr>
 
 
@@ -130,9 +108,8 @@ const Deleteold = () => {
                                                         <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
                                                         <td style={{ textAlign: "center" }}>{item.email}</td>
                                                         <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
-                                                        <td style={{ textAlign: "center" }}>
-                                                            <button className="btn btn-primary" onClick={() => reject(item)}>Delete</button>
-                                                        </td>
+                                                        <td style={{ textAlign: "center" }}>{item.year}</td>
+                                                        <td style={{ textAlign: "center" }}>{item.semester}</td>
                                                     </tr>
                                                 )
                                             })
