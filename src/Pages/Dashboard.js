@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext} from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
 import Graph from '../Components/DashBoard/Graph'
 import Graph2 from '../Components/DashBoard/Graph2'
@@ -6,7 +6,7 @@ import Topcom from '../Components/DashBoard/Topcom'
 import { Link } from 'react-router-dom'
 import { collection, getDocs, query, where } from "firebase/firestore";
 import studentContext from '../context/student/studentContext';
-
+import './Dashboard.css'
 import { db } from "../firebase";
 import Spinner from '../Components/Spinner/Spinner'
 
@@ -29,7 +29,8 @@ const Dashboard = () => {
         setIsLoading(false);
       }).catch((error) => {
         showAlert("danger", "Internal error")
-    });
+        setIsLoading(false);
+      });
   }
 
 
@@ -73,17 +74,15 @@ const Dashboard = () => {
       {isLoading ? <Spinner /> :
         <div className="dashboard ">
           <div className="container">
-            <div className="row">
-              <div className="col-md-8">
-                <div className="col-md-4">
-                  <select name="Foryear" id="year" className="form-select" onChange={onchange} value={crediantial.Foryear}>
-                    <option value={dummyYear1}>July {String(dummyYear1).slice(0, 4)} - June {String(dummyYear1).slice(5, 7)}</option>
-                    <option value={dummyYear2}>July {String(dummyYear2).slice(0, 4)} - June {String(dummyYear2).slice(5, 7)}</option>
-                    <option value={dummyYear} selected> July {String(dummyYear).slice(0, 4)} - June {String(dummyYear).slice(5, 7)}</option>
-                  </select>
-                </div>
+            <div className="dashboardOptions">
+              <div className="yearSelectBtn">
+                <select name="Foryear" id="year" className="form-select" onChange={onchange} value={crediantial.Foryear}>
+                  <option value={dummyYear1}>July {String(dummyYear1).slice(0, 4)} - June {String(dummyYear1).slice(5, 7)}</option>
+                  <option value={dummyYear2}>July {String(dummyYear2).slice(0, 4)} - June {String(dummyYear2).slice(5, 7)}</option>
+                  <option value={dummyYear} selected> July {String(dummyYear).slice(0, 4)} - June {String(dummyYear).slice(5, 7)}</option>
+                </select>
               </div>
-              <div className="col-md-4 dashBoardBtn">
+              <div className="dashBoardBtn">
                 <Link to="/dashboard/deleteold"><button className='btn btn-dark'>Delete old data</button></Link>
               </div>
             </div>
@@ -93,12 +92,10 @@ const Dashboard = () => {
                 <Graph arr1={arr1} />
                 <p className='heading'>No.of students completed internship</p>
               </div>
-              {data2.length ?
-                <div className="graph_1 chart col-md-8 col-lg-5">
-                  <Graph2 data2={data2} />
-                  <p className='heading'>Most frequent company's student join</p>
-                </div> : ""
-              }
+              <div className="graph_1 chart col-md-8 col-lg-5">
+                <Graph2 data2={data2} />
+                <p className='heading'>Most frequent company's student join</p>
+              </div>
               <div className="dashboard_table chart col-md-8 col-lg-4">
                 <Topcom data2={data2} />
                 <p className='heading'>Top Company</p>

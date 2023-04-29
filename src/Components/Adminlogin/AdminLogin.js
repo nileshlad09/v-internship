@@ -38,9 +38,9 @@ const AdminLogin = () => {
           err.code === AuthErrorCodes.INVALID_PASSWORD ||
           err.code === AuthErrorCodes.USER_DELETED
         ) {
-          showAlert("danger", "The email address or password is incorrect");
+          showAlert("warning", "The email address or password is incorrect");
         } else {
-          showAlert("danger", "internal error");
+          showAlert("danger", "Internal error");
         }
         setIsLoading(false)
       });

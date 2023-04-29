@@ -89,27 +89,27 @@ function AddInternship() {
   // useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
 
-      var a = new Date();
-      var b = String(a).slice(0,25).replaceAll(' ', '').toLowerCase()
-      if (imageuploaded === null) return;
-      // generate a unique filename
-      const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}_${b}.${imageuploaded.name.split('.').pop()}`
-      // filename will look like rollNumber_startdate.extension
-      // the actual code to upload the file
-      var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded);
-       
-      // and getting the download URL
-      task.then((res) => {
-        res.ref.getDownloadURL().then((url) => {
-          writetoDB(crediantial, url);
-        }).catch(()=>{
-          showAlert("danger", "Internal Error");
-          setIsLoading(false);   
-        }); //finally write to DB after we get the URL
-      }).catch(()=>{
+    var a = new Date();
+    var b = String(a).slice(0, 25).replaceAll(' ', '').toLowerCase()
+    if (imageuploaded === null) return;
+    // generate a unique filename
+    const fileName = `${dummyYear}_${crediantial.year}_${crediantial.rollNumber}_${crediantial.startdate}_${b}.${imageuploaded.name.split('.').pop()}`
+    // filename will look like rollNumber_startdate.extension
+    // the actual code to upload the file
+    var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded);
+
+    // and getting the download URL
+    task.then((res) => {
+      res.ref.getDownloadURL().then((url) => {
+        writetoDB(crediantial, url);
+      }).catch(() => {
         showAlert("danger", "Internal Error");
-        setIsLoading(false);   
-      }) 
+        setIsLoading(false);
+      }); //finally write to DB after we get the URL
+    }).catch(() => {
+      showAlert("danger", "Internal Error");
+      setIsLoading(false);
+    })
   }
 
 
@@ -148,7 +148,7 @@ function AddInternship() {
     setIsSubscribed(current => !current);
   }
 
-  const popupaccepted = ()=>{
+  const popupaccepted = () => {
     history.push("/")
     ref.current.click();
   }
@@ -165,7 +165,7 @@ function AddInternship() {
             </div>
             <h5 className="popupheading">Your submission has been received.</h5>
             <div className="popupBtn">
-                <button className="btn btn-primary" onClick={popupaccepted}>Back to Home Page</button>
+              <button className="btn btn-primary" onClick={popupaccepted}>Back to Home Page</button>
             </div>
           </div>
         </div>
@@ -239,9 +239,7 @@ function AddInternship() {
                   >
                   </input>
                 </div>
-
-
-
+                
                 <div className="col-md-4 dataEnter_input ">
                   <label htmlFor="internshipContact" className="form-label">
                     Contact details of internship

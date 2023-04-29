@@ -1,13 +1,13 @@
 import React from 'react'
 import './DashBoard1.css'
 import { Link } from 'react-router-dom'
-const DashBoard = ({ arr1, crediantial,dummyYear }) => {
+const DashBoard = ({ arr1, crediantial, dummyYear }) => {
 
     const batch3 = arr1[2].length;
     const batch2 = arr1[1].length;
     const batch1 = arr1[0].length;
     const Foryear = crediantial ? crediantial.Foryear : dummyYear;
-    var studentCount = [0, 1, 2];
+    var studentCount = ["SE", "TE", "BE"];
     return (
         <div className='Dashboard_Section'>
             <div className="Dashboard_Section_1">
@@ -17,30 +17,33 @@ const DashBoard = ({ arr1, crediantial,dummyYear }) => {
                 {studentCount.map((d, i) => {
                     return (
                         <div className="Dashboard_box">
-                            <p className='Dashboard_title_1' style={{display:i===0?"block":"none" ,fontSize:"1.6rem"} }>SE</p>
-                            <p className='Dashboard_title_1' style={{display:i===1?"block":"none",fontSize:"1.6rem"}}>TE</p>
-                            <p className='Dashboard_title_1' style={{display:i===2?"block":"none",fontSize:"1.6rem"}}>BE</p>
+                            <p className='Dashboard_title_1' style={{ fontSize: "1.6rem" }}>{d}</p>
                         </div>
                     )
                 })}
             </div>
             <div className="Dashboard_Section_1">
-                <div className="Dashboard_box Dashboard_main_box">
-                    <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/ALL`}>
+                <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/ALL`}>
+                    <div className="Dashboard_box Dashboard_main_box">
                         <p className='Dashboard_title_1'>Total Number of Internship completed</p>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
 
                 <div className="Dashboard_box">
                     <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/SE`}>
                         <p className='Dashboard_title_2'>{batch1}</p></Link>
                 </div>
-                <div className="Dashboard_box">
-                    <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/TE`}> <p className='Dashboard_title_2'>{batch2}</p></Link>
-                </div>
-                <div className="Dashboard_box">
-                    <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/BE`}> <p className='Dashboard_title_2'>{batch3}</p></Link>
-                </div>
+
+                <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/TE`}>
+                    <div className="Dashboard_box">
+                        <p className='Dashboard_title_2'>{batch2}</p>
+                    </div>
+                </Link>
+                <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/BE`}>
+                    <div className="Dashboard_box">
+                        <p className='Dashboard_title_2'>{batch3}</p>
+                    </div>
+                </Link>
             </div>
         </div>
     )

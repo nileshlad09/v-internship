@@ -41,41 +41,40 @@ const Deleteold = () => {
             deleteDoc(doc(db, "acceptedStudents", item.id ? item.id : item.eid))
             forceRefresh();
         }).catch(() => {
-            showAlert("danger", "internal error");
+            showAlert("danger", "Internal error");
             setIsLoading(false)
         })
     }
 
     const deleteAll = async (year) => {
-        // await deleteDoc(doc(db, "acceptedStudents", )) 
         if (year === undefined) {
-            showAlert("warning", "to delete data please select both the field");
-        } else if ( year?.length !== 7) {
+            showAlert("warning", "Please enter year in given format");
+        } else if (year?.length !== 7) {
             showAlert("warning", "Invalid year");
         }
-        else if(todos.length < 1){
+        else if (todos.length < 1) {
             showAlert("warning", "There no data avilable for given input");
         }
         else {
             setIsLoading(true)
-            todos.forEach( async(todos)=>{
-            try {
-                const storage = getStorage();
-                const desertRef = ref(storage, todos.certificate);
-                await deleteObject(desertRef).then(() => {
-                    deleteDoc(doc(db, "acceptedStudents", todos.id))
-                    showAlert("success", `Internship data for year ${year} deleted successfully`)
+            todos.forEach(async (todos) => {
+                try {
+                    const storage = getStorage();
+                    const desertRef = ref(storage, todos.certificate);
+                    await deleteObject(desertRef).then(() => {
+                        deleteDoc(doc(db, "acceptedStudents", todos.id))
+                        showAlert("success", `Internship data for year ${year} deleted successfully`)
+                        forceRefresh();
+                    }).catch((error) => {
+                        showAlert("danger", "Internal error")
+                    });
                     forceRefresh();
-                }).catch((error) => {
-                    showAlert("danger", "Internal error")
-                });
-                forceRefresh();
-                setIsLoading(false)
-            } catch (error) {
-                showAlert("danger", "internal error");
-                setIsLoading(false)
-            }
-        })
+                    setIsLoading(false)
+                } catch (error) {
+                    showAlert("danger", "internal error");
+                    setIsLoading(false)
+                }
+            })
         }
 
     }

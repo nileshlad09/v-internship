@@ -1,17 +1,19 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
-const Graph = ({arr1}) => {
+
+
+const Graph = ({ arr1 }) => {
   const batch3 = arr1[2].length;
-    const batch2 = arr1[1].length;
-    const batch1 = arr1[0].length;
+  const batch2 = arr1[1].length;
+  const batch1 = arr1[0].length;
   return (
     <div className='graph_section'>
-        
-      
+
+
       <Chart
         type="bar"
         width="100%"
-        
+
         // height="400px"
         series={[
           {
@@ -19,7 +21,7 @@ const Graph = ({arr1}) => {
             data: [batch1, batch2, batch3]
           },
         ]}
-        
+
 
         options={{
           title: {

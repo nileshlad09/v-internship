@@ -14,7 +14,7 @@ const Alert = () => {
   };
   return (
     <div>
-      <div style={{ height: "50px",position:"absolute",width:"100%",zIndex:"1" }} className="alertmsg">
+      <div style={{ height: "50px", position: "absolute", width: "100%", zIndex: "1" }} className="alertmsg">
         {alert && (
           <div
             className={`alert alert-${alert.type} alert-dismissible fade show`}

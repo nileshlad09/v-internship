@@ -3,7 +3,7 @@ import DataView from '../Components/DataView/DataView'
 const View = () => {
   return (
     <div className="container">
-    <DataView/>
+      <DataView />
     </div>
   )
 }
