@@ -16,6 +16,7 @@ function AddInternship() {
   const { addInternship, setCrediential2, crediantial2, showAlert } = context;
 
   const [isLoading, setIsLoading] = useState(false);
+  const [warning, setWarning] = useState("");
 
   if (JSON.stringify(crediantial2) === "{}") {
     history.push('/addinternship/1');
@@ -43,8 +44,13 @@ function AddInternship() {
   } else {
     dummyYear = `${year - 1}-${String(year).slice(2, 4)}`
   }
-
-
+  
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const intStatus = (e) => {
+    setIsSubscribed(current => !current);
+  }
+  
+  const [imageuploaded, setImageuploaded] = useState(null);
   //firebase code
   async function writetoDB(cred, imagelink) {
     try {
@@ -72,7 +78,6 @@ function AddInternship() {
       ref.current.click()
     } catch (e) {
       setIsLoading(false);
-      console.error("Error adding document: ", e);
       showAlert("danger", "Internal Error");
     }
   }
@@ -80,7 +85,6 @@ function AddInternship() {
 
 
   // file upload 
-  const [imageuploaded, setImageuploaded] = useState(null);
 
   // const [imageURL, setimageURL] = useState("");
   // useEffect(() => {
@@ -97,9 +101,10 @@ function AddInternship() {
     // filename will look like rollNumber_startdate.extension
     // the actual code to upload the file
     var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded);
-
+    console.log(task)
     // and getting the download URL
     task.then((res) => {
+      console.log(res)
       res.ref.getDownloadURL().then((url) => {
         writetoDB(crediantial, url);
       }).catch(() => {
@@ -112,41 +117,61 @@ function AddInternship() {
     })
   }
 
-
   const handleClick = (e) => {
 
     e.preventDefault();
-    if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || crediantial.domain === undefined || crediantial.startdate === undefined) {
-      showAlert("warning", "All fields are required");
+    console.log(crediantial)
+    if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || 
+      crediantial.domain === undefined || crediantial.startdate === undefined ) {
+      // setWarning("warning", "All fields are required");
+      setWarning("All fields are required");
+    }
+    else if (crediantial.domain.replaceAll(' ', '').length < 1 ||
+     crediantial.startdate.replaceAll(' ', '').length < 1) {
+      // setWarning("warning", "All fields are required");
+      setWarning("All fields are required");
+    }
+    else if(isSubscribed===false && crediantial.enddate===undefined){
+      setWarning("All fields are required");
+    }
+    else if(isSubscribed===false && crediantial.enddate.replaceAll(' ','').length < 1){
+      setWarning("All fields are required");
+    }
+    else if(imageuploaded==null){
+      setWarning("All fields are required");
     }
     else if (crediantial.nameofcompany.replaceAll(' ', '').length < 1) {
-      showAlert("warning", "Company Name is required field");
+      // setWarning("warning", "Company Name is required field");
+      setWarning( "Company Name is required field");
     }
     else if (crediantial.contactofcompany.replaceAll(' ', '').length !== 10) {
-      showAlert("warning", "Invalid contact Number");
+      // setWarning("warning", "Invalid contact Number");
+      setWarning("Invalid contact Number");
     }
     else if (crediantial.domain === "other" && crediantial.domain2.replaceAll(' ', '').length < 1) {
-      showAlert("warning", "Invalid domain");
+      // setWarning("warning", "Invalid domain");
+      setWarning("Invalid domain");
     }
     else if (imageuploaded != null && imageuploaded?.size > 1e+6) {
-      showAlert("warning", "Please upload a file smaller than 1 MB");
+      // setWarning("warning", "Please upload a file smaller than 1 MB");
+      setWarning( "Please upload a file smaller than 1 MB");
+    }else if(!navigator.onLine){
+      // setWarning("warning", "You're offline. Check your connection.");
+      setWarning( "You're offline. Check your connection.");
     }
     else {
+      setWarning("")
       addInternship(crediantial);
       fileUpload(imageuploaded);
       setIsLoading(true);
-      // showAlert("success", "Internship added successfully");
-      //writetoDB(crediantial);
+
       // Commenting out this write because we need to write the data after the file is uploaded
       // so we can get the URL
       // Hence the writetoDB is called after we get the file URL
     }
   }
 
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const intStatus = (e) => {
-    setIsSubscribed(current => !current);
-  }
+  
 
   const popupaccepted = () => {
     history.push("/")
@@ -184,14 +209,13 @@ function AddInternship() {
                   <input type="date" name="startdate" className="form-control" id="startDate"
                     value={crediantial.startdate}
                     onChange={onchange}
-                    required
                   />
                 </div>
                 <div className="col-md-4 dataEnter_input ">
                   <label htmlFor="endDate" className="form-label">
                     Ending Date{" "}
                   </label>
-                  <input type="date" className="form-control" name="enddate" id="user_register" required
+                  <input type="date" className="form-control" name="enddate" id="user_register"
                     value={crediantial.enddate}
                     onChange={onchange}
                     min={crediantial.startdate}
@@ -252,12 +276,13 @@ function AddInternship() {
                   <label htmlFor="Certificate" className="form-label">
                     Certificate/Joining Letter
                   </label>
-                  <input className="form-control" type="file" id="Certificate" accept="image/jpeg, image/png, application/pdf" name="certificate" required
+                  <input className="form-control" type="file" id="Certificate" accept="image/jpeg, image/png, application/pdf" name="certificate"
                     value={crediantial.certificate} onChange={(e) => {
                       setImageuploaded(e.target.files[0]);
                     }} />
                 </div>
               </div>
+              <p className="warning" style={{color:"red"}}>{warning?`*${warning}`:""}</p>
               <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger" disabled={isLoading}>
                 Add
               </button>

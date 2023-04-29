@@ -12,10 +12,10 @@ const DataEnter = () => {
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
     const context = useContext(studentContext);
-    const { addInternship, showAlert } = context;
+    const { addInternship} = context;
 
     const [crediantial, setCrediential] = useState({});
-
+    const [warning, setWarning] = useState("");
 
 
     const onchange = (e) => {
@@ -27,32 +27,45 @@ const DataEnter = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined || crediantial?.mobileNo === undefined || crediantial.email === undefined) {
-            showAlert("warning", "All fields are required");
+        console.log(crediantial)
+        if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined ||
+             crediantial?.mobileNo === undefined || crediantial.email === undefined) {
+            // showAlert("warning", "All fields are required");
+            setWarning("All fields are required");
         }
-        else if (crediantial.semester === undefined || crediantial.division === undefined || crediantial.branch === undefined || crediantial.year === undefined) {
-            showAlert("warning", "All fields are required");
+        else if (crediantial.semester === undefined || crediantial.division === undefined || 
+            crediantial.branch === undefined || crediantial.year === undefined ) {
+            // showAlert("warning", "All fields are required");
+            setWarning("All fields are required");
+        }
+        else if (crediantial.semester.replaceAll(' ', '').length < 1 || crediantial.division.replaceAll(' ', '').length < 1 ||
+         crediantial.branch.replaceAll(' ', '').length < 1 || crediantial.year.replaceAll(' ', '').length < 1) {
+            // showAlert("warning", "All fields are required");
+            setWarning("All fields are required");
         }
         else if (!crediantial.email.match(mailformat)) {
-            showAlert("warning", "invalid email address");
+            // showAlert("warning", "invalid email address");
+            setWarning("invalid email address");
         }
         else if (crediantial.nameofstudent.replaceAll(' ', '').length < 1) {
-            showAlert("warning", "Name is required field");
+            // showAlert("warning", "Name is required field");
+            setWarning("Name is required field");
         }
         else if (crediantial.rollNumber.replaceAll(' ', '').length !== 10) {
-            showAlert("warning", "Invalid Roll Number");
+            // showAlert("warning", "Invalid Roll Number");
+            setWarning("Invalid Roll Number");
         }
         else if (crediantial?.mobileNo.replaceAll(' ', '').length !== 10) {
-            showAlert("warning", "Invalid Mobile Number");
+            // showAlert("warning", "Invalid Mobile Number");
+            setWarning("Invalid Mobile Number");
         }
         else {
             setIsLoading(false)
+            setWarning("");
             addInternship(crediantial);
             history.push('/addinternship/2');
         }
     }
-
-
     return (
         <div style={{ border: "1px solid gray", marginTop: "40px" }}>
             {isLoading ? <Spinner /> :
@@ -147,6 +160,7 @@ const DataEnter = () => {
                                 </select>
                             </div>
                         </div>
+                        <p className="warning" style={{color:"red"}}>{warning?`*${warning}`:""}</p>
                         <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline-danger">Add Internship</button>
                     </form>
                 </div>

@@ -16,7 +16,7 @@ const DashBoard = ({ arr1, crediantial, dummyYear }) => {
                 </div>
                 {studentCount.map((d, i) => {
                     return (
-                        <div className="Dashboard_box">
+                        <div className="Dashboard_box" key={i}>
                             <p className='Dashboard_title_1' style={{ fontSize: "1.6rem" }}>{d}</p>
                         </div>
                     )
