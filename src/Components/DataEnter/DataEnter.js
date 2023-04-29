@@ -9,6 +9,7 @@ import Spinner from '../Spinner/Spinner';
 
 
 const DataEnter = () => {
+    const isValidationEnabled = true;
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
     const context = useContext(studentContext);
@@ -27,6 +28,7 @@ const DataEnter = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
+        if(isValidationEnabled){
         if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined ||
              crediantial?.mobileNo === undefined || crediantial.email === undefined) {
             // showAlert("warning", "All fields are required");
@@ -58,12 +60,12 @@ const DataEnter = () => {
             // showAlert("warning", "Invalid Mobile Number");
             setWarning("Invalid Mobile Number");
         }
-        else {
-            setIsLoading(false)
+
+    }
+    setIsLoading(false)
             setWarning("");
             addInternship(crediantial);
             history.push('/addinternship/2');
-        }
     }
     return (
         <div style={{ border: "1px solid gray", marginTop: "40px" }}>

@@ -75,7 +75,7 @@ function AddInternship() {
       // showAlert("success", "Internship added successfully");
       setCrediential2(null);
       // history.push('/');
-      ref.current.click()
+      //ref.current.click()
     } catch (e) {
       setIsLoading(false);
       showAlert("danger", "Internal Error");
@@ -116,10 +116,11 @@ function AddInternship() {
       setIsLoading(false);
     })
   }
-
+  const isValidationEnabled = true;
   const handleClick = (e) => {
 
     e.preventDefault();
+    if(isValidationEnabled){
     if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || 
       crediantial.domain === undefined || crediantial.startdate === undefined ) {
       // setWarning("warning", "All fields are required");
@@ -158,16 +159,11 @@ function AddInternship() {
       // setWarning("warning", "You're offline. Check your connection.");
       setWarning( "You're offline. Check your connection.");
     }
-    else {
-      setWarning("")
-      addInternship(crediantial);
-      fileUpload(imageuploaded);
-      setIsLoading(true);
-
-      // Commenting out this write because we need to write the data after the file is uploaded
-      // so we can get the URL
-      // Hence the writetoDB is called after we get the file URL
-    }
+  }
+  setWarning("")
+  addInternship(crediantial);
+  fileUpload(imageuploaded);
+  setIsLoading(true);
   }
 
   
