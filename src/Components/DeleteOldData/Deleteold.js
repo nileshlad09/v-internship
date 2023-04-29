@@ -53,9 +53,7 @@ const Deleteold = () => {
                 console.log("deleted")
                 try {
                     const storage = getStorage();
-                    await deleteDoc(doc(db, "acceptedStudents", todos.id))
-                    await deleteObject(ref(storage, todos.certificate))
-                    console.log(todos.id)
+                    await deleteDoc(doc(db, "acceptedStudents", todos.id)).then(()=>{deleteObject(ref(storage, todos.certificate))})
                     showAlert("success", `Internship data for year ${year} deleted successfully`)
                     forceRefresh();
                     setIsLoading(false)
