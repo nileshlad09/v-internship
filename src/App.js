@@ -27,12 +27,14 @@ function App() {
           <PrivateRoute exact path='/dashboard/deleteold' component={Deleteold} />
           <Route exact path='/' component={Home} ></Route>
           <Route exact path='/adminlogin' component={AdminLogin} ></Route>
+          <>
           <div className="addInternship">
             <div className="container">
               <Route exact path='/addinternship/1' component={DataEnter} ></Route>
               <Route exact path='/addinternship/2' component={AddInternship} ></Route>
             </div>
           </div>
+          </>
         </Switch>
       </StudentState>
     </div>

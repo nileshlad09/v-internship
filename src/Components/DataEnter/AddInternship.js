@@ -101,10 +101,10 @@ function AddInternship() {
     // filename will look like rollNumber_startdate.extension
     // the actual code to upload the file
     var task = storage.ref(`/certificates/${dummyYear}/` + fileName).put(imageuploaded);
-    console.log(task)
+    // console.log(task)
     // and getting the download URL
     task.then((res) => {
-      console.log(res)
+      // console.log(res)
       res.ref.getDownloadURL().then((url) => {
         writetoDB(crediantial, url);
       }).catch(() => {
@@ -120,7 +120,6 @@ function AddInternship() {
   const handleClick = (e) => {
 
     e.preventDefault();
-    console.log(crediantial)
     if (crediantial.nameofcompany === undefined || crediantial.contactofcompany === undefined || 
       crediantial.domain === undefined || crediantial.startdate === undefined ) {
       // setWarning("warning", "All fields are required");

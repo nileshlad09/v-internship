@@ -10,6 +10,7 @@ const Topcom = ({ data2 }) => {
 
     return (
         <table >
+            <tbody>
             <tr style={{ backgroundColor: "orangered" }}>
                 <th style={{ textAlign: "center" }}>sr</th>
                 <th style={{ textAlign: "center" }}>Top Company Name</th>
@@ -25,7 +26,7 @@ const Topcom = ({ data2 }) => {
                     </tr>
                 ))
             }
-
+</tbody>
         </table>
     )
 }

@@ -16,17 +16,20 @@ const Deleteold = () => {
     const [year, setYear] = useState();
     const [refesh, forceRefresh] = useReducer(x => x + 1, 0);
 
-    const fetchPost = async (year, branch) => {
-        await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", year), limit(12)))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setTodos(newData);
-                setIsLoading(false)
-            }).catch((error) => {
-                showAlert("danger", "Internal error")
-                setIsLoading(false)
-            });
+    const fetchPost = async (year) => {
+        if (year !== undefined) {
+            await getDocs(query(collection(db, "acceptedStudents"), where("Foryear", "==", year), limit(12)))
+                .then((querySnapshot) => {
+                    const newData = querySnapshot.docs
+                        .map((doc) => ({ ...doc.data(), id: doc.id }));
+                    setTodos(newData);
+                    setIsLoading(false)
+                }).catch((error) => {
+                    showAlert("danger", "Internal error")
+                    setIsLoading(false)
+                });
+        }
+
     }
     useEffect(() => {
         fetchPost(year);
@@ -36,10 +39,12 @@ const Deleteold = () => {
     const reject = async (item) => {
         setIsLoading(true);
         const storage = getStorage();
-        const desertRef = ref(storage, item.certificate);
-        await deleteObject(desertRef).then(() => {
+        // console.log(item);
+        // const desertRef = ref(storage, item.certificate);
+        await deleteObject(ref(storage, item.certificate)).then(() => {
             deleteDoc(doc(db, "acceptedStudents", item.id ? item.id : item.eid))
             forceRefresh();
+            // console.log("Deleted")
         }).catch(() => {
             showAlert("danger", "Internal error");
             setIsLoading(false)
@@ -105,33 +110,34 @@ const Deleteold = () => {
                             <div className="tbl-header">
                                 {todos.length < 1 ? <h3 style={{ textAlign: "center" }}>Noting to delete</h3> :
                                     <table  >
-                                        <tr >
-                                            <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Year</th>
-                                            <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
-                                            <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
-                                            <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
-                                            <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
-                                            <th style={{ textAlign: "center", backgroundColor: "orangered" }}></th>
-                                        </tr>
+                                        <tbody>
+                                            <tr >
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Year</th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
+                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}></th>
+                                            </tr>
 
 
 
-                                        {todos.map((item, i) => {
-                                            return (
-                                                <tr style={{ backgroundColor: "#000000ba" }} key={i}>
-                                                    <td style={{ textAlign: "center" }}>{item.Foryear}</td>
-                                                    <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
-                                                    <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
-                                                    <td style={{ textAlign: "center" }}>{item.email}</td>
-                                                    <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
-                                                    <td style={{ textAlign: "center" }}>
-                                                        <button className="btn btn-primary" onClick={() => reject(item)}>Delete</button>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
-                                        }
-
+                                            {todos.map((item, i) => {
+                                                return (
+                                                    <tr style={{ backgroundColor: "#000000ba" }} key={i}>
+                                                        <td style={{ textAlign: "center" }}>{item.Foryear}</td>
+                                                        <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
+                                                        <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
+                                                        <td style={{ textAlign: "center" }}>{item.email}</td>
+                                                        <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
+                                                        <td style={{ textAlign: "center" }}>
+                                                            <button className="btn btn-primary" onClick={() => reject(item)}>Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
                                 } </div>
                         </section>

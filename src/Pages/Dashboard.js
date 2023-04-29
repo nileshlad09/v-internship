@@ -88,15 +88,15 @@ const Dashboard = () => {
             </div>
             <DashBoard1 arr1={arr1} crediantial={crediantial} dummyYear={dummyYear} />
             <div className="row Dashboard_graph_section">
-              <div className="graph_1 chart col-md-8 col-lg-5">
+              <div className="graph_1 chart col-md-8 col-lg-6">
                 <Graph arr1={arr1} />
                 <p className='heading'>No.of students completed internship</p>
               </div>
-              <div className="graph_1 chart col-md-8 col-lg-5">
+              <div className="graph_1 chart col-md-8 col-lg-6">
                 <Graph2 data2={data2} />
                 <p className='heading'>Most frequent company's student join</p>
               </div>
-              <div className="dashboard_table chart col-md-8 col-lg-4">
+              <div className="dashboard_table chart col-md-8 col-lg-6">
                 <Topcom data2={data2} />
                 <p className='heading'>Top Company</p>
               </div>

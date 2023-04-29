@@ -155,124 +155,125 @@ const View = () => {
           <section className='dataview_section'>
             <div className="tbl-header">
               <table  >
-                <tr >
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>organization</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Domain</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Starting Date</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Ending Date</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Duration</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Certificate</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
-                  <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
-                </tr>
-                {
-                  // eslint-disable-next-line array-callback-return
-                  data.filter(function (val) {
-                    if (val.nameofcompany === company) {
-                      return val;
-                    } else if (val.nameofcompany.toLowerCase().includes(company.toLowerCase())) {
-                      return val;
-                    }
-                  })
-
+                <tbody>
+                  <tr >
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>organization</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Domain</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Starting Date</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Ending Date</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Duration</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Certificate</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
+                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
+                  </tr>
+                  {
                     // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      return val;
-                    })
-                    // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      if (val.domain === domain) {
+                    data.filter(function (val) {
+                      if (val.nameofcompany === company) {
                         return val;
-                      } else if (val.domain.toLowerCase().includes(domain.toLowerCase())) {
+                      } else if (val.nameofcompany.toLowerCase().includes(company.toLowerCase())) {
                         return val;
                       }
                     })
 
-                    // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      if (val.year === year) {
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
                         return val;
-                      }
-                      else if (year === "ALL") {
-                        return val;
-                      }
-                    })
-
-                    // eslint-disable-next-line 
-                    .filter(function (val) {
-                      if (val.Foryear === foryear) {
-                        return val;
-                      }
-                    })
-
-                    // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      if (val === "") {
-                        return val;
-                      } else if (val.nameofstudent.toLowerCase().includes(name.toLowerCase())) {
-                        return val;
-                      }
-                    })
-                    // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      if (val.rollNumber === roll) {
-                        return val;
-                      } else if (val.rollNumber.toLowerCase().includes(roll.toLowerCase())) {
-                        return val;
-                      }
-                    })
-
-
-                    // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      if (val.division === div) {
-                        return val;
-                      }
-                      else if (val.division.toLowerCase().includes(div.toLowerCase())) {
-                        if (val.division.valueOf === "Both") {
+                      })
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
+                        if (val.domain === domain) {
+                          return val;
+                        } else if (val.domain.toLowerCase().includes(domain.toLowerCase())) {
                           return val;
                         }
-                        return val;
-                      }
-                    })
+                      })
 
-                    // eslint-disable-next-line array-callback-return
-                    .filter(function (val) {
-                      if (val.branch === branch) {
-                        return val;
-                      }
-                      else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
-                        if (val.branch.valueOf === "Both") {
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
+                        if (val.year === year) {
                           return val;
                         }
-                        return val;
-                      }
-                    })
+                        else if (year === "ALL") {
+                          return val;
+                        }
+                      })
+
+                      // eslint-disable-next-line 
+                      .filter(function (val) {
+                        if (val.Foryear === foryear) {
+                          return val;
+                        }
+                      })
+
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
+                        if (val === "") {
+                          return val;
+                        } else if (val.nameofstudent.toLowerCase().includes(name.toLowerCase())) {
+                          return val;
+                        }
+                      })
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
+                        if (val.rollNumber === roll) {
+                          return val;
+                        } else if (val.rollNumber.toLowerCase().includes(roll.toLowerCase())) {
+                          return val;
+                        }
+                      })
 
 
-                    .map((item, i) => {
-                      fav.push(item)
-                      return (
-                        <tr style={{ backgroundColor: "#000000ba" }} key={i}>
-                          <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
-                          <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
-                          <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
-                          <td style={{ textAlign: "center" }}>{item.domain}</td>
-                          <td style={{ textAlign: "center" }}>{item.startdate}</td>
-                          <td style={{ textAlign: "center" }}> {item.enddate === " " ? "---" : item.enddate}</td>
-                          <td style={{ textAlign: "center" }}>{item.enddate === " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
-                          <td style={{ textAlign: "center" }}>
-                            <a href={item.certificate} target='_blank' rel="noreferrer" ><CgEye /></a>
-                          </td>
-                          <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
-                          <td style={{ textAlign: "center" }}>{item.email}</td>
-                        </tr>
-                      )
-                    })
-                }
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
+                        if (val.division === div) {
+                          return val;
+                        }
+                        else if (val.division.toLowerCase().includes(div.toLowerCase())) {
+                          if (val.division.valueOf === "Both") {
+                            return val;
+                          }
+                          return val;
+                        }
+                      })
 
+                      // eslint-disable-next-line array-callback-return
+                      .filter(function (val) {
+                        if (val.branch === branch) {
+                          return val;
+                        }
+                        else if (val.branch.toLowerCase().includes(branch.toLowerCase())) {
+                          if (val.branch.valueOf === "Both") {
+                            return val;
+                          }
+                          return val;
+                        }
+                      })
+
+
+                      .map((item, i) => {
+                        fav.push(item)
+                        return (
+                          <tr style={{ backgroundColor: "#000000ba" }} key={i}>
+                            <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
+                            <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
+                            <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
+                            <td style={{ textAlign: "center" }}>{item.domain}</td>
+                            <td style={{ textAlign: "center" }}>{item.startdate}</td>
+                            <td style={{ textAlign: "center" }}> {item.enddate === " " ? "---" : item.enddate}</td>
+                            <td style={{ textAlign: "center" }}>{item.enddate === " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
+                            <td style={{ textAlign: "center" }}>
+                              <a href={item.certificate} target='_blank' rel="noreferrer" ><CgEye /></a>
+                            </td>
+                            <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
+                            <td style={{ textAlign: "center" }}>{item.email}</td>
+                          </tr>
+                        )
+                      })
+                  }
+                </tbody>
               </table>
             </div>
           </section>

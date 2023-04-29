@@ -27,7 +27,6 @@ const DataEnter = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(crediantial)
         if (crediantial.nameofstudent === undefined || crediantial.rollNumber === undefined ||
              crediantial?.mobileNo === undefined || crediantial.email === undefined) {
             // showAlert("warning", "All fields are required");
