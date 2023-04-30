@@ -50,7 +50,6 @@ const Deleteold = () => {
         else {
             setIsLoading(true)
             todos.forEach(async (todos) => {
-                console.log("deleted")
                 try {
                     const storage = getStorage();
                     await deleteDoc(doc(db, "acceptedStudents", todos.id)).then(()=>{deleteObject(ref(storage, todos.certificate))})
@@ -58,7 +57,7 @@ const Deleteold = () => {
                     forceRefresh();
                     setIsLoading(false)
                 } catch (error) {
-                    showAlert("danger", "internal error");
+                    showAlert("danger", "Internal error");
                     setIsLoading(false)
                 }
             })

@@ -30,6 +30,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+        <div className="credits container">
+          <p>Developed by <a href="https://www.linkedin.com/in/nileshlad09"  rel="noreferrer" target='_blank'> Nilesh</a>, <a href="https://www.linkedin.com/in/nikhil-adhare-7a6994219/"  rel="noreferrer" target='_blank'> Nikhil</a>,<a href="https://linkedin.com/in/sanyog-jain"  rel="noreferrer" target='_blank'> Sanyog</a></p>
+        </div>
     </>
   )
 }

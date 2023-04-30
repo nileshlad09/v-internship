@@ -66,7 +66,8 @@ const DataEnter = () => {
         }
     }
     return (
-        <div style={{ border: "1px solid gray", marginTop: "40px" }}>
+        <>
+        <div style={{ border: "1px solid gray", marginTop: "20px" }}>
             {isLoading ? <Spinner /> :
                 <div style={{ paddingTop: "10px", overflow: "hidden" }}>
                     <form className="g-3" style={{ padding: "20px" }} onSubmit={handleClick}>
@@ -165,6 +166,7 @@ const DataEnter = () => {
                 </div>
             }
         </div>
+      </>
     )
 }
 
