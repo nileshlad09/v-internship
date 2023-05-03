@@ -29,10 +29,11 @@ const DashBoard = ({ arr1, crediantial, dummyYear }) => {
                     </div>
                 </Link>
 
-                <div className="Dashboard_box">
-                    <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/SE`}>
-                        <p className='Dashboard_title_2'>{batch1}</p></Link>
-                </div>
+                <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/SE`}>
+                    <div className="Dashboard_box">
+                        <p className='Dashboard_title_2'>{batch1}</p>
+                    </div>
+                </Link>
 
                 <Link to={`/dashboard/view/${Foryear ? Foryear : dummyYear}/TE`}>
                     <div className="Dashboard_box">
