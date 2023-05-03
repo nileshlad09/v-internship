@@ -34,7 +34,7 @@ function AddInternship() {
     // eslint-disable-next-line 
   }, [])
 
-  const date = new Date();
+  const date = new Date("2021-09-01");
   const year = date.getFullYear();
   const month = date.getMonth();
   var dummyYear;
@@ -93,7 +93,7 @@ function AddInternship() {
   // useEffect(() => { console.log(imageuploaded) }, [imageuploaded])
   const fileUpload = (imageuploaded) => {
 
-    var a = new Date();
+    var a = new Date("2021-09-01");
     var b = String(a).slice(0, 25).replaceAll(' ', '').toLowerCase()
     if (imageuploaded === null) return;
     // generate a unique filename
