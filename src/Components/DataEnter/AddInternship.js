@@ -231,7 +231,7 @@ function AddInternship() {
                 </div>
                 <div className="col-md-4 dataEnter_input ">
                   <label htmlFor="companyName" className="form-label">
-                    Name of Company
+                    Name of Company(as per certificate)
                   </label>
                   <input type="text" className="form-control" name="nameofcompany" id="companyName"
                     value={crediantial.nameofcompany}
