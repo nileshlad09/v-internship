@@ -34,6 +34,7 @@ const AdminLogin = () => {
         history.push('/dashboard');
       })
       .catch((err) => {
+        setIsLoading(false)
         if (
           err.code === AuthErrorCodes.INVALID_PASSWORD ||
           err.code === AuthErrorCodes.USER_DELETED
@@ -42,7 +43,6 @@ const AdminLogin = () => {
         } else {
           showAlert("danger", "Internal error");
         }
-        setIsLoading(false)
       });
   }
 

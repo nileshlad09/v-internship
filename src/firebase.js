@@ -4,6 +4,7 @@ import "firebase/compat/database";
 import 'firebase/compat/storage';
 import 'firebase/storage'
 import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

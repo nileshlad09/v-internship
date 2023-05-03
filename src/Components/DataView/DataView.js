@@ -63,6 +63,7 @@ const View = () => {
           setTodos(newData);
           setIsLoading(false);
         }).catch((error) => {
+          setIsLoading(false);
           showAlert("danger", "Internal error")
         });
     } else {
@@ -73,6 +74,7 @@ const View = () => {
           setTodos(newData);
           setIsLoading(false);
         }).catch((error) => {
+          setIsLoading(false);
           showAlert("danger", "Internal error")
         });
     }

@@ -5,3 +5,19 @@
   background-size: cover;
   min-height: 100vh;
 }
+
+.credits{
+  color: rgba(7, 7, 7, 0.651);
+  /* color: rgb(0 0 0 / 78%); */
+  font-weight: bold;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.credits p{
+  text-align: end;
+}
+.credits a{
+  color: rgba(7, 7, 7, 0.651);
+}

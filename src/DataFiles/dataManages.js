@@ -24,7 +24,24 @@ export const domains = [
         "domain":"Content Writing",
     },
     {
+        "domain":"Product Development",
+    },
+    {
+        "domain":"Social Media Marketer",
+    },
+    {
+        "domain":"Automated Marketing Tool",
+    },
+    {
+        "domain":"Data Engineering",
+    },
+    {
+        "domain":"Campus Ambassador",
+    },
+    {
+        "domain":"UI/UX",
+    },
+    {
         "domain":"other"
     },
-
 ]
