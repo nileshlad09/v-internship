@@ -117,6 +117,11 @@ function AddInternship() {
     })
   }
 
+
+
+  // eslint-disable-next-line
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
   const handleClick = (e) => {
 
     e.preventDefault();
@@ -143,9 +148,9 @@ function AddInternship() {
       // setWarning("warning", "Company Name is required field");
       setWarning( "Company Name is required field");
     }
-    else if (crediantial.contactofcompany.replaceAll(' ', '').length !== 10) {
+    else if (!crediantial.contactofcompany.match(mailformat)) {
       // setWarning("warning", "Invalid contact Number");
-      setWarning("Invalid contact Number");
+      setWarning("Invalid email address");
     }
     else if (crediantial.domain === "other" && crediantial.domain2.replaceAll(' ', '').length < 1) {
       // setWarning("warning", "Invalid domain");
@@ -262,12 +267,11 @@ function AddInternship() {
                   >
                   </input>
                 </div>
-                
                 <div className="col-md-4 dataEnter_input ">
                   <label htmlFor="internshipContact" className="form-label">
-                    Contact details of internship
+                    Contact details of internship(email)
                   </label>
-                  <input type="tel" className="form-control" id="internshipContact" maxLength="10" name="contactofcompany" value={crediantial.contactofcompany}
+                  <input type="text" className="form-control" id="internshipContact" name="contactofcompany" placeholder="abc@gmail.com" value={crediantial.contactofcompany}
                     onChange={onchange}
                   />
                 </div>
