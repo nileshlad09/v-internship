@@ -70,7 +70,10 @@ function AddInternship() {
         startdate: cred.startdate,
         enddate: isSubscribed ? " " : cred.enddate,
         certificate: imagelink,
-      });
+      }).catch(() => {
+        setIsLoading(false);
+        showAlert("danger", "Internal Error");
+      });;
       setIsLoading(false);
       setCrediential2(null);
       ref.current.click()
