@@ -7,9 +7,9 @@ const Graph2 = (props) => {
     function findOcc(data2, key) {
         let arr2 = [];
         data2.forEach((x) => {
-            if (arr2.some((val) => { return val[key].toLowerCase() === x[key].toLowerCase() })) {
+            if (arr2.some((val) => { return val[key].replaceAll(' ', '').toLowerCase() === x[key].replaceAll(' ', '').toLowerCase() })) {
                 arr2.forEach((k) => {
-                    if (k[key].toLowerCase() === x[key].toLowerCase()) {
+                    if (k[key].replaceAll(' ', '').toLowerCase() === x[key].replaceAll(' ', '').toLowerCase()) {
                         k["occurrence"]++
                     }
                 })
@@ -28,7 +28,6 @@ const Graph2 = (props) => {
 
     let key = "nameofcompany";
     const topCompany = findOcc(data2, key);
-
     let sortedProducts = topCompany.sort(
         (p1, p2) => (p1.occurrence < p2.occurrence) ? 1 : (p1.occurrence > p2.occurrence) ? -1 : 0);
 

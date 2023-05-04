@@ -68,13 +68,11 @@ function AddInternship() {
         nameofcompany: cred.nameofcompany,
         domain: cred.domain === "other" ? cred.domain2 : cred.domain,
         startdate: cred.startdate,
-        enddate: cred.enddate ? cred.enddate : " ",
+        enddate: isSubscribed ? " " : cred.enddate,
         certificate: imagelink,
       });
       setIsLoading(false);
-      // showAlert("success", "Internship added successfully");
       setCrediential2(null);
-      // history.push('/');
       ref.current.click()
     } catch (e) {
       setIsLoading(false);
@@ -108,12 +106,12 @@ function AddInternship() {
       res.ref.getDownloadURL().then((url) => {
         writetoDB(crediantial, url);
       }).catch(() => {
-        showAlert("danger", "Internal Error");
         setIsLoading(false);
+        showAlert("danger", "Internal Error");
       }); //finally write to DB after we get the URL
     }).catch(() => {
-      showAlert("danger", "Internal Error");
       setIsLoading(false);
+      showAlert("danger", "Internal Error");
     })
   }
 
@@ -269,7 +267,7 @@ function AddInternship() {
                 </div>
                 <div className="col-md-4 dataEnter_input ">
                   <label htmlFor="internshipContact" className="form-label">
-                    Contact details of internship(email)
+                    Contact details of Company(email)
                   </label>
                   <input type="text" className="form-control" id="internshipContact" name="contactofcompany" placeholder="abc@gmail.com" value={crediantial.contactofcompany}
                     onChange={onchange}

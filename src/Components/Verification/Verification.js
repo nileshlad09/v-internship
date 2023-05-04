@@ -299,7 +299,7 @@ const Verification = () => {
                                                         </div>
                                                         <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
                                                             <label htmlFor="inputCity" className="form-label verification_title">Duration</label>
-                                                            <input type="text" value={item.enddate === " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`} readOnly className="form-control" id="inputCity" />
+                                                            <input type="text" value={(item.enddate === " " || item.enddate === "" ) ? "NA" : `${Duration(item.startdate, item.enddate)} months`} readOnly className="form-control" id="inputCity" />
                                                         </div>
                                                         <div className="verification_input_box col-lg-3 col-md-4 col-sm-6">
                                                             <label htmlFor="inputCity" className="form-label verification_title">Contact details of internship</label>

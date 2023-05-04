@@ -264,8 +264,8 @@ const View = () => {
                             <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
                             <td style={{ textAlign: "center" }}>{item.domain}</td>
                             <td style={{ textAlign: "center" }}>{item.startdate}</td>
-                            <td style={{ textAlign: "center" }}> {item.enddate === " " ? "---" : item.enddate}</td>
-                            <td style={{ textAlign: "center" }}>{item.enddate === " " ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
+                            <td style={{ textAlign: "center" }}> {item.enddate === " " || item.enddate === ""? "---" : item.enddate}</td>
+                            <td style={{ textAlign: "center" }}>{item.enddate === " " || item.enddate === "" ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
                             <td style={{ textAlign: "center" }}>
                               <a href={item.certificate} target='_blank' rel="noreferrer" ><CgEye /></a>
                             </td>
