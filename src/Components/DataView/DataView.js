@@ -159,16 +159,16 @@ const View = () => {
               <table  >
                 <tbody>
                   <tr >
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>organization</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Domain</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Starting Date</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Ending Date</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Duration</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Certificate</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
-                    <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
+                    <th style={{ textAlign: "center"  }}>Roll No.</th>
+                    <th style={{ textAlign: "center"  }}>Name</th>
+                    <th style={{ textAlign: "center" }}>organization</th>
+                    <th style={{ textAlign: "center"}}>Domain</th>
+                    <th style={{ textAlign: "center"}}>Starting Date</th>
+                    <th style={{ textAlign: "center"}}>Ending Date</th>
+                    <th style={{ textAlign: "center"}}>Duration</th>
+                    <th style={{ textAlign: "center"}}>Certificate</th>
+                    <th style={{ textAlign: "center"}}>Phone</th>
+                    <th style={{ textAlign: "center" }}>Email</th>
                   </tr>
                   {
                     // eslint-disable-next-line array-callback-return

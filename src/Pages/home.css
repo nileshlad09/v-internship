@@ -42,7 +42,7 @@ body{
     letter-spacing: 2px;
 }
 .homeOption_box{
-    background-color: #17a2b8;
+    background-color: var(--blue);
     width: 300px;
     height: 80px;
     padding: 30px ;

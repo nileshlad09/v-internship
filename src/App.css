@@ -6,6 +6,10 @@
   min-height: 100vh;
 }
 
+::root{
+  --blue:#008FFB;
+}
+
 .credits{
   color: rgba(7, 7, 7, 0.651);
   /* color: rgb(0 0 0 / 78%); */

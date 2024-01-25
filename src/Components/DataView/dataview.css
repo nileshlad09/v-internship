@@ -64,7 +64,8 @@ th {
   font-size: 13px;
   color: #fff;
   text-transform: uppercase;
-  background-color: orangered;
+  /* background-color: orangered; */
+  background-color: var(--blue);
   white-space: nowrap;
 }
 
