@@ -287,7 +287,7 @@ function AddInternship() {
                 </div>
               </div>
               <p className="warning" style={{color:"red"}}>{warning?`*${warning}`:""}</p>
-              <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline-danger" disabled={isLoading}>
+              <button type="submit" style={{ marginLeft: "10px", overflow: "hidden", marginBottom: "5px" }} className="btn btn-outline btn3" disabled={isLoading}>
                 Add
               </button>
             </form>

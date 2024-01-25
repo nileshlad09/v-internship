@@ -23,7 +23,8 @@
 }
 
 .loginBtn:hover {
-  color: black;
+  color: white;
+  background-color: var(--color2);
 }
 
 .loginBtn a:hover {

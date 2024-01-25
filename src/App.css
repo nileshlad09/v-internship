@@ -62,7 +62,12 @@ td {
   background-color: var(--color2);
   color: var(--color1);
 }
-.btn2:hover{
+.btn2:hover,
+.btn3:hover{
   background-color: var(--color2);
   color: var(--color1);
+}
+
+.btn3{
+  border-color: var(--color2);
 }

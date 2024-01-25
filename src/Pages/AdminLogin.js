@@ -78,7 +78,7 @@ const AdminLogin = () => {
                 onChange={onchange}
               />
             </div>
-            <button type="submit" style={{ overflow: "hidden"}} className="btn btn-outline-danger">Login</button>
+            <button type="submit" style={{ overflow: "hidden"}} className="btn btn-outline btn3">Login</button>
           </form>
         </div>
       </div>

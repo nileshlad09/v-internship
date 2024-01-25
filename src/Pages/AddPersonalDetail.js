@@ -161,7 +161,7 @@ const DataEnter = () => {
                             </div>
                         </div>
                         <p className="warning" style={{color:"red"}}>{warning?`*${warning}`:""}</p>
-                        <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline-danger">Add Internship</button>
+                        <button type="submit" style={{ overflow: "hidden" }} className="btn btn-outline btn3">Add Internship</button>
                     </form>
                 </div>
             }
