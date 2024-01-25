@@ -1,27 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .addInternship,
-.dashboard{
+.dashboard,
+.deleteOldSection,
+.verificationPage{
   padding: 60px 0;
   background: url(https://vit.edu.in/images/body_bg.png) no-repeat fixed;
   background-size: cover;
   min-height: 100vh;
 }
 
-::root{
+
+
+:root{
   --blue:#008FFB;
+  --black:#212529;
+  --color3:#E8ECF7;
 }
 
-.credits{
-  color: rgba(7, 7, 7, 0.651);
-  /* color: rgb(0 0 0 / 78%); */
-  font-weight: bold;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
+a,p{
+  text-decoration: none !important;
+  list-style: none;
 }
-.credits p{
-  text-align: end;
+
+
+table {
+  width: 100%;
 }
-.credits a{
-  color: rgba(7, 7, 7, 0.651);
+
+tr{
+  background-color: #212529;
+}
+
+th {
+  padding: 20px 15px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: var(--blue);
+  white-space: nowrap;
+}
+
+td {
+  padding: 15px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 }

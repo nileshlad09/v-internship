@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useReducer, useRef, useContext } from 'react'
-import './Verification.css'
+import './CSS/Verification.css'
 import { collection, getDocs, deleteDoc, doc, query, limit, orderBy } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { addDoc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
-import studentContext from '../../context/student/studentContext';
-import Spinner from '../Spinner/Spinner';
+import studentContext from '../context/student/studentContext';
+import Spinner from '../Components/Spinner/Spinner';
 
 const Verification = () => {
 

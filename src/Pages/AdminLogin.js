@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import "./adminlogin.css";
+import "./CSS/adminlogin.css";
 import { AuthErrorCodes, getAuth, signInWithEmailAndPassword} from "firebase/auth";
-import studentContext from '../../context/student/studentContext';
-import { firebaseApp } from '../../firebase';
+import studentContext from '../context/student/studentContext';
+import { firebaseApp } from '../firebase';
 import { useHistory } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../Components/Spinner/Spinner';
 
 
 
@@ -23,11 +23,14 @@ const AdminLogin = () => {
   const auth = getAuth(firebaseApp);
 
   const handleClick = (e) => {
-    setIsLoading(true);
     e.preventDefault();
-    let email = crediantial.email.toLowerCase().trim();
+    let email = crediantial.email;
     let password = crediantial.password;
-    signInWithEmailAndPassword(auth, email, password)
+    if(!(email && password)){
+      showAlert("warning", "The email address or password are required");
+    }else{
+      setIsLoading(true);
+      signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setIsLoading(false)
         showAlert("success", "Login Successfully");
@@ -44,6 +47,8 @@ const AdminLogin = () => {
           showAlert("danger", "Internal error");
         }
       });
+    }
+    
   }
 
 

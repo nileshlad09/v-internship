@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { CgEye } from 'react-icons/cg'
-import './dataview.css'
+import './CSS/dataview.css'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs, query, where } from "firebase/firestore";
-import studentContext from '../../context/student/studentContext';
-import { db } from "../../firebase";
+import studentContext from '../context/student/studentContext';
+import { db } from "../firebase";
 import * as XLSX from 'xlsx';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../Components/Spinner/Spinner';
 
 const View = () => {
 
@@ -105,7 +105,7 @@ const View = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
       {isLoading ? <Spinner /> :
         <>
           <div className="filter">
@@ -159,16 +159,16 @@ const View = () => {
               <table  >
                 <tbody>
                   <tr >
-                    <th style={{ textAlign: "center"  }}>Roll No.</th>
-                    <th style={{ textAlign: "center"  }}>Name</th>
-                    <th style={{ textAlign: "center" }}>organization</th>
-                    <th style={{ textAlign: "center"}}>Domain</th>
-                    <th style={{ textAlign: "center"}}>Starting Date</th>
-                    <th style={{ textAlign: "center"}}>Ending Date</th>
-                    <th style={{ textAlign: "center"}}>Duration</th>
-                    <th style={{ textAlign: "center"}}>Certificate</th>
-                    <th style={{ textAlign: "center"}}>Phone</th>
-                    <th style={{ textAlign: "center" }}>Email</th>
+                    <th >Roll No.</th>
+                    <th >Name</th>
+                    <th >organization</th>
+                    <th >Domain</th>
+                    <th >Starting Date</th>
+                    <th >Ending Date</th>
+                    <th >Duration</th>
+                    <th >Certificate</th>
+                    <th >Phone</th>
+                    <th >Email</th>
                   </tr>
                   {
                     // eslint-disable-next-line array-callback-return
@@ -258,19 +258,19 @@ const View = () => {
                       .map((item, i) => {
                         fav.push(item)
                         return (
-                          <tr style={{ backgroundColor: "#000000ba" }} key={i}>
-                            <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
-                            <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
-                            <td style={{ textAlign: "center" }}>{item.nameofcompany}</td>
-                            <td style={{ textAlign: "center" }}>{item.domain}</td>
-                            <td style={{ textAlign: "center" }}>{item.startdate}</td>
-                            <td style={{ textAlign: "center" }}> {item.enddate === " " || item.enddate === ""? "---" : item.enddate}</td>
-                            <td style={{ textAlign: "center" }}>{item.enddate === " " || item.enddate === "" ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
-                            <td style={{ textAlign: "center" }}>
+                          <tr key={i}>
+                            <td >{item.rollNumber}</td>
+                            <td >{item.nameofstudent}</td>
+                            <td >{item.nameofcompany}</td>
+                            <td >{item.domain}</td>
+                            <td >{item.startdate}</td>
+                            <td > {item.enddate === " " || item.enddate === "" ? "---" : item.enddate}</td>
+                            <td >{item.enddate === " " || item.enddate === "" ? "NA" : `${Duration(item.startdate, item.enddate)} months`}</td>
+                            <td >
                               <a href={item.certificate} target='_blank' rel="noreferrer" ><CgEye /></a>
                             </td>
-                            <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
-                            <td style={{ textAlign: "center" }}>{item.email}</td>
+                            <td >{item.mobileNo}</td>
+                            <td >{item.email}</td>
                           </tr>
                         )
                       })

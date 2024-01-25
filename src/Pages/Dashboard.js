@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
 import DashBoard1 from '../Components/DashBoard/DashBoard1'
-import Graph from '../Components/DashBoard/Graph'
-import Graph2 from '../Components/DashBoard/Graph2'
+import YearWiseInternshipDone from '../Components/DashBoard/YearWiseInternshipDone'
+import MostFrequentCompany from '../Components/DashBoard/MostFrequentCompany'
 import Topcom from '../Components/DashBoard/Topcom'
 import { Link } from 'react-router-dom'
 import { collection, getDocs, query, where } from "firebase/firestore";
 import studentContext from '../context/student/studentContext';
-import './Dashboard.css'
+import './CSS/Dashboard.css'
 import { db } from "../firebase";
 import Spinner from '../Components/Spinner/Spinner'
 
@@ -89,11 +89,11 @@ const Dashboard = () => {
             <DashBoard1 arr1={arr1} crediantial={crediantial} dummyYear={dummyYear} />
             <div className="row Dashboard_graph_section">
               <div className="graph_1 chart col-md-8 col-lg-6">
-                <Graph arr1={arr1} />
+                <YearWiseInternshipDone arr1={arr1} />
                 <p className='heading'>No.of students completed internship</p>
               </div>
               <div className="graph_1 chart col-md-8 col-lg-6">
-                <Graph2 data2={data2} />
+                <MostFrequentCompany data2={data2} />
                 <p className='heading'>Most frequent company's student join</p>
               </div>
               <div className="dashboard_table chart col-md-8 col-lg-6">

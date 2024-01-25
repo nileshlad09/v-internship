@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import './DataEnter.css'
+import './CSS/addPersonalDetail.css'
 import { useHistory } from 'react-router-dom';
 
 import { useContext } from "react";
 
-import studentContext from '../../context/student/studentContext';
-import Spinner from '../Spinner/Spinner';
+import studentContext from '../context/student/studentContext';
+import Spinner from '../Components/Spinner/Spinner';
 
 
 const DataEnter = () => {

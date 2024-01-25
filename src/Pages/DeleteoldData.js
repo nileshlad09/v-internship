@@ -1,10 +1,9 @@
 import React, { useState, useReducer, useEffect, useContext } from 'react'
-import './deleteOld.css'
 import { collection, getDocs, query, where, deleteDoc, doc, limit } from "firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
-import { db } from "../../firebase"
-import Spinner from '../Spinner/Spinner';
-import studentContext from '../../context/student/studentContext';
+import { db } from "../firebase"
+import Spinner from '../Components/Spinner/Spinner';
+import studentContext from '../context/student/studentContext';
 
 const Deleteold = () => {
 
@@ -82,31 +81,31 @@ const Deleteold = () => {
 
                         <section className='dataview_section'>
                             <div className="tbl-header">
-                                {todos.length < 1 ? <h3 style={{ textAlign: "center" }}>Noting to delete</h3> :
+                                {todos.length < 1 ? <h3 style={{textAlign:'center'}} >Noting to delete</h3> :
                                     <table  >
                                         <tbody>
                                             <tr >
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Year</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Roll No.</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Name</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Email</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Phone</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Year</th>
-                                                <th style={{ textAlign: "center", backgroundColor: "orangered" }}>Sem</th>
+                                                <th >Year</th>
+                                                <th >Roll No.</th>
+                                                <th >Name</th>
+                                                <th >Email</th>
+                                                <th >Phone</th>
+                                                <th >Year</th>
+                                                <th >Sem</th>
                                             </tr>
 
 
 
                                             {todos.map((item, i) => {
                                                 return (
-                                                    <tr style={{ backgroundColor: "#000000ba" }} key={i}>
-                                                        <td style={{ textAlign: "center" }}>{item.Foryear}</td>
-                                                        <td style={{ textAlign: "center" }}>{item.rollNumber}</td>
-                                                        <td style={{ textAlign: "center" }}>{item.nameofstudent}</td>
-                                                        <td style={{ textAlign: "center" }}>{item.email}</td>
-                                                        <td style={{ textAlign: "center" }}>{item.mobileNo}</td>
-                                                        <td style={{ textAlign: "center" }}>{item.year}</td>
-                                                        <td style={{ textAlign: "center" }}>{item.semester}</td>
+                                                    <tr  key={i}>
+                                                        <td >{item.Foryear}</td>
+                                                        <td >{item.rollNumber}</td>
+                                                        <td >{item.nameofstudent}</td>
+                                                        <td >{item.email}</td>
+                                                        <td >{item.mobileNo}</td>
+                                                        <td >{item.year}</td>
+                                                        <td >{item.semester}</td>
                                                     </tr>
                                                 )
                                             })

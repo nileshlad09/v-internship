@@ -1,7 +1,7 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
 
-const Graph2 = (props) => {
+const MostFrequentCompany = (props) => {
     const { data2 } = props;
 
     function findOcc(data2, key) {
@@ -58,4 +58,4 @@ const Graph2 = (props) => {
     )
 }
 
-export default Graph2
+export default MostFrequentCompany

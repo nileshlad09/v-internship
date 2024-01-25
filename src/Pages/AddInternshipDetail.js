@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
-import studentContext from '../../context/student/studentContext';
-import './DataEnter.css'
+import studentContext from '../context/student/studentContext';
+import './CSS/addPersonalDetail.css'
 import { useHistory } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
-import { db, storage } from "../../firebase";
-import { domains } from '../../DataFiles/dataManages'
-import Spinner from "../Spinner/Spinner"
+import { db, storage } from "../firebase";
+import { domains } from '../DataFiles/dataManages'
+import Spinner from "../Components/Spinner/Spinner"
 import { useRef } from "react";
 function AddInternship() {
 

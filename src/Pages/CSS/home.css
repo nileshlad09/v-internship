@@ -1,0 +1,101 @@
+.homeSec {
+    background: url(../../Images/bgImage2\ -\ Copy.jpg) no-repeat fixed;
+    background-size: cover;
+    min-height: calc(100vh - 60px);
+    position: relative;
+}
+
+.homePage{
+    padding-top: 40px;
+}
+
+.homePageHeading {
+    width: 60%;
+    color: #3A4A63;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.homePageHeading h4 {
+    font-size: 50px;
+}
+
+.homeOptions {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+
+.homeOption_box {
+    border: 3px solid #3A4A63;
+    color: #3A4A63;
+    width: 300px;
+    height: 80px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    transition: 0.45s;
+}
+
+.homeOption_box2 {
+    color: white;
+    background-color: #3A4A63;;
+}
+
+
+
+.homeOption_title{
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+}
+
+@media screen and (max-width: 800px) {
+    .homePage{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .homePageHeading{
+        width: 100%;
+    }
+    .homeOptions{
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 680px) {
+    .homeOption_box {
+        width: 200px;
+        height: 75px;
+    }
+
+    .homeOption_title{
+        font-size: 1rem;
+    }
+
+    .homePageHeading {
+        font-weight: 500;
+        letter-spacing: 2px;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .homeSec {
+        padding: 0;
+    }
+    
+    .homePageHeading h4{
+        font-size: 2.5rem;
+    }
+}

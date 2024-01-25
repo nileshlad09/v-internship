@@ -5,7 +5,6 @@
     margin-top: 20px;
   }
   .dashboard_table{
-    /* background-color: red; */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -14,9 +13,6 @@
   }
   .dashboard_table table{
     width: 80%;
-  }
-  .dashboard_table tr{
-    background-color: #000000ba;
   }
   .dashboard_table th,
   .dashboard_table td{

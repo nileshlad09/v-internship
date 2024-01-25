@@ -8,22 +8,23 @@
   gap: 5px 30px;
 }
 
-.search__container{
+.search__container {
   width: 120px;
   height: 40px;
 }
-.search__input{
+
+.search__input {
   width: 100%;
   height: 100%;
-  border-radius: 10px ;
+  border-radius: 10px;
   outline: none;
   border: 1px solid #575756;
-  padding-left:5px;
+  padding-left: 5px;
   font-size: 0.85rem;
 }
 
 #branch,
-#div{
+#div {
   outline: none;
   height: 100%;
   border: 1px solid #575756;
@@ -31,11 +32,6 @@
   font-size: 0.85rem;
 }
 
-a {
-  text-decoration: none;
-  list-style: none;
-  color: #fff;
-}
 
 h1 {
   font-size: 30px;
@@ -46,10 +42,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-table {
-  width: 100%;
-  /* table-layout: fixed; */
-}
+
 
 
 .tbl-content {
@@ -58,26 +51,7 @@ table {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-th {
-  padding: 20px 15px;
-  font-weight: 500;
-  font-size: 13px;
-  color: #fff;
-  text-transform: uppercase;
-  /* background-color: orangered; */
-  background-color: var(--blue);
-  white-space: nowrap;
-}
 
-td {
-  padding: 15px;
-  text-align: left;
-  font-weight: 700;
-  font-size: 13px;
-  color: #fff;
-  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
-  white-space: nowrap;
-}
 
 
 
@@ -107,7 +81,7 @@ section {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-.dataview_section{
+.dataview_section {
   width: 100%;
-    overflow-x: auto;
+  overflow-x: auto;
 }

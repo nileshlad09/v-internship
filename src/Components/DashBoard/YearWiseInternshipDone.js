@@ -2,7 +2,7 @@ import React from 'react'
 import Chart from 'react-apexcharts'
 
 
-const Graph = ({ arr1 }) => {
+const YearWiseInternshipDone = ({ arr1 }) => {
   const batch3 = arr1[2].length;
   const batch2 = arr1[1].length;
   const batch1 = arr1[0].length;
@@ -52,4 +52,4 @@ const Graph = ({ arr1 }) => {
   )
 }
 
-export default Graph
+export default YearWiseInternshipDone
