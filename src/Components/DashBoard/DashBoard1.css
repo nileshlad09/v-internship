@@ -55,9 +55,7 @@
 }
 
 .Dashboard_main_box {
-    /* background-color: #28A745; */
-    /* background-color: orangered; */
-    background-color: var(--blue);
+    background-color: var(--color2);
 }
 
 .Dashboard_main_box p {

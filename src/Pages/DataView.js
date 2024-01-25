@@ -147,7 +147,7 @@ const View = () => {
               <input className="search__input" value={roll} onChange={(e) => { setroll(e.target.value) }} type="text" placeholder="Roll No." />
             </div>
 
-            <button className='btn btn-primary' style={{ width: "150px", marginTop: "20px" }} onClick={() => downloadExcel(fav)}>Export Data</button>
+            <button className='btn btn2' style={{ width: "150px", marginTop: "20px" }} onClick={() => downloadExcel(fav)}>Export Data</button>
 
           </div>
 

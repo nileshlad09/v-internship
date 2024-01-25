@@ -82,8 +82,8 @@ const Dashboard = () => {
                   <option value={dummyYear} selected> July {String(dummyYear).slice(0, 4)} - June {String(dummyYear).slice(5, 7)}</option>
                 </select>
               </div>
-              <div className="dashBoardBtn">
-                <Link to="/dashboard/deleteold"><button className='btn btn-dark'>Delete old data</button></Link>
+              <div className="dashBoardBtn ">
+                <Link to="/dashboard/deleteold"><button className='btn btn2'>Delete old data</button></Link>
               </div>
             </div>
             <DashBoard1 arr1={arr1} crediantial={crediantial} dummyYear={dummyYear} />

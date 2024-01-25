@@ -13,6 +13,7 @@ const YearWiseInternshipDone = ({ arr1 }) => {
       <Chart
         type="bar"
         width="100%"
+        background="#3A4A63"
 
         // height="400px"
         series={[

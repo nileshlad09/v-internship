@@ -75,7 +75,7 @@ const Deleteold = () => {
                                 />
                             </div>
                             <div className=" deleteAllbtn">
-                                <button className="btn btn-primary" onClick={() => deleteAll(year)}>Delete all selected data</button>
+                                <button className="btn btn2" onClick={() => deleteAll(year)}>Delete all selected data</button>
                             </div>
                         </div>
 
